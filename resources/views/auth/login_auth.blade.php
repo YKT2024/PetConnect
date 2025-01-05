@@ -17,8 +17,8 @@
         <br>
         <button type="submit">ログイン</button>
     </form>
-    <a href="{{ route('register') }}">新規登録</a>
+    <a href="/register">新規登録</a>
     <br>
-    <a href="{{ route('posts.index') }}">ログインせずに見る</a>
+    <a href="{{ route('posts.index_post') }}">ログインせずに見る</a>
 </body>
 </html>

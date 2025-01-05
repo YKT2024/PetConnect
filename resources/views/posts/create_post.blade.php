@@ -23,8 +23,6 @@
         <div class="col-md-8">
             <form action="#" method="POST">
                 <div class="form-group">
-                    <label>タイトル</label>
-                    <input type="text" class="form-control" placeholder="タイトルを入力して下さい" name="title">
                 </div>
                 <div class="form-group">
                     <label>内容</label>
