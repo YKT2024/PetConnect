@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id'); //ユーザーID(外部キー)
             $table->string('name'); //ペットの名前
             $table->unsignedBigInteger('pet_category_id'); //ペットの大分類(外部キー)
-            $table->unsignedBigInteger('pet_subcategory_id'); //ペットの中分類(外部キー)
+            $table->unsignedBigInteger('subcategory_id'); //ペットの中分類(外部キー)
             $table->string('pet_breed')->nullable(); //ペットの小分類
             $table->integer('birth_year')->nullable(); //ペットの誕生日(年)
             $table->tinyInteger('birth_month')->nullable(); //ペットの誕生日(月)
