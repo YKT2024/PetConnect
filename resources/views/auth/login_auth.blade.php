@@ -4,21 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログイン</title>
+    {{-- css --}}
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 <body>
-    <h1>ログイン</h1>
+    <img class=logo src="{{ asset('img/logo_yoko.png')}}" alt="ロゴ">
+    <div class="information">
     <form method="POST" action="{{ route('login') }}">
         @csrf
-        <label for="email">アドレス</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email" value="" placeholder="    アドレス" required>
         <br>
-        <label for="password">パスワード</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password" value="" placeholder="    パスワード" required>
         <br>
         <button type="submit">ログイン</button>
     </form>
-    <a href="/register">新規登録</a>
+    <hr>
+    <div class="reguster"><a href="{{ route('register') }}">新規登録</a></div>
     <br>
-    <a href="{{ route('posts.index_post') }}">ログインせずに見る</a>
+    <div class="non_login"><a href="{{ route('posts.index_post') }}">ログインせずに見る</a></div>
+    </div>
 </body>
 </html>
