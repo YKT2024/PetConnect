@@ -21,7 +21,7 @@ return new class extends Migration
             $table->boolean('status'); //探していますor見つけました
             $table->string('name')->nullable(); //ペットの名前
             $table->date('date')->nullable(); //いなくなった日or見つけた日
-            $table->unsignedBigInteger('pet_subcategory_id'); //ペットの中分類(外部キー)
+            $table->unsignedBigInteger('subcategory_id'); //ペットの中分類(外部キー)
             $table->string('sex')->nullable(); //ペットの性別
             $table->tinyInteger('weight')->nullable(); //体重
             $table->tinyInteger('height')->nullable(); //身長
