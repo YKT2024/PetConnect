@@ -1,0 +1,61 @@
+body {
+    background-color: #A19AD3;
+    text-align: center;
+}
+
+.logo {
+    width: 70%;
+    margin: 35px 0;
+}
+
+.information {
+    text-align: center;
+    background-color:rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    width: 80%;
+    margin: 0 10%;
+    padding: 40px 0;
+}
+
+input {
+    border-radius: 20px;
+    border: 1px solid #c8c8c8;
+    width: 75%;
+    padding: 10px;
+    margin: 5px;
+}
+
+button {
+    border-radius: 20px;
+    border: 0px solid #c8c8c8;
+    width: 80%;
+    padding: 10px;
+    margin: 30px;
+    background-color: #7CE0DD;
+    color: white;
+}
+
+hr{
+    width: 250px;
+}
+
+.reguster {
+    margin-top: 30px;
+}
+
+.reguster a {
+    text-decoration: none;
+    color: #333;
+}
+
+.non_login a {
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 20px;
+    border: none;
+    width: 70%;
+    padding: 5px;
+    margin: 20px;
+    background-color: #FFF;
+    color: #333;
+}
