@@ -21,7 +21,7 @@
     <hr>
     <div class="reguster"><a href="{{ route('register') }}">新規登録</a></div>
     <br>
-    <div class="non_login"><a href="{{ route('posts.index') }}">ログインせずに見る</a></div>
+    <div class="non_login"><a href="{{ route('posts.index_post') }}">ログインせずに見る</a></div>
     </div>
 </body>
 </html>
