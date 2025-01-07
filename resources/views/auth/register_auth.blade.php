@@ -17,30 +17,30 @@
 
     <main class="maincontent">
          {{-- バックがつながったらここいじってください 　--}}
-         {{-- <form action="{{ route('') }}" method="POST" enctype="multipart/form-data"> --}}
-             {{-- @csrf 　--}}
+         <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
+             @csrf
             <div class="register">
                 <div class="input">
-                    <label for="accoutname"><span class="asterisk">*</span>アカウント名</label>
-                    <input type="text" name="accountname" placeholder="アカウント名" required>
+                    <label for="name"><span class="asterisk">*</span>アカウント名</label>
+                    <input type="text" id="name" name="name" placeholder="アカウント名" autocomplete="username" required>
                 </div>
                 <div class="input">
                     <label for="address"><span class="asterisk">*</span>居住地</label>
-                    <select name="address" required>
-                        <option value="" disabled selected>あなたのお家はどこですか〜</option>
+                    <select id="address" name="address" required>
+                        {{-- <option value="" disabled selected>あなたのお家はどこですか〜</option> --}}
                           {{-- データベースできたらこの上の1行消してこっちを生かす --}}
-                         {{-- @foreach ($users as $user) --}}
-                         {{-- <option value="{{ $user->address }}">{{ $pet->pet_type }}</option> --}}
-                         {{-- @endforeach --}}
+                         @foreach ($areas as $area)
+                         <option value="{{ $area->id }}">{{ $area->area }}</option>
+                         @endforeach
                     </select>
                 </div>
                 <div class="input">
                     <label for="email"><span class="asterisk">*</span>Email</label>
-                    <input type="email" name="email" placeholder="sample@example.com" required>
+                    <input type="email" id="email" name="email" placeholder="sample@example.com" autocomplete="email" required>
                 </div>
                 <div class="input">
                     <label for="password"><span class="asterisk">*</span>パスワード</label>
-                        <input type="password" name="password" placeholder="パスワードを入力してください" required>
+                        <input type="password" id="password" name="password" placeholder="パスワードを入力してください" required>
                 </div>
             </div>
             <div class="btn">
