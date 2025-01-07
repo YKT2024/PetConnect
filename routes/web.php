@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Area;
 
 
 //== Ayakaさん！、以下のルートはログインするための仮です == //
@@ -27,7 +28,8 @@ Route::post('/register', [App\Http\Controllers\Auth\RegisteredUserController::cl
 
 // 新規登録用のGETルート
 Route::get('/register', function () {
-    return view('auth.register_auth'); // register.blade.phpを表示
+    $areas = Area::all();
+    return view('auth.register_auth', compact('areas')); // register.blade.phpを表示
 })->name('register');
 
 // 投稿一覧（全ユーザー共通）
