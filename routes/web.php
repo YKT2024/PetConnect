@@ -59,7 +59,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 //↓仮のやつなのであとで消します：AYAKA
-Route::get('/posts', function () { return view('/posts/index_post'); });
+// Route::get('/posts', function () { return view('/posts/index_post'); });
 Route::get('/posts/create', function () { return view('/posts/create_post'); });
 Route::get('/posts/edit', function () { return view('/posts/edit_post'); });
 Route::get('/posts/show', function () { return view('/posts/show_post'); });
