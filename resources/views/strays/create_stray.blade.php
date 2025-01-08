@@ -17,7 +17,7 @@
     <main class="maincontent">
         <!-- バックがつながったらここいじってください -->
         <!-- <form action="{{ route('') }}" method="POST" enctype="multipart/form-data"> -->
-            <!-- @csrf -->
+             {{-- @csrf --> --}}
             <div class="register">
                 <section class="section1">
                     <!-- ラジオボタン -->
@@ -114,13 +114,12 @@
                                 <span>cm</span>
                         </div>
                     </div>
-            </div>
                     <!-- 備考 -->
                     <div class="input">
                         <label for="introduce">備考</label>
                         <textarea id="introduce" name="introduce" rows="4" maxlength="280" placeholder="どんな子かおしえて〜"></textarea>
                     </div>
-                </section>    
+                </section> 
             </div>
             <div class="btn">
                 <button type="submit" class="btn-1">登録</button>
