@@ -109,6 +109,11 @@
         border-color: rgba(217, 217, 217, 1);
     }
 
+    .harfinput {
+        width:20%;
+        
+    }
+    
     textarea {
         height: 100px;
         resize: none;

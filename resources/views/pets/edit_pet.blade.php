@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>おペットの編集</title>
-    <link rel="stylesheet" href="{{ asset('/css/editpet.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/edit_pet.css') }}">
 </head>
 <body>
     {{-- ↓↓↓↓↓仮のヘッダーだよ↓↓↓↓↓--}}
@@ -55,8 +55,9 @@
                     <input type="text" name="select_pettype3" placeholder="具体的にはなんですか〜">
                 </div>
                 <div class="input">
-                    <label for="birthday">誕生日</label>
-                    <input type="date" name="birthday">
+                    <label for="birthday">誕生年月</label>
+                    <input class="halfinput" type="number" name="date" min="2020" max="2100" placeholder="yyyy">
+                        <input class="halfinput" type="number" name="date" min="1" max="12" placeholder="mm">
                 </div>
                 <div class="input">
                     <label for="select_pettype">性別</label>
@@ -80,7 +81,8 @@
                 </div>
                 <div class="input">
                     <label for="pickupday">お迎え日</label>
-                    <input type="date" name="pickupday">
+                    <input class="halfinput" type="number" name="date" min="2020" max="2100" placeholder="yyyy">
+                        <input class="halfinput" type="number" name="date" min="1" max="12" placeholder="mm">
                 </div>
                 <div class="input">
                     <label for="introduce">ペットの紹介</label>
