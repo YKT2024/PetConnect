@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('color')->nullable(); //ペットの色
             $table->date('pick_up_date')->nullable(); //お迎えした日
             $table->string('image_at')->nullable(); //アイコン
+            $table->string('body')->nullable(); //備考
             $table->timestamps();
         });
     }

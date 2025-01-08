@@ -40,8 +40,8 @@ Route::get('/', function () {
     return view('auth.login_auth'); // ログインページ
 });
 
-// ログイン済みユーザー専用ルート
-Route::middleware('auth')->group(function () {
+// ログイン済みユーザー専用ルート   ---@guestと@authを使うからいらなそう
+// Route::middleware('auth')->group(function () {   ---@guestと@authを使うからいらなそう
     Route::get('/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('posts.create_post'); // 投稿作成
     Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show_post'); // 投稿詳細
 
@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/shelters/{id}', [App\Http\Controllers\ShelterController::class, 'show_shelter'])->name('shelters.show_shelter');
     Route::get('/shelters/create', [App\Http\Controllers\ShelterController::class, 'create_shelter'])->name('shelters.create_shelter');
     Route::post('/shelters', [App\Http\Controllers\ShelterController::class, 'store_shelter'])->name('shelters.store_shelter');
-});
+// });   ---@guestと@authを使うからいらなそう
 
 // Auth::routes();
 
