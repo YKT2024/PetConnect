@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('shelters', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id'); //ユーザーId(外部キー)
-            $table->string('body')->nullable(); //備考
+            $table->foreignId('user_id')->constrained(); //ユーザーId(外部キー)
+            $table->text('body')->nullable(); //備考
             $table->string('address')->nullable(); //避難所の住所
-            $table->unsignedBigInteger('area_id'); //エリアId(外部キー)
+            $table->foreignId('area_id')->constrained(); //エリアId(外部キー)
             $table->string('image_at')->nullable(); //もしかしたら使うかも：写真
             $table->string('shelter_name')->nullable(); //避難所の名前
             $table->string('shelter_contact')->nullable(); //避難所の連絡先

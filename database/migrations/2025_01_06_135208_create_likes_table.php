@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('likes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id'); //ユーザーID(外部キー)
-            $table->unsignedBigInteger('post_id'); //投稿ID(外部キー)
+            $table->foreignId('user_id')->constrained(); //ユーザーID(外部キー)
+            $table->foreignId('post_id')->constrained(); //投稿ID(外部キー)
             $table->timestamps();
         });
     }

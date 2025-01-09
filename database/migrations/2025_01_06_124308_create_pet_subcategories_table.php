@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pet_subcategories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pet_category_id'); //ペットの大分類(外部キー)
+            $table->foreignId('pet_category_id')->constrained(); //ペットの大分類(外部キー)
             $table->string('subcategory'); //ペットの中分類
             $table->timestamps();
         });

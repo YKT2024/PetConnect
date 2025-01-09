@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('body'); 
-            $table->unsignedBigInteger('user_id'); //ユーザーID(外部キー)
-            $table->unsignedBigInteger('post_id'); //投稿ID(外部キー)
-            $table->unsignedBigInteger('shelter_id'); //避難所ID(外部キー)
-            $table->unsignedBigInteger('stray_id'); //迷子ID(外部キー)
+            $table->text('body'); 
+            $table->foreignId('user_id')->constrained(); //ユーザーID(外部キー)
+            $table->foreignId('post_id')->constrained(); //投稿ID(外部キー)
+            $table->foreignId('shelter_id')->constrained(); //避難所ID(外部キー)
+            $table->foreignId('stray_id')->constrained(); //迷子ID(外部キー)
             $table->timestamps();
         });
     }

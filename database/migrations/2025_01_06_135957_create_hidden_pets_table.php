@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('hidden_pets', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id'); //ユーザーID(外部キー)
-            $table->unsignedBigInteger('subcategory_id'); //ペットの中分類(外部キー)
+            $table->foreignId('user_id')->constrained(); //ユーザーID(外部キー)
+            $table->foreignId('pet_subcategory_id')->constrained(); //ペットの中分類(外部キー)
             $table->timestamps();
         });
     }
