@@ -62,7 +62,6 @@ class AreaSeeder extends Seeder
     ['id' => 46, 'area' => "鹿児島県"],
     ['id' => 47, 'area' => "沖縄県"],
     ['id' => 48, 'area' => "海外"],
-    ['id' => 49, 'area' => "null"],
 ]);
 
     }

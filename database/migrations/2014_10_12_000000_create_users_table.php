@@ -17,10 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->unsignedBigInteger('area_id'); //エリアID(外部キー)
-            $table->foreign('area_id') // 外部キー制約を追加
-                  ->references('id')->on('areas')
-                  ->onDelete('cascade'); // Areasテーブルのidを参照し、親が削除されたら子も削除
+            $table->foreignId('area_id')->constrained(); //エリアID(外部キー)
             $table->rememberToken();
             $table->timestamps();
         });
