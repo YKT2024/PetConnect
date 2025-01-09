@@ -43,6 +43,8 @@ Route::get('/', function () {
 // ログイン済みユーザー専用ルート   ---@guestと@authを使うからいらなそう
 // Route::middleware('auth')->group(function () {   ---@guestと@authを使うからいらなそう
     Route::get('/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('posts.create_post'); // 投稿作成
+    Route::post('posts/create', [App\Http\Controllers\PostController::class, 'store'])->name('create_post.store'); // 投稿作成
+
     Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show_post'); // 投稿詳細
 
     // プロフィール
