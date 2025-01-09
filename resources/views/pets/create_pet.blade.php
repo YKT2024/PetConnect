@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>おペットの登録(あとから？)</title>
-    <link rel="stylesheet" href="{{ asset('/css/editpet.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/edit_pet.css') }}">
 </head>
 <body>
     {{-- ↓↓↓↓↓仮のヘッダーだよ↓↓↓↓↓--}}
@@ -15,9 +15,8 @@
 {{-- ↑↑↑↑仮のヘッダーだよ↑↑↑↑--}}
 
     <main class="maincontent">
-         {{-- バックがつながったらここいじってください--}}
-         {{-- <form action="{{ route('') }}" method="POST" enctype="multipart/form-data"> --}}
-             {{-- @csrf --}}
+        <form action="{{ route('create_pet.store') }}" method="POST" enctype="multipart/form-data">
+         @csrf
             <div class="register">
                 <div class="photo-upload">
                     <div class="photo-frame">
@@ -34,20 +33,18 @@
                     <label for="select_pettype"><span class="asterisk">*</span>カテゴリ1(分類)</label>
                     <select name="select_pettype" id="select_pet" required>
                         <option value="" disabled selected>ペットの分類なんですか〜</option>
-                        {{-- データベースできたらこの上の1行消してこっちを生かす --}}
-                         {{-- @foreach ($pets as $pet) --}}
-                         {{-- <option value="{{ $pets->pet_type }}">{{ $pets->pet_type }}</option> --}}
-                         {{-- @endforeach --}}
+                         @foreach ($categories as $category)
+                         <option value="{{ $category->id }}">{{ $category->category }}</option>
+                         @endforeach
                     </select>
                 </div>
                 <div class="input">
                     <label for="select_pettype2"><span class="asterisk">*</span>カテゴリ2(種類)</label>
                     <select name="select_pettype2" required>
                         <option value="" disabled selected>ペットの種類なんですか〜</option>
-                         {{-- データベースできたらこの上の1行消してここから下を生かす --}}
-                         {{-- @foreach ($pets as $pet) --}}
-                         {{-- <option value="{{ $pets->pet_type }}">{{ $pets->pet_type }}</option> --}}
-                         {{-- @endforeach --}}
+                         @foreach ($subcategories as $subcategory)
+                         <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory }}</option>
+                         @endforeach
                     </select>
                 </div>
                 <div class="input">
@@ -55,8 +52,12 @@
                     <input type="text" name="select_pettype3" placeholder="具体的にはなんですか〜">
                 </div>
                 <div class="input">
-                    <label for="birthday">誕生日</label>
-                    <input type="date" name="birthday">
+                    <label for="birth_year">誕生年</label>
+                    <input name="birth_year">
+                </div>
+                <div class="input">
+                    <label for="birth_month">誕生月</label>
+                    <input name="birth_month">
                 </div>
                 <div class="input">
                     <label for="select_pettype">性別</label>
@@ -65,16 +66,6 @@
                            {{-- データベースできたらこの上の1行消してここから下を生かす --}}
                          {{-- @foreach ($pets as $pet) --}}
                          {{-- <option value="{{ $pet->sex }}">{{ $pet->sex}}</option> --}}
-                         {{-- @endforeach --}}
-                    </select>
-                </div>
-                <div class="input">
-                    <label for="select_petcolor">色</label>
-                    <select name="petcolor">
-                        <option value="" disabled selected>ペットの色はなんですか〜</option>
-                          {{-- データベースできたらこの上の1行消してここから下を生かす --}}
-                         {{-- @foreach ($pets as $pet) --}}
-                         {{-- <option value="{{ $pet->color }}">{{ $pet->color }}</option> --}}
                          {{-- @endforeach --}}
                     </select>
                 </div>
@@ -92,16 +83,8 @@
                 </div>
                 <div class="btn">
                     <button type="button" class="btn-3" onclick="window.location.href='#'">キャンセル</button>
-                </div>
-                <div class="btn">
-                     {{-- この下の行ルートつながったら変更 --}}
-                     {{-- <form action="{{ route('') }}" method="POST" onsubmit="return confirm('本当に削除しますか？')"> --}}
-                     {{-- @csrf --}}
-                    {{-- @method('DELETE') --}}
-                    <button type="submit" class="btn-2">削除</button>
-                </div>
-                
-     {{-- </form> --}}
+                </div>                
+        </form>
     </main>
 
     <script>

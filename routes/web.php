@@ -46,16 +46,22 @@ Route::get('/', function () {
     Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show_post'); // 投稿詳細
 
     // プロフィール
-    Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
+    // Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
 
     // Shelters関連
-    Route::get('/shelters', [App\Http\Controllers\ShelterController::class, 'index_shelter'])->name('shelters.index_shelter');
-    Route::get('/shelters/{id}', [App\Http\Controllers\ShelterController::class, 'show_shelter'])->name('shelters.show_shelter');
-    Route::get('/shelters/create', [App\Http\Controllers\ShelterController::class, 'create_shelter'])->name('shelters.create_shelter');
-    Route::post('/shelters', [App\Http\Controllers\ShelterController::class, 'store_shelter'])->name('shelters.store_shelter');
+    // Route::get('/shelters', [App\Http\Controllers\ShelterController::class, 'index_shelter'])->name('shelters.index_shelter');
+    // Route::get('/shelters/{id}', [App\Http\Controllers\ShelterController::class, 'show_shelter'])->name('shelters.show_shelter');
+    // Route::get('/shelters/create', [App\Http\Controllers\ShelterController::class, 'create_shelter'])->name('shelters.create_shelter');
+    // Route::post('/shelters', [App\Http\Controllers\ShelterController::class, 'store_shelter'])->name('shelters.store_shelter');
 // });   ---@guestと@authを使うからいらなそう
 
 // Auth::routes();
+
+// Pets関連
+Route::get('/pets/create', [App\Http\Controllers\PetController::class, 'show_create_pet'])->name('create_pet.show');
+Route::post('/pets/create', [App\Http\Controllers\PetController::class, 'store_create_pet'])->name('create_pet.store');
+//↑/pets/createなのか、/petsのみなのか分からない：太田メモ
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

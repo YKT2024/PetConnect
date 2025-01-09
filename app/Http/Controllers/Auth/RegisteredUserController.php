@@ -12,27 +12,24 @@ class RegisteredUserController extends Controller
 {
     public function store(Request $request)
     {
-
-        
         // dd($request->all());
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'address' => 'required|integer|exists:areas,id',
+            'address' => 'required|exists:areas,id',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
         ]);
 
         $user = User::create([
             'name' => $request->input('name'),
-            'email' => $request->input('email'),
             'area_id' => $request->input('address'),
+            'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
         ]);
 
         Auth::login($user);
 
-        // 新規登録後のリダイレクト先を /home に設定
-        return redirect('/home');
+        return redirect()->route('create_pet.show');
     }
 }
