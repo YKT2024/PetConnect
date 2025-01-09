@@ -1,3 +1,22 @@
 body {
     background-color: #EFF0F4;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 各段の間隔 */
+}
+
+.row {
+    display: flex;
+    justify-content: center; /* 水平中央寄せ */
+    gap: 10px; /* 画像の間隔 */
+}
+
+.row img {
+    width: 200px; /* 画像の幅 */
+    height: auto; /* 高さを自動調整 */
+    border-radius: 10px; /* 角丸 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 影を追加 */
+}

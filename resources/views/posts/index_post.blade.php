@@ -7,50 +7,167 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
   {{-- css --}}
-  <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/index_post.css') }}">
 </head>
 <body>
   <header>
-    <div class="header-left">
-            <img class="logo" src="./logo.png" alt="">
-        </div>
-        <div class="header-right">
-            <ul class="nav">
-                <li><a href="#">ユーザA</a></li>
-            </ul>
-        </div>
-  </header>
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card text-center">
-            <div class="card-header">
-                投稿一覧
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">タイトル : おはよう</h5>
-                <p class="card-text">
-                  内容 : 今日のセブは快晴
-                </p>
-                <p class="card-text">投稿者：Seed Techさん</p>
-                <a href="#" class="btn btn-primary">詳細へ</a>
-            </div>
-            <div class="card-footer text-muted">
-                投稿日時 : 2021/11/08
-            </div>
-        </div>
-        </div>
-        <div class="col-md-2">
-          <a href="#" class="btn btn-primary">
-            新規投稿
-          </a>
-        </div>
+    <div class="top">
+      <p>投稿一覧</p>
     </div>
+  </header>
+  <div class="select_button">
+    <a href="#" id="show-all">全て</a>
+    <a href="#" id="show-favorites">お気に入り</a>
   </div>
-  <footer>
-    Copyright &copy; Seedkun Inc.
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+  <div class="search">
+    <form action="http://127.0.0.1:8002/posts" method="get">
+      <input type="search" name="search">
+      <input type="submit" name="submit" value="🔍">
+    </form>
+  </div>
+<div  id="all-container" class="all_container">
+    @php
+        // ダミーデータ: 投稿画像のURLを仮で定義
+        $dummyPosts = [
+            'https://via.placeholder.com/200x150?text=1',
+            'https://via.placeholder.com/200x150?text=2',
+            'https://via.placeholder.com/200x150?text=3',
+            'https://via.placeholder.com/200x150?text=4',
+            'https://via.placeholder.com/200x150?text=5',
+            'https://via.placeholder.com/200x150?text=6',
+        ];
+    @endphp
+
+    {{-- ダミーデータで投稿画像を表示 --}}
+    @foreach ($dummyPosts as $index => $post)
+        {{-- 1段目（1番目と2番目） --}}
+        @if ($index == 0 || $index == 1)
+            @if ($index == 0)
+                <div class="row"> {{-- 新しい行の開始 --}}
+            @endif
+            <img src="{{ asset('img/test1.jpg')}}" alt="ダミー画像">
+            @if ($index == 1)
+                </div> {{-- 行の終了 --}}
+            @endif
+
+        {{-- 2段目（3番目） --}}
+        @elseif ($index == 2)
+            <div class="row1">
+                <img src="{{ asset('img/test1.jpg')}}" alt="ダミー画像">
+            </div>
+
+        {{-- 3段目（4番目と5番目） --}}
+        @elseif ($index == 3 || $index == 4)
+            @if ($index == 3)
+                <div class="row">
+            @endif
+            <img src="{{ asset('img/test1.jpg')}}" alt="ダミー画像">
+            @if ($index == 4)
+                </div>
+            @endif
+
+        {{-- 4段目（6番目） --}}
+        @elseif ($index == 5)
+            <div class="row1">
+                <img src="{{ asset('img/test1.jpg')}}" alt="ダミー画像">
+            </div>
+        @endif
+    @endforeach
+</div>
+
+<div id="favorites-container" class="favorite_container" style="display: none;">
+  @php
+      // ダミーデータ: 投稿画像のURLを仮で定義
+      $dummyPosts = [
+          'https://via.placeholder.com/200x150?text=1',
+          'https://via.placeholder.com/200x150?text=2',
+          'https://via.placeholder.com/200x150?text=3',
+          'https://via.placeholder.com/200x150?text=4',
+          'https://via.placeholder.com/200x150?text=5',
+          'https://via.placeholder.com/200x150?text=6',
+      ];
+  @endphp
+
+  {{-- ダミーデータで投稿画像を表示 --}}
+  @foreach ($dummyPosts as $index => $post)
+      {{-- 1段目（1番目と2番目） --}}
+      @if ($index == 0 || $index == 1)
+          @if ($index == 0)
+              <div class="row"> {{-- 新しい行の開始 --}}
+          @endif
+          <img src="{{ asset('img/lion.jpg')}}" alt="ダミー画像">
+          @if ($index == 1)
+              </div> {{-- 行の終了 --}}
+          @endif
+
+      {{-- 2段目（3番目） --}}
+      @elseif ($index == 2)
+          <div class="row1">
+              <img src="{{ asset('img/lion.jpg')}}" alt="ダミー画像">
+          </div>
+
+      {{-- 3段目（4番目と5番目） --}}
+      @elseif ($index == 3 || $index == 4)
+          @if ($index == 3)
+              <div class="row">
+          @endif
+          <img src="{{ asset('img/lion.jpg')}}" alt="ダミー画像">
+          @if ($index == 4)
+              </div>
+          @endif
+
+      {{-- 4段目（6番目） --}}
+      @elseif ($index == 5)
+          <div class="row1">
+              <img src="{{ asset('img/lion.jpg')}}" alt="ダミー画像">
+          </div>
+      @endif
+  @endforeach
+</div>
+
+<div class="pulus">
+  <a href="">
+    <span class="dli-plus-circle"><span></span></span>
+  </a>
+</div>
+
+<div class="footer-icons">
+  <a href="#"><img class=icons src="{{ asset('img/footer_field.png')}}" alt="投稿一覧"></a>
+  <a href="#"><img class=icons src="{{ asset('img/footer_search.png') }}" alt="検索"></a>
+  <a href="#"><img class=icons src="{{ asset('img/footer_bookmark.png')}}" alt="ブックマーク"></a>
+  <a href="#"><img class=icons src="{{ asset('img/footer_comment.png')}}" alt="コメント"></a>
+  <a href="#"><img class=icons src="{{ asset('img/footer_mypage.png')}}" alt="マイぺージ"></a>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // 要素が存在するか確認
+    const allContainer = document.getElementById('all-container');
+    const favoritesContainer = document.getElementById('favorites-container');
+    const showAllButton = document.getElementById('show-all');
+    const showFavoritesButton = document.getElementById('show-favorites');
+
+    if (allContainer && favoritesContainer && showAllButton && showFavoritesButton) {
+      // "全て" ボタンのクリックイベント
+      showAllButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        allContainer.style.display = 'block'; // 全てを表示
+        favoritesContainer.style.display = 'none'; // お気に入りを非表示
+      });
+
+      // "お気に入り" ボタンのクリックイベント
+      showFavoritesButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        allContainer.style.display = 'none'; // 全てを非表示
+        favoritesContainer.style.display = 'block'; // お気に入りを表示
+      });
+    } else {
+      console.error('必要な要素が見つかりません。HTML 内の ID を確認してください。');
+    }
+  });
+</script>
+
+  {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script> --}}
 </body>
 </html>
