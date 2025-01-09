@@ -21,7 +21,7 @@
                 <div class="photo-upload">
                     <div class="photo-frame">
                         <img id="photo-preview" src="defaultimg.png" alt="Default Image">
-                        <input type="file" id="photo-input" accept="image/*" hidden>
+                        <input type="file" id="photo-input" name="photo-input" accept="image/*" hidden>
                         <label for="photo-input" class="upload-button">+</label>
                     </div>
                 </div>
@@ -63,10 +63,9 @@
                     <label for="select_pettype">性別</label>
                     <select name="petssex">
                         <option value="" disabled selected>ペットの性別はなんですか〜</option>
-                           {{-- データベースできたらこの上の1行消してここから下を生かす --}}
-                         {{-- @foreach ($pets as $pet) --}}
-                         {{-- <option value="{{ $pet->sex }}">{{ $pet->sex}}</option> --}}
-                         {{-- @endforeach --}}
+                         <option value="male">オス</option>
+                         <option value="female">メス</option>
+                         <option value="other">その他</option>
                     </select>
                 </div>
                 <div class="input">

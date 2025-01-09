@@ -45,19 +45,24 @@ class PetController extends Controller
         }
 
         // ペット情報の保存
-        Pet::create([
-            'user_id' => Auth::id(),
-            'name' => $validated['accountname'],
-            'pet_category_id' => $validated['select_pettype'],
-            'pet_subcategory_id' => $validated['select_pettype2'],
-            'pet_breed' => $validated['select_pettype3'] ?? null,
-            'birth_year' => $validated['birth_year'] ?? null,
-            'birth_month' => $validated['birth_month'] ?? null,
-            'sex' => $validated['petssex'] ?? null,
-            'pick_up_date' => $validated['pickupday'] ?? null,
-            'image_at' => $imagePath,
-            'body' => $validated['introduce'] ?? null,
-        ]);
+        try {
+            Pet::create([
+                'user_id' => Auth::id(),
+                'name' => $request->input('accountname'),
+                'pet_category_id' => $request->input('select_pettype'),
+                'pet_subcategory_id' => $request->input('select_pettype2'),
+                'pet_breed' => $request->input('select_pettype3'),
+                'birth_year' => $request->input('birth_year'),
+                'birth_month' => $request->input('birth_month'),
+                'sex' => $request->input('petssex'),
+                'pick_up_date' => $request->input('pickupday'),
+                'image_at' => $imagePath,
+                'body' => $request->input('introduce'),
+            ]);
+        } catch (\Exception $e) {
+            \Log::error('Pet registration failed: ' . $e->getMessage());
+            return back()->with('error', 'ペット情報の登録に失敗しました。');
+        }
 
         // 新規登録後のリダイレクト先を /home に設定
         return redirect()->route('home');
