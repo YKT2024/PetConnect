@@ -16,8 +16,7 @@
 
 
     <main class="maincontent">
-         {{-- バックがつながったらここいじってください 　--}}
-         <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
              @csrf
             <div class="register">
                 <div class="input">
@@ -27,8 +26,7 @@
                 <div class="input">
                     <label for="address"><span class="asterisk">*</span>居住地</label>
                     <select id="address" name="address" required>
-                        {{-- <option value="" disabled selected>あなたのお家はどこですか〜</option> --}}
-                          {{-- データベースできたらこの上の1行消してこっちを生かす --}}
+                        <option value="" disabled selected>あなたのお家はどこですか〜</option>
                          @foreach ($areas as $area)
                          <option value="{{ $area->id }}">{{ $area->area }}</option>
                          @endforeach
@@ -50,7 +48,7 @@
             <div class="btn">
                 <button type="button" class="btn-2" onclick="window.location.href='#'">ペット情報をスキップ</button>
             </div>
-     {{-- </form> --}}
+        </form>
     </main>
     
 </body>

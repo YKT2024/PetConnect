@@ -10,7 +10,7 @@ class Pet extends Model
     use HasFactory;
 
     // 変更可能なカラムを指定
-    protected $fillable = ['name', 'pet_breed', 'birth_year', 'birth_month', 'sex', 'color', 'pick_up_date', 'image_at'];
+    protected $fillable = ['user_id', 'name', 'pet_category_id', 'pet_subcategory_id', 'pet_breed', 'birth_year', 'birth_month', 'sex', 'pick_up_date', 'image_at', 'body'];
 
     // リレーションを設定
     public function user()
@@ -26,10 +26,5 @@ class Pet extends Model
     public function pet_subcategory()
     {
         return $this->belongsTo(Pet_subcategory::class);
-    }
-
-    public function area()
-    {
-        return $this->belongsTo(Area::class);
     }
 }
