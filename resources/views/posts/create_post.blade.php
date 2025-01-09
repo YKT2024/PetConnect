@@ -15,12 +15,12 @@
 <!-- ↑↑↑↑仮のヘッダーだよ↑↑↑↑　--}} -->
 
 <main class="maincontent">
-    {{-- <form action="{{ route('') }}" method="POST" enctype="multipart/form-data"> --}}
-        {{-- @csrf --}}
+    <form action="{{ route('create_post.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
         <div class="photo-upload">
             <div class="photo-frame">
                 <img id="photo-preview" src='{{asset( 'img/logo.png')}}' alt="Default Image">
-                <input type="file" id="photo-input" accept="image/*" hidden>
+                <input type="file" id="photo-input" name="photo-input" accept="image/*" hidden>
                 <label for="photo-input" class="upload-button">+</label>
             </div>
         </div>
@@ -34,7 +34,7 @@
         <div class="btn">
             <a href="#"></a><button type="button" class="btn-3" onclick="window.location.href='#'">キャンセル</button></a>
         </div>
-    <!-- </form> -->
+    </form>
 </main>
 
 <script>
