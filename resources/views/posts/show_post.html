@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投稿詳細</title>
+    <link rel="stylesheet" href="./show_post.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+<header class="header-dayo">
+    <div class="header-desu">投稿詳細</div>
+</header>
+
+<main class="maincontent">
+    <section class="section1">
+        <div class="photo-area">
+            <div class="photo-frame">
+                <img id="#" src='./postedimg2.jpg' alt="posted-img">
+            </div>
+            <div class="underimg">
+                <div class="posted-date">
+                    <p>2050-12-31</p>
+                </div>
+                <div class="like-fav">
+                    <button><i class="far fa-heart"></i></button>
+                    <button><i class="far fa-bookmark"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section2">
+        <div class="caption-comment">
+            <div class="icon-area">
+                <div class="icon">
+                    <img src="postedimg3.png" alt="アイコン">
+                </div>
+            </div>
+            <div class="caption">
+                <p>なんと、今日はガクちゃんがお絵描きに挑戦！...</p>
+            </div>
+        </div>
+
+        <!-- コメントセクション -->
+        <div class="comment">
+            <div class="btn">
+                <button class="btn-1" id="commentBtn">コメントする</button>
+            </div>
+
+            <!-- モーダルウィンドウ -->
+            <div id="commentModal">
+                <div class="modal-content">
+                    <form id="commentForm" method="POST">
+                        <textarea name="comment" placeholder="コメントを入力"></textarea>
+                        <button type="submit">コメント投稿</button>
+                        <button type="button" id="cancelBtn" class="cancel-btn">キャンセル</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- コメントリストを表示する場所 -->
+            <div id="commentList">
+                <!-- ここにコメントリストが追加される -->
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+    let comments = [];
+
+    document.getElementById('commentBtn').addEventListener('click', function() {
+        document.getElementById('commentModal').style.display = 'flex';
+    });
+
+    document.getElementById('cancelBtn').addEventListener('click', function() {
+        document.getElementById('commentModal').style.display = 'none';
+    });
+
+    document.getElementById('commentForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // ページリロードを防ぐ
+
+        const commentText = this.querySelector('textarea[name="comment"]').value;
+
+        if (commentText.trim() === '') {
+            alert('コメントを入力してください！');
+            return;
+        }
+
+        // コメントオブジェクトを追加
+        const newComment = {
+            text: commentText,
+            // 投稿者名やIDなども追加できます（例: userId: 12345）
+            userId: 'user123',  // 仮のユーザーID（後で実際のユーザーIDに置き換える）
+        };
+        comments.push(newComment);
+
+        updateComments();
+
+        document.getElementById('commentModal').style.display = 'none';
+        this.reset();
+    });
+
+    function updateComments() {
+        const commentList = document.getElementById('commentList');
+        commentList.innerHTML = ''; // リストをクリア
+
+        comments.forEach((comment, index) => {
+            const commentItem = document.createElement('div');
+            commentItem.classList.add('caption-comment');
+
+            const iconArea = document.createElement('div');
+            iconArea.classList.add('icon-area');
+            const icon = document.createElement('div');
+            icon.classList.add('icon');
+            const img = document.createElement('img');
+            img.src = 'postedimg3.png'; // アイコン画像
+            img.alt = 'アイコン';
+            icon.appendChild(img);
+            iconArea.appendChild(icon);
+
+            const caption = document.createElement('div');
+            caption.classList.add('caption');
+            const p = document.createElement('p');
+            p.textContent = comment.text;
+            caption.appendChild(p);
+
+            // 削除ボタン
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = '削除';
+            deleteBtn.classList.add('delete-btn');
+            deleteBtn.addEventListener('click', function() {
+                if (confirm('コメントを削除しますか？')) { // 確認アラート
+                    deleteComment(index); // 削除確定
+                }
+            });
+
+            commentItem.appendChild(iconArea);
+            commentItem.appendChild(caption);
+            commentItem.appendChild(deleteBtn);
+
+            commentList.appendChild(commentItem);
+        });
+    }
+
+    function deleteComment(index) {
+        comments.splice(index, 1); // コメントを配列から削除
+        updateComments(); // コメントリストを再更新
+    }
+</script>
+</body>
+</html>
