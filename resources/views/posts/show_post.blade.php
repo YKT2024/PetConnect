@@ -9,9 +9,12 @@
 </head>
 <body>
 
+<!--↓↓↓↓↓仮のヘッダーだよ↓↓↓↓↓-->
 <header class="header-dayo">
     <div class="header-desu">投稿詳細</div>
 </header>
+<!--↑↑↑↑仮のヘッダーだよ↑↑↑↑-->
+
 
 <main class="maincontent">
     <section class="section1">

@@ -20,7 +20,7 @@
             <div class="register">
                 <div class="photo-upload">
                     <div class="photo-frame">
-                        <img id="photo-preview" src="defaultimg.png" alt="Default Image">
+                        <img id="photo-preview" src="{{ asset('img/defaultimg.png') }}" alt="Default Image">
                         <input type="file" id="photo-input" name="photo-input" accept="image/*" hidden>
                         <label for="photo-input" class="upload-button">+</label>
                     </div>
