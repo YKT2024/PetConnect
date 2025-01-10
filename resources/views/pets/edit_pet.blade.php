@@ -15,78 +15,66 @@
 {{-- ↑↑↑↑仮のヘッダーだよ↑↑↑↑--}}
 
     <main class="maincontent">
-        {{-- バックがつながったらここいじってください--}}
-        {{-- <form action="{{ route('') }}" method="POST" enctype="multipart/form-data"> --}}
-            {{-- @csrf --}}
+        <form action="{{ route('pets.update', $pet->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
             <div class="register">
                 <div class="photo-upload">
                     <div class="photo-frame">
-                        <img id="photo-preview" src="{{ asset('img/defaultimg.png') }}" alt="Default Image">
-                        <input type="file" id="photo-input" accept="image/*" hidden>
+                        <img id="photo-preview" src="{{ $pet->image_at ? asset('storage/' . $pet->image_at) : asset('img/defaultimg.png') }}" alt="Pet Image">
+                        <input type="file" id="photo-input" name="photo-input" accept="image/*" hidden>
                         <label for="photo-input" class="upload-button">+</label>
                     </div>
                 </div>
                 <div class="input">
                     <label for="accoutname"><span class="asterisk">*</span>ペットの名前</label>
-                    <input type="text" name="accountname" placeholder="お名前なんですか〜" required>
+                    <input type="text" name="accountname" value="{{ $pet->name }}">
                 </div>
                 <div class="input">
                     <label for="select_pettype"><span class="asterisk">*</span>カテゴリ1(分類)</label>
                     <select name="select_pettype" id="select_pet" required>
-                        <option value="" disabled selected>ペットの分類なんですか〜</option>
+                        <option value="{{ $pet->pet_category_id }}" disabled selected>{{ $pet->pet_category->category }}</option>
                         {{-- データベースできたらこの上の1行消してこっちを生かす --}}
-                        {{-- @foreach ($pets as $pet) --}}
-                        {{-- <option value="{{ $pets->pet_type }}">{{ $pets->pet_type }}</option> --}}
-                        {{-- @endforeach --}}
+                        @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->category }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="input">
                     <label for="select_pettype2"><span class="asterisk">*</span>カテゴリ2(種類)</label>
                     <select name="select_pettype2" required>
-                        <option value="" disabled selected>ペットの種類なんですか〜</option>
+                        <option value="{{ $pet->pet_subcategory_id }}" disabled selected>{{ $pet->pet_subcategory->subcategory }}</option>
                         {{-- データベースできたらこの上の1行消してここから下を生かす --}}
-                        {{-- @foreach ($pets as $pet) --}}
-                        {{-- <option value="{{ $pets->pet_type }}">{{ $pets->pet_type }}</option> --}}
-                        {{-- @endforeach --}}
+                        @foreach ($subcategories as $subcategory)
+                        <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="input">
                     <label for="select_pettype3">ペットの種類</label>
-                    <input type="text" name="select_pettype3" placeholder="具体的にはなんですか〜">
+                    <input type="text" name="select_pettype3" value="{{ $pet->pet_breed }}">
                 </div>
                 <div class="input">
                     <label for="birthday">誕生年月</label>
-                    <input class="halfinput" type="number" name="date" min="2020" max="2100" placeholder="yyyy">
-                        <input class="halfinput" type="number" name="date" min="1" max="12" placeholder="mm">
+                    <input class="halfinput" type="number" name="birth_year" min="2020" max="2100" value="{{ $pet->birth_year }}">
+                        <input class="halfinput" type="number" name="birth_month" min="1" max="12" value="{{ $pet->birth_month }}">
                 </div>
                 <div class="input">
                     <label for="select_pettype">性別</label>
-                    <select name="petssex">
-                        <option value="" disabled selected>ペットの性別はなんですか〜</option>
-                        {{-- データベースできたらこの上の1行消してここから下を生かす --}}
-                        {{-- @foreach ($pets as $pet) --}}
-                        {{-- <option value="{{ $pet->sex }}">{{ $pet->sex}}</option> --}}
-                        {{-- @endforeach --}}
-                    </select>
-                </div>
-                <div class="input">
-                    <label for="select_petcolor">色</label>
-                    <select name="petcolor">
-                        <option value="" disabled selected>ペットの色はなんですか〜</option>
-                        {{-- データベースできたらこの上の1行消してここから下を生かす --}}
-                        {{-- @foreach ($pets as $pet) --}}
-                        {{-- <option value="{{ $pet->color }}">{{ $pet->color }}</option> --}}
-                        {{-- @endforeach --}}
+                    <select name="petssex" id="petssex">
+                        <option value="" disabled selected>{{ $pet->sex }}</option>
+                         <option value="オス">オス</option>
+                         <option value="メス">メス</option>
+                         <option value="その他">その他</option>
                     </select>
                 </div>
                 <div class="input">
                     <label for="pickupday">お迎え日</label>
-                    <input class="halfinput" type="number" name="date" min="2020" max="2100" placeholder="yyyy">
-                        <input class="halfinput" type="number" name="date" min="1" max="12" placeholder="mm">
+                    <input class="halfinput" type="date" name="pickupday" value="{{ $pet->pick_up_date }}">
                 </div>
                 <div class="input">
                     <label for="introduce">ペットの紹介</label>
-                    <textarea id="introduce" name="introduce" rows="4" maxlength="200" placeholder="ペットの紹介を入力してください。200文字"></textarea>
+                    <textarea id="introduce" name="introduce" rows="4" maxlength="200">{{ $pet->body }}</textarea>
                 </div>
             </div>
                 <div class="btn">

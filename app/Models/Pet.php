@@ -20,11 +20,11 @@ class Pet extends Model
 
     public function pet_category()
     {
-        return $this->belongsTo(Pet_category::class);
+        return $this->belongsTo(Pet_category::class, 'pet_category_id');
     }
 
     public function pet_subcategory()
     {
-        return $this->belongsTo(Pet_subcategory::class);
+        return $this->belongsTo(Pet_subcategory::class, 'pet_subcategory_id');
     }
 }
