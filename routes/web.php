@@ -42,8 +42,8 @@ Route::get('/', function () {
 
 // ログイン済みユーザー専用ルート   ---@guestと@authを使うからいらなそう
 // Route::middleware('auth')->group(function () {   ---@guestと@authを使うからいらなそう
-    Route::get('/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('posts.create_post'); // 投稿作成
-    Route::post('posts/create', [App\Http\Controllers\PostController::class, 'store'])->name('create_post.store'); // 投稿作成
+    Route::get('/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('posts.create_post'); // 新規投稿作成フォーム
+    Route::post('posts/create', [App\Http\Controllers\PostController::class, 'store'])->name('create_post.store'); // 新規投稿作成
 
     Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show_post'); // 投稿詳細
 
@@ -60,9 +60,10 @@ Route::get('/', function () {
 // Auth::routes();
 
 // Pets関連
-Route::get('/pets/create', [App\Http\Controllers\PetController::class, 'show_create_pet'])->name('create_pet.show');
-Route::post('/pets/create', [App\Http\Controllers\PetController::class, 'store_create_pet'])->name('create_pet.store');
-//↑/pets/createなのか、/petsのみなのか分からない：太田メモ
+Route::get('/pets/create', [App\Http\Controllers\PetController::class, 'show_create_pet'])->name('create_pet.show'); //ペット新規登録フォーム
+Route::post('/pets/create', [App\Http\Controllers\PetController::class, 'store_create_pet'])->name('create_pet.store'); //ペット新規登録
+Route::get('/pets/{id}/edit', [App\Http\Controllers\PetController::class, 'edit'])->name('pets.edit'); //ペット情報変更フォーム
+Route::put('/pets/{id}', [App\Http\Controllers\PetController::class, 'update'])->name('pets.update'); //ペット情報変更
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -70,12 +71,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //↓仮のやつなのであとで消します：AYAKA
 // Route::get('/posts', function () { return view('/posts/index_post'); });
-Route::get('/posts/create', function () { return view('/posts/create_post'); });
+// Route::get('/posts/create', function () { return view('/posts/create_post'); });
 Route::get('/posts/edit', function () { return view('/posts/edit_post'); });
 Route::get('/posts/show', function () { return view('/posts/show_post'); });
 
-Route::get('/pets', function () { return view('/pets/create_pet'); });
-Route::get('/pets/edit', function () { return view('pets/edit_pet'); });
+// Route::get('/pets', function () { return view('/pets/create_pet'); });
+// Route::get('/pets/edit', function () { return view('pets/edit_pet'); });
 Route::get('/pets/show', function () { return view('pets/show_pet'); });
 Route::get('/pets/mypage', function () { return view('pets/mypage_pet'); });
 Route::get('/pets/hidden', function () { return view('/pets/hidden_pet'); });
