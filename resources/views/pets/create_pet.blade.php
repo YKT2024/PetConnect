@@ -31,7 +31,7 @@
                 </div>
                 <div class="input">
                     <label for="select_pettype"><span class="asterisk">*</span>カテゴリ1(分類)</label>
-                    <select name="select_pettype" id="select_pet" required>
+                    <select name="select_pettype" id="select_pettype" required>
                         <option value="" disabled selected>ペットの分類なんですか〜</option>
                          @foreach ($categories as $category)
                          <option value="{{ $category->id }}">{{ $category->category }}</option>
@@ -40,11 +40,11 @@
                 </div>
                 <div class="input">
                     <label for="select_pettype2"><span class="asterisk">*</span>カテゴリ2(種類)</label>
-                    <select name="select_pettype2" required>
-                        <option value="" disabled selected>ペットの種類なんですか〜</option>
-                         @foreach ($subcategories as $subcategory)
+                    <select name="select_pettype2" id="select_pettype2" required disabled>
+                        <option value="" disabled selected>カテゴリ1(分類)を先に選択してください</option>
+                         {{-- @foreach ($subcategories as $subcategory)
                          <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory }}</option>
-                         @endforeach
+                         @endforeach --}}
                     </select>
                 </div>
                 <div class="input">
@@ -63,9 +63,9 @@
                     <label for="select_pettype">性別</label>
                     <select name="petssex">
                         <option value="" disabled selected>ペットの性別はなんですか〜</option>
-                         <option value="male">オス</option>
-                         <option value="female">メス</option>
-                         <option value="other">その他</option>
+                         <option value="オス">オス</option>
+                         <option value="メス">メス</option>
+                         <option value="その他">その他</option>
                     </select>
                 </div>
                 <div class="input">
@@ -98,6 +98,39 @@
     }
 });
     </script>
+    <script>
+        document.getElementById('select_pettype').addEventListener('change', function () {
+            const categoryId = this.value;
+            const subcategorySelect = document.getElementById('select_pettype2');
+
+            //初期化
+            subcategorySelect.innerHTML = '<option value="">カテゴリ1(分類)を先に選択してください</option>';
+            subcategorySelect.disabled = true;
+
+            if(categoryId) {
+                //Ajaxリクエストでサブカテゴリを取得
+                fetch(`/api/subcategories/${categoryId}`)
+                  .then(response => response.json())
+                  .then(data => {
+                    if (data.length > 0) {
+                        subcategorySelect.disabled = false;
+
+                        data.forEach(subcategory => {
+                            const option = document.createElement('option');
+                            option.value = subcategory.id;
+                            option.textContent = subcategory.subcategory;
+                            subcategorySelect.appendChild(option);
+                        });
+                    }
+                  })
+                  .catch(error => {
+                    console.error('Error fetching subcategories', error);
+                  });
+            }
+        });
+    </script>
+    
+    
     
 </body>
 </html>

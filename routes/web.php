@@ -64,6 +64,8 @@ Route::get('/pets/create', [App\Http\Controllers\PetController::class, 'show_cre
 Route::post('/pets/create', [App\Http\Controllers\PetController::class, 'store_create_pet'])->name('create_pet.store'); //ペット新規登録
 Route::get('/pets/{id}/edit', [App\Http\Controllers\PetController::class, 'edit'])->name('pets.edit'); //ペット情報変更フォーム
 Route::put('/pets/{id}', [App\Http\Controllers\PetController::class, 'update'])->name('pets.update'); //ペット情報変更
+Route::get('/api/subcategories/{category}', [App\Http\Controllers\PetController::class, 'getSubcategories'])->name('getSubcategories'); //いい感じのプルダウンにするためのルート
+
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
