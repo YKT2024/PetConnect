@@ -1,15 +1,20 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> --}}
 
+  @extends('layouts.footer')
+
+  @section('css')
   {{-- css --}}
   <link rel="stylesheet" href="{{ asset('css/index_post.css') }}">
-</head>
-<body>
+  @endsection
+{{-- </head> --}}
+
+  @section('content')
   <header>
     <div class="top">
       <p>投稿一覧</p>
@@ -131,13 +136,13 @@
   </a>
 </div>
 
-<div class="footer-icons">
-  <a href="#"><img class=icons src="{{ asset('img/footer_field.png')}}" alt="投稿一覧"></a>
-  <a href="#"><img class=icons src="{{ asset('img/footer_search.png') }}" alt="検索"></a>
-  <a href="#"><img class=icons src="{{ asset('img/footer_bookmark.png')}}" alt="ブックマーク"></a>
-  <a href="#"><img class=icons src="{{ asset('img/footer_comment.png')}}" alt="コメント"></a>
-  <a href="#"><img class=icons src="{{ asset('img/footer_mypage.png')}}" alt="マイぺージ"></a>
-</div>
+{{-- <div class="footer-icons">
+  <a href="{{ route('posts.index_post') }}"><img class=icons src="{{ asset('img/footer_field.png')}}" alt="投稿一覧"></a>
+  <a href="{{ route('posts.index_post') }}"><img class=icons src="{{ asset('img/footer_search.png') }}" alt="検索"></a>
+  <a href="{{ route('posts.index_post') }}"><img class=icons src="{{ asset('img/footer_bookmark.png')}}" alt="ブックマーク"></a>
+  <a href="{{ route('posts.index_post') }}"><img class=icons src="{{ asset('img/footer_comment.png')}}" alt="コメント"></a>
+  <a href="{{ route('posts.index_post') }}"><img class=icons src="{{ asset('img/footer_mypage.png')}}" alt="マイぺージ"></a>
+</div> --}}
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -169,5 +174,5 @@
 
   {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script> --}}
-</body>
-</html>
+
+  @endsection
