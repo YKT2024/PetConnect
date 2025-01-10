@@ -63,9 +63,9 @@
                     <label for="select_pettype">性別</label>
                     <select name="petssex">
                         <option value="" disabled selected>ペットの性別はなんですか〜</option>
-                         <option value="male">オス</option>
-                         <option value="female">メス</option>
-                         <option value="other">その他</option>
+                         <option value="オス">オス</option>
+                         <option value="メス">メス</option>
+                         <option value="その他">その他</option>
                     </select>
                 </div>
                 <div class="input">

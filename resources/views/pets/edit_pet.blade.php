@@ -34,7 +34,6 @@
                     <label for="select_pettype"><span class="asterisk">*</span>カテゴリ1(分類)</label>
                     <select name="select_pettype" id="select_pet" required>
                         <option value="{{ $pet->pet_category_id }}" disabled selected>{{ $pet->pet_category->category }}</option>
-                        {{-- データベースできたらこの上の1行消してこっちを生かす --}}
                         @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->category }}</option>
                         @endforeach
@@ -44,7 +43,6 @@
                     <label for="select_pettype2"><span class="asterisk">*</span>カテゴリ2(種類)</label>
                     <select name="select_pettype2" required>
                         <option value="{{ $pet->pet_subcategory_id }}" disabled selected>{{ $pet->pet_subcategory->subcategory }}</option>
-                        {{-- データベースできたらこの上の1行消してここから下を生かす --}}
                         @foreach ($subcategories as $subcategory)
                         <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory }}</option>
                         @endforeach
@@ -84,14 +82,12 @@
                     <button type="button" class="btn-3" onclick="window.location.href='#'">キャンセル</button>
                 </div>
                 <div class="btn">
-                    {{-- この下の行ルートつながったら変更 --}}
-                    {{-- <form action="{{ route('') }}" method="POST" onsubmit="return confirm('本当に削除しますか？')"> --}}
-                    {{-- @csrf --}}
-                    {{-- @method('DELETE') --}}
+                    <form action="{{ route('pets.destroy', $pet->id) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
+                    @csrf
+                    @method('DELETE')
                     <button type="submit" class="btn-2">削除</button>
-                </div>
-                
-    {{-- </form> --}}
+                </div>        
+        </form>
     </main>
 
     <script>

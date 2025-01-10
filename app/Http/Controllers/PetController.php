@@ -125,4 +125,14 @@ class PetController extends Controller
       //return redirect()->route('mypage');
     }
 
+    function destroy($id)
+    {
+        $pet = Pet::find($id);
+
+        $pet -> delete();
+
+        return redirect('/pets/mypage');
+        // return redirect()->route('pets.index');
+    }
+
 }
