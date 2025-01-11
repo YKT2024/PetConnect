@@ -8,7 +8,7 @@
         background-color:hwb(300 94% 4%);
     }
     
-    /* Nao-pのヘッダーできるまで */
+/* Nao-pのヘッダーできるまで */
     .header-dayo {
         background-color: rgba(161, 154, 211, 1);
         height:47px;
@@ -18,7 +18,7 @@
         justify-content: center; 
         align-items: center; 
     }
-    /* Nao-pのヘッダーできるまで */
+/* Nao-pのヘッダーできるまで */
     
 
     .maincontent {
@@ -50,7 +50,7 @@
         object-fit: cover;
     }
 
-    /* 日付とか */
+/* 日付とか */
     .underimg {
         display:flex;
         align-items: center;
@@ -65,21 +65,61 @@
     font-size: 3vw;
     }
 
-    .like-fav {
+/* いいねとかのとこ */
+
+    /* .like-fav */
+    .actionarea {
         display: flex;
         gap: 10px; /* ボタンの間隔を調整 */
     }
-    
-    .like-fav button {
-        background: none;
+    .actionarea button {
         border: none;
-        cursor: pointer;
-        font-size: 1.5rem; /* ボタンの大きさを調整 */
-        color: #555;
+        background: transparent;
+        text-decoration: none;
     }
-    
 
-    /* 投稿・コメントエリア */
+    /*ボタンエリア */
+    .likeButton , .likeButton2 {
+        background: transparent;
+        border:none;
+        display: inline-flex; /* フレックスで中身を整える */
+        align-items: center;  /* 縦方向の中央揃え */
+        justify-content: center; /* 横方向の中央揃え */
+        width: 6vw; /* ボタン全体の幅 */
+        height: 6vw; /* ボタン全体の高さ */
+        color: white;
+    }
+
+    
+    /* ハートとブックマーク本体*/
+    .likeButton__icon {
+        
+        display: inline-block;
+        fill: currentColor;
+        width: 100%;
+        height: 100%;
+        margin-right: 0.2em;
+    }
+
+    /* クリック後の色 */
+    .likeButton.liked {
+        color: rgba(255, 131, 131, 1);
+        background-color:transparent;
+    }
+
+    .likeButton2.liked {
+        color: rgba(161, 154, 211, 1);
+        background-color:transparent;
+    }
+
+
+    /* 編集ボタン */
+    .edit-icon:before {
+        font-size: 6vw;
+    }
+
+
+/* 投稿・コメントエリア */
     
     .section2 {
         margin: 50px 0;
@@ -91,7 +131,7 @@
         justify-content: space-between;
     }
 
-/* アイコン */
+    /* アイコン */
 .icon-area {
     height: 100%;
     width: 100%px;
@@ -106,21 +146,20 @@
 }
 
 
-/* 本文*/
-    .caption {
-        width: 90%;
-        /* justify-content: center; */
-    }
+/* 投稿本文*/
+.caption {
+    width: 90%;
+}
 
 
-    .caption p {
-        font-size: 3.5vw;
-    }
+.caption p {
+    font-size: 3.5vw;
+}
 
 
 
 
-    /* コメントするボタン */
+/* コメントするボタン */
 .btn {
     display: flex;
     justify-content: center;
@@ -163,21 +202,36 @@
     width: 100%;
     height: 100px;
     margin-bottom: 10px;
+    resize: none;
 }
 
 #commentModal button {
-    padding: 10px;
-    background-color: #4CAF50;
+    padding: 8px;
+    background-color: rgba(124, 224, 221, 1);
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 50px;
 }
 
-#commentModal button:hover {
-    background-color: #45a049;
+.modalbtn{
+    display: flex;
+    justify-content: space-around;
 }
 
 /* モーダル内のキャンセルボタン */
 #commentModal .cancel-btn {
     background-color: #f44336;
+}
+
+/* コメント削除ボタン */
+.btn-4 {
+    font-size: 3.5vw;
+    color: white;
+    border: none;
+    width: 20%;
+    height: 30px;
+    border-radius: 50px;
+    margin-bottom: 30px;
+    background-color: rgba(124, 224, 221, 1);
 }
