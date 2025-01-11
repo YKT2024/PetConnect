@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>迷子情報の投稿</title>
     <link rel="stylesheet" href="{{ asset('/css/create_stray.css') }}">
+    <link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/png">
 </head>
 <body>
     <!--↓↓↓↓↓仮のヘッダーだよ↓↓↓↓↓-->
@@ -15,21 +16,10 @@
     <!--↑↑↑↑仮のヘッダーだよ↑↑↑↑-->
 
     <main class="maincontent">
-        <!-- バックがつながったらここいじってください -->
-        <!-- <form action="{{ route('') }}" method="POST" enctype="multipart/form-data"> -->
-             {{-- @csrf --> --}}
+        <form action="{{ route('strays.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
             <div class="register">
-                <section class="section1">
-                    <!-- ラジオボタン -->
-                     <!-- valueの値とか適当でございます -->
-                        <div class="redio">
-                            <label>
-                                <input type="radio" name="status" value="1" required> 探しています
-                            </label>
-                            <label>
-                                <input type="radio" name="status" value="0" required> 見かけました
-                            </label>
-                        </div>
+            <section class="section1">
                     <!-- 画像アップロード -->
                     <div class="photo-upload">
                         <div class="photo-frame">
@@ -38,27 +28,37 @@
                             <label for="photo-input" class="upload-button">+</label>
                         </div>
                     </div>
+                    <!-- ラジオボタン -->
+                        <div class="radio"><span class="asterisk">*</span>
+                            <label>
+                                <input type="radio" name="status" value="1" required> 探しています
+                            </label>
+                            <label>
+                                <input type="radio" name="status" value="0" required> 見かけました
+                            </label>
+                        </div>
                     <!-- ペットの名前 -->
                     <div class="input">
                         <label for="accoutname"><span class="asterisk">*</span>ペットの名前</label>
-                        <input type="text" name="accountname" placeholder="お名前なんですか〜" required>
+                        <input type="text" name="accountname" placeholder="不明の場合は「なし」と記入" required>
                     </div>
                     <!-- エリアプル -->
                     <div class="input">
-                        <label for="address"><span class="asterisk">*</span>エリア</label>
-                        <select name="address" required>
-                            <option value="" disabled selected>どこで？〜</option>
-                            <!-- データベースできたらこの上の1行消してこっちを生かす --}}
-                            @foreach ($strays as $stray) --}}
-                            <option value="{{ $stray->area_id }}">{{ $stray->area_id }}</option> --}}
-                            @endforeach --}} -->
-                        </select>
-                    </div>
+                    <label for="area_id"><span class="asterisk">*</span>エリア</label>
+                    <select name="area_id" id="area_id" required>
+                        <option value="" disabled selected>どこで？〜</option>
+                        @foreach ($areas as $area)
+                        <option value="{{ $area->id }}">{{ $area->area }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                     <!-- エリア手入力 -->
                     <div class="input">
-                        <label for="address"><span class="asterisk">*</span>エリア詳細</label>
-                        <input type="text" name="address" placeholder="具体的にはどこですか〜" required>
+                    <label for="address_detail"><span class="asterisk">*</span>エリア詳細</label>
+                    <input type="text" name="address_detail" id="address_detail" placeholder="具体的にはどこですか〜" required>
                     </div>
+
                     <!-- いなくなった・見つけた日 -->
                     <div class="input">
                         <label for="date"><span class="asterisk">*</span>いなくなった日・見かけた日</label>
@@ -68,30 +68,29 @@
                 </section>  
                 <div class="pet-info">ペット情報</div>  
                 <section class="section2">
-                    <!--  カテゴリ-->
+                    <!-- カテゴリ-->
                     <div class="input">
                         <label for="select_pettype2"><span class="asterisk">*</span>カテゴリ</label>
                         <select name="select_pettype2" required>
-                            <option value="" disabled selected>ペットの種類なんですか〜</option>
-                            <!-- データベースできたらこの上の1行消してここから下を生かす --}} -->
-                            <!-- @foreach ($pets as $pet) --}} -->
-                            <!-- <option value="{{ $pets->pet_type }}">{{ $pets->pet_type }}</option> --}} -->
-                            <!-- @endforeach --}} -->
+                        <option value="" disabled selected>ペットの種類なんですか〜</option>
+                        @foreach ($pet_subcategories as $pet_subcategorie)
+                            <option value="{{ $pet_subcategorie->id }}">{{ $pet_subcategorie->subcategory }}</option>
+                        @endforeach
                         </select>
-                    </div>
+                </div>
 
                     
                     <!-- 性別 -->
                     <div class="input">
                         <label for="select_pettype">性別</label>
                         <select name="petssex">
-                            <option value="" disabled selected>ペットの性別はなんですか〜</option>
-                            <!-- データベースできたらこの上の1行消してここから下を生かす --}} -->
-                            <!-- @foreach ($pets as $pet) --}} -->
-                            <!-- <option value="{{ $pet->sex }}">{{ $pet->sex }}</option> --}} -->
-                            <!-- @endforeach --}} -->
+                            <option value="">ペットの性別はなんですか〜</option> <!-- nullに対応 -->
+                            <option value="male">オス</option>
+                            <option value="female">メス</option>
+                            <option value="other">その他</option>
                         </select>
                     </div>
+
                     <!-- 年齢 -->
                     <div class="input">
                         <label for="age">年齢</label>
@@ -106,7 +105,7 @@
                                 <input type="number" name="weight" min="1" placeholder="体重">
                                 <span>kg</span>
                             </div>
-                           <!-- 体長 -->
+                                <!-- 体長 -->
                             <label for="height">おおよその体長</label>
                             <div class="input-unit">
                                 <!-- <span>約</span> -->
@@ -116,8 +115,8 @@
                     </div>
                     <!-- 備考 -->
                     <div class="input">
-                        <label for="introduce">備考</label>
-                        <textarea id="introduce" name="introduce" rows="4" maxlength="280" placeholder="どんな子かおしえて〜"></textarea>
+                        <label for="introduce"><span class="asterisk">*</span>備考</label>
+                        <textarea id="introduce" name="introduce" rows="4" maxlength="280" placeholder="ペットのなまえや、色など"></textarea>
                     </div>
                 </section> 
             </div>
