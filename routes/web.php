@@ -90,5 +90,6 @@ Route::get('/strays/show', function () { return view('/strays/show_stray'); });
 Route::get('/favorites', function () { return view('/favorites/index_favorite'); });
 
 Route::get('/mypage', function () { return view('/pets/mypage_pet'); });
+Route::get('/shelters', function () { return view('/shelters/index_shelter'); });
 // ↑これはなおp
 //↑ここまで！
