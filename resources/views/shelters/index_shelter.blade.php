@@ -21,42 +21,42 @@
     </div>
 
     <div class="containers">
-        <div class="container">
+        <a href="#">
+            <div class="container">
             <img src="{{ asset('img/shelter.jpg')}}" alt="避難所">
             <div class="imformation">
                 <p>エリア:長崎</p>
                 <p>施設名:がんばらんど</p>
             </div>
-        </div>
-        <div class="container">
+            </div>
+        </a>
+        <a href="#">
+            <div class="container">
             <img src="{{ asset('img/shelter.jpg')}}" alt="避難所">
             <div class="imformation">
                 <p>エリア:長崎</p>
                 <p>施設名:がんばらんど</p>
             </div>
-        </div>
-        <div class="container">
+            </div>
+        </a>
+        <a href="#">
+            <div class="container">
             <img src="{{ asset('img/shelter.jpg')}}" alt="避難所">
             <div class="imformation">
                 <p>エリア:長崎</p>
                 <p>施設名:がんばらんど</p>
             </div>
-        </div>
-        <div class="container">
+            </div>
+        </a>
+        <a href="#">
+            <div class="container">
             <img src="{{ asset('img/shelter.jpg')}}" alt="避難所">
             <div class="imformation">
                 <p>エリア:長崎</p>
                 <p>施設名:がんばらんど</p>
             </div>
-        </div>
-        <div class="container">
-            <img src="{{ asset('img/shelter.jpg')}}" alt="避難所">
-            <div class="imformation">
-                <p>エリア:長崎</p>
-                <p>施設名:がんばらんど</p>
             </div>
-        </div>
-
+        </a>
     </div>
 
 
