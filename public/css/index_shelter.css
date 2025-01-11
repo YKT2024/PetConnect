@@ -38,6 +38,11 @@ body {
     margin: 0 45px;
 }
 
+.containers a {
+    text-decoration: none;
+    color: #333;
+}
+
 .container {
     display: flex;
     background-color: #FFF;
