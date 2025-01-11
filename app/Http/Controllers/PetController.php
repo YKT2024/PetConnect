@@ -124,9 +124,20 @@ class PetController extends Controller
       //return redirect()->route('mypage');
     }
 
+    function destroy($id)
+    {
+        $pet = Pet::find($id);
+
+        $pet -> delete();
+
+        return redirect('/pets/mypage');
+        // return redirect()->route('pets.index');
+    }
+
     public function getSubcategories($categoryId)
     {
         $subcategories = Pet_subcategory::where('pet_category_id', $categoryId)->get();
         return response()->json($subcategories);
     }
+
 }

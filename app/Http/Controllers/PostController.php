@@ -16,10 +16,13 @@ class PostController extends Controller
         return view('posts.index_post', compact('posts'));
     }
 
+    public function create()
+    {
+        return view('posts.create_post');
+    }
+
     public function store(Request $request)
     {
-
-        
         // dd($request->all());
 
         $request->validate([
