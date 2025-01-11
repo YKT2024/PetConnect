@@ -1,44 +1,66 @@
-<!DOCTYPE html>
+
+</html><!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-  <link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>投稿編集</title>
+    <link rel="stylesheet" href="{{ asset('/css/edit_post.css') }}">
+    <link rel="stylesheet" href="./edit_post.css">
 </head>
 <body>
-  <header>
-    <div class="header-left">
-            <img class="logo" src="./logo.png" alt="">
+<!-- ↓↓↓↓↓仮のヘッダーだよ↓↓↓↓↓--}} -->
+<header class="header-dayo">
+        <div class="header-desu">投稿編集</div>
+    </header>
+<!-- ↑↑↑↑仮のヘッダーだよ↑↑↑↑　--}} -->
+
+<main class="maincontent">
+    <form action="{{ route('create_post.store') }}" method="POST" enctype="multipart/form-data">
+        <!-- @csrf -->
+        <div class="photo-upload">
+            <div class="photo-frame">
+                 <img id="photo-preview" src='{{ asset('img/nino.JPG') }}' alt="Posted Image">
+                <!-- 上の1行を消してここを編集する　データベース経由でどっかに入れられてる投稿写真を表示 -->
+                  {{-- <img id="photo-preview" src="{{ $post->image_at }}" alt=""> --}}
+                <input type="file" id="photo-input" name="photo-input" accept="image/*" hidden>
+                <label for="photo-input" class="upload-button">+</label>
+            </div>
         </div>
-        <div class="header-right">
-            <ul class="nav">
-                <li><a href="#">ユーザA</a></li>
-            </ul>
+        <div class="input">
+            <!-- <label for="introduce">コメント</label> -->
+            <textarea id="introduce" name="introduce" rows="4" maxlength="280" placeholder="280文字" >ここに投稿したペット自慢が表示されるはずです。どなたか親切な方、ここにpostsテーブルからbodyを見つけてきてください</textarea>
+            <!-- 上の1行消してここ変更する　postsテーブルから投稿内容をとってくる -->
+            <!-- <textarea id="introduce" name="introduce" rows="4" maxlength="280" placeholder="ペット自慢。280文字">{{ $post->body }}</textarea> -->
         </div>
-  </header>
-  <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <form action="#" method="POST">
-                <div class="form-group">
-                    <label>タイトル</label>
-                    <input type="text" class="form-control" value="" name="title">
-                </div>
-                <div class="form-group">
-                    <label>内容</label>
-                    <textarea class="form-control" rows="5" name="body"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">更新する</button>
-            </form>
+        <div class="btn">
+            <button type="submit" class="btn-1">更新</button>
         </div>
-    </div>
-  </div>
-  <footer>
-    Copyright &copy; Seedkun Inc.
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+        <div class="btn">
+            <a href="#"></a><button type="button" class="btn-3" onclick="window.location.href='#'">キャンセル</button></a>
+        </div>
+        <div class="btn">
+             <!-- この下の行ルートつながったら変更 --}} -->
+             <!-- <form action="{{ route('') }}" method="POST" onsubmit="return confirm('本当に削除しますか？')"> --}} -->
+             <!-- @csrf --}} -->
+             <!-- @method('DELETE') --}} -->
+            <button type="submit" class="btn-2">削除</button>
+        </div>
+    </form>
+</main>
+
+<script>
+    document.getElementById('photo-input').addEventListener('change', function(event) {
+const file = event.target.files[0];
+if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        document.getElementById('photo-preview').src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+}
+});
+</script>
 </body>
 </html>

@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="input">
-            <label for="introduce">コメント</label>
+            {{-- <label for="introduce">コメント</label> --}}
             <textarea id="introduce" name="introduce" rows="4" maxlength="280" placeholder="ペット自慢。280文字"></textarea>
         </div>
         <div class="btn">
