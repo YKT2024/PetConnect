@@ -34,6 +34,21 @@ body {
     border-radius: 10px;
 }
 
+.imformation_pet {
+    text-align: center;
+}
+
+
+.imformation_pet a {
+    background-color: #7CE0DD;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px 30px;
+    font-size: 12px;
+    color: #FFF;
+    border-radius: 10px;
+}
+
 .containers {
     margin: 0 45px;
 }
