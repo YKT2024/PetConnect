@@ -102,5 +102,6 @@ Route::get('/pets/hidden', function () { return view('/pets/hidden_pet'); });
 Route::get('/favorites', function () { return view('/favorites/index_favorite'); });
 
 Route::get('/mypage', function () { return view('/pets/mypage_pet'); });
+Route::get('/shelters', function () { return view('/shelters/index_shelter'); });
 // ↑これはなおp
 //↑ここまで！
