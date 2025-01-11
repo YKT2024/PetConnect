@@ -16,9 +16,8 @@ class PetController extends Controller
     {
         //categoryとsubcategoryの情報
         $categories = Pet_category::all();
-        $subcategories = Pet_subcategory::all();
 
-        return view('pets.create_pet', compact('categories', 'subcategories'));
+        return view('pets.create_pet', compact('categories'));
     }
 
     public function store_create_pet(Request $request)
@@ -133,6 +132,12 @@ class PetController extends Controller
 
         return redirect('/pets/mypage');
         // return redirect()->route('pets.index');
+    }
+
+    public function getSubcategories($categoryId)
+    {
+        $subcategories = Pet_subcategory::where('pet_category_id', $categoryId)->get();
+        return response()->json($subcategories);
     }
 
 }

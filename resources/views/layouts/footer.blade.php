@@ -15,7 +15,7 @@
 <footer>
 
     <div class="footer-icons">
-        <a href="#"><img class=icons src="{{ asset('img/footer_field.png')}}" alt="投稿一覧"></a>
+        <a href="{{ route('posts.index_post') }}"><img class=icons src="{{ asset('img/footer_field.png')}}" alt="投稿一覧"></a>
         <a href="#"><img class=icons src="{{ asset('img/footer_search.png') }}" alt="検索"></a>
         <a href="#"><img class=icons src="{{ asset('img/footer_bookmark.png')}}" alt="ブックマーク"></a>
         <a href="#"><img class=icons src="{{ asset('img/footer_comment.png')}}" alt="コメント"></a>
