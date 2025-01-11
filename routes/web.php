@@ -88,4 +88,7 @@ Route::get('/strays/edit', function () { return view('/strays/edit_stray'); });
 Route::get('/strays/show', function () { return view('/strays/show_stray'); });
 
 Route::get('/favorites', function () { return view('/favorites/index_favorite'); });
+
+Route::get('/mypage', function () { return view('/pets/mypage_pet'); });
+// ↑これはなおp
 //↑ここまで！

@@ -1,14 +1,20 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>新規投稿おペット自慢</title>
+    <title>新規投稿おペット自慢</title> --}}
+    @extends('layouts.footer')
+
+    @section('css')
+    <link rel="stylesheet" href="{{ asset('css/index_post.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/create_post.css') }}">
-</head>
-<body>
+    @endsection
+{{-- </head>
+<body> --}}
 <!-- ↓↓↓↓↓仮のヘッダーだよ↓↓↓↓↓--}} -->
+    @section('content')
 <header class="header-dayo">
         <div class="header-desu">新規投稿</div>
     </header>
@@ -49,6 +55,7 @@ if (file) {
 }
 });
 </script>
+@endsection
 
-</body>
-</html>
+{{-- </body>
+</html> --}}
