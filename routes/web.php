@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Area;
 use App\Http\Controllers\StrayController;
+use App\Http\Controllers\ShelterController;
 
 //== Ayakaさん！、以下のルートはログインするための仮です == //
 
@@ -53,7 +54,8 @@ Route::get('/', function () {
     // Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
 
     // Shelters関連
-    Route::get('/shelters', [App\Http\Controllers\ShelterController::class, 'index'])->name('shelters.index'); //投稿一覧表示
+    Route::get('/shelters', [ShelterController::class, 'index'])->name('shelters.index');
+    // Route::get('/shelters', [App\Http\Controllers\ShelterController::class, 'index'])->name('shelters.index'); //投稿一覧表示
     // Route::get('/shelters/{id}', [App\Http\Controllers\ShelterController::class, 'show_shelter'])->name('shelters.show_shelter');
     Route::get('/shelters/create', [App\Http\Controllers\ShelterController::class, 'create_shelter'])->name('shelters.create'); //避難所新規登録フォーム
     Route::post('/shelters', [App\Http\Controllers\ShelterController::class, 'store_shelter'])->name('shelters.store'); //避難所新規登録
@@ -80,6 +82,7 @@ Route::post('/strays', [StrayController::class, 'store'])->name('strays.store');
 Route::get('/strays/{id}/edit', [StrayController::class, 'edit'])->name('strays.edit'); // 編集ページ表示
 Route::put('/strays/{id}', [StrayController::class, 'update'])->name('strays.update'); // 更新処理
 Route::delete('/strays/{id}', [StrayController::class, 'destroy'])->name('strays.destroy');
+Route::get('/strays/{id}', [StrayController::class, 'show'])->name('strays.show'); // 詳細を表示
 
 //↓仮のやつなのであとで消します：AYAKA
 // Route::get('/posts', function () { return view('/posts/index_post'); });

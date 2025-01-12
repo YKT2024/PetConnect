@@ -14,11 +14,27 @@
     </header>
 
     <div class="search">
-        <form action="http://127.0.0.1:8010/shelters" method="get">
-            <input type="search" name="search">
-            <input type="submit" name="submit" value="  🔍  ">
-        </form>
-    </div>
+    <form action="{{ route('shelters.index') }}" method="GET">
+        <input type="search" name="search" placeholder="検索キーワード">
+        <label>
+            <input type="radio" name="filter" value="mine"> 自分の投稿
+        </label>
+        <label>
+            <input type="radio" name="filter" value="all" checked> すべて
+        </label>
+        <input type="submit" name="submit" value="  🔍  ">
+    </form>
+</div>
+
+<div class="results">
+    @foreach ($shelters as $shelter)
+        <div class="container">
+            <h3>{{ $shelter->shelter_name }}</h3>
+            <p>{{ $shelter->address }}</p>
+            <p>{{ $shelter->body }}</p>
+        </div>
+    @endforeach
+</div>
 
     <div class="containers">
         @foreach($shelters as $shelter)

@@ -30,12 +30,13 @@
                             </div>
                         </div>
                         <!-- ラジオボタン -->
-                            <div class="redio">
+                        <div class="radio"><span class="asterisk">*</span><label for="contactInput">状況</label>
+                        <div class="radio-btn">
                                 <label>
                                     <input type="radio" name="status" value="1" required> 探しています
                                 </label>
                                 <label>
-                                    <input type="radio" name="status" value="0" required> 見かけました
+                                    <input type="radio" name="status" value="0" required> 保護・目撃
                                 </label>
                             </div>
                     <!-- ペットの名前 -->
