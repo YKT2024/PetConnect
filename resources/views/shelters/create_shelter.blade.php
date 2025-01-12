@@ -54,7 +54,7 @@
                     </div>
                     <!-- 備考 -->
                     <div class="input">
-                        <label for="introduce"><span class="asterisk">*</span>備考</label>
+                        <label for="introduce">備考</label>
                         <textarea id="introduce" name="introduce" rows="4" maxlength="280" placeholder="受け入れ数に上限あり など"></textarea>
                     </div>
                 </section> 

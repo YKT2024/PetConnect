@@ -104,3 +104,7 @@ Route::get('/mypage', function () { return view('/pets/mypage_pet'); });
 // 1/11にCanaが作りました↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 Route::get('/shelters/create', function () { return view('/shelters/create_shelter'); });
 // 邪魔なら消してください↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+//  1/12にCanaが作りました↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+Route::get('/shelters/edit', function () { return view('/shelters/edit_shelter'); });
+// 邪魔なら消してください↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
