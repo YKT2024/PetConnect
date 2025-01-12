@@ -31,26 +31,13 @@
     </form>
   </div>
 <div  id="all-container" class="all_container">
-    @php
-        // ダミーデータ: 投稿画像のURLを仮で定義
-        $dummyPosts = [
-            'https://via.placeholder.com/200x150?text=1',
-            'https://via.placeholder.com/200x150?text=2',
-            'https://via.placeholder.com/200x150?text=3',
-            'https://via.placeholder.com/200x150?text=4',
-            'https://via.placeholder.com/200x150?text=5',
-            'https://via.placeholder.com/200x150?text=6',
-        ];
-    @endphp
-
-    {{-- ダミーデータで投稿画像を表示 --}}
-    @foreach ($dummyPosts as $index => $post)
+    @foreach ($posts as $index => $post)
         {{-- 1段目（1番目と2番目） --}}
         @if ($index == 0 || $index == 1)
             @if ($index == 0)
                 <div class="row"> {{-- 新しい行の開始 --}}
             @endif
-            <img src="{{ asset('img/test1.jpg')}}" alt="ダミー画像">
+            <img src="{{ asset('storage/' . $post->image_at)}}" alt="投稿画像">
             @if ($index == 1)
                 </div> {{-- 行の終了 --}}
             @endif
@@ -58,7 +45,7 @@
         {{-- 2段目（3番目） --}}
         @elseif ($index == 2)
             <div class="row1">
-                <img src="{{ asset('img/test1.jpg')}}" alt="ダミー画像">
+              <img src="{{ asset('storage/' . $post->image_at)}}" alt="投稿画像">
             </div>
 
         {{-- 3段目（4番目と5番目） --}}
@@ -66,7 +53,7 @@
             @if ($index == 3)
                 <div class="row">
             @endif
-            <img src="{{ asset('img/test1.jpg')}}" alt="ダミー画像">
+            <img src="{{ asset('storage/' . $post->image_at)}}" alt="投稿画像">
             @if ($index == 4)
                 </div>
             @endif
@@ -74,7 +61,7 @@
         {{-- 4段目（6番目） --}}
         @elseif ($index == 5)
             <div class="row1">
-                <img src="{{ asset('img/test1.jpg')}}" alt="ダミー画像">
+              <img src="{{ asset('storage/' . $post->image_at)}}" alt="投稿画像">
             </div>
         @endif
     @endforeach
