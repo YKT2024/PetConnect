@@ -55,8 +55,8 @@ Route::get('/', function () {
     // Shelters関連
     Route::get('/shelters', [App\Http\Controllers\ShelterController::class, 'index'])->name('shelters.index'); //投稿一覧表示
     // Route::get('/shelters/{id}', [App\Http\Controllers\ShelterController::class, 'show_shelter'])->name('shelters.show_shelter');
-    // Route::get('/shelters/create', [App\Http\Controllers\ShelterController::class, 'create_shelter'])->name('shelters.create_shelter');
-    // Route::post('/shelters', [App\Http\Controllers\ShelterController::class, 'store_shelter'])->name('shelters.store_shelter');
+    Route::get('/shelters/create', [App\Http\Controllers\ShelterController::class, 'create_shelter'])->name('shelters.create'); //避難所新規登録フォーム
+    Route::post('/shelters', [App\Http\Controllers\ShelterController::class, 'store_shelter'])->name('shelters.store'); //避難所新規登録
 // });   ---@guestと@authを使うからいらなそう
 
 // Auth::routes();
@@ -102,9 +102,6 @@ Route::get('/strays/show', function () { return view('/strays/show_stray'); });
 // ↑これはなおp
 //↑ここまで！
 
-// 1/11にCanaが作りました↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-Route::get('/shelters/create', function () { return view('/shelters/create_shelter'); });
-// 邪魔なら消してください↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 //  1/12にCanaが作りました↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 Route::get('/shelters/edit', function () { return view('/shelters/edit_shelter'); });

@@ -16,23 +16,23 @@
     <!--↑↑↑↑仮のヘッダーだよ↑↑↑↑-->
 
     <main class="maincontent">
-        {{-- <form action="/submit" method="POST">
-            @csrf --}}
+        <form action="{{ route('shelters.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="register">
             <section class="section1">
                     <!-- 避難施設 -->
                     <div class="input">
                         <label for="shelter_name"><span class="asterisk">*</span>避難施設名</label>
-                        <input type="text" name="accountname" placeholder="施設名" required>
+                        <input type="text" name="shelter_name" placeholder="施設名" required>
                     </div>
                     <!-- エリアプル -->
                     <div class="input">
                     <label for="area_id"><span class="asterisk">*</span>エリア</label>
                     <select name="area_id" id="area_id" required>
                         <option value="" disabled selected>どこで？〜</option>
-                        {{-- @foreach ($areas as $area) --}}
-                        {{-- <option value="#">{{ $area->area }}</option> --}}
-                        {{-- @endforeach --}}
+                        @foreach ($areas as $area)
+                        <option value="{{ $area->id }}">{{ $area->area }}</option>
+                        @endforeach
                     </select>
                 </div>
 
@@ -54,8 +54,8 @@
                     </div>
                     <!-- 備考 -->
                     <div class="input">
-                        <label for="introduce">備考</label>
-                        <textarea id="introduce" name="introduce" rows="4" maxlength="280" placeholder="受け入れ数に上限あり など"></textarea>
+                        <label for="introduce"><span class="asterisk">*</span>備考</label>
+                        <textarea id="introduce" name="introduce" rows="4" maxlength="200" placeholder="受け入れ数に上限あり など"></textarea>
                     </div>
                 </section> 
                 </div>
@@ -65,6 +65,7 @@
                 <div class="btn">
                     <button type="button" class="btn-3" onclick="window.location.href='#'">キャンセル</button>
                 </div>
+        </=>
     </main>  
 </body>
 </html>
