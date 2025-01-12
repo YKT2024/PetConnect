@@ -21,43 +21,58 @@
     </div>
 
     <div class="containers">
+        @foreach($shelters as $shelter)
         <a href="#">
             <div class="container">
-            <img src="{{ asset('img/shelter.jpg')}}" alt="避難所">
-            <div class="imformation">
-                <p>エリア:長崎</p>
-                <p>施設名:がんばらんど</p>
-            </div>
-            </div>
-        </a>
-        <a href="#">
-            <div class="container">
-            <img src="{{ asset('img/shelter.jpg')}}" alt="避難所">
-            <div class="imformation">
-                <p>エリア:長崎</p>
-                <p>施設名:がんばらんど</p>
-            </div>
+                <img src="{{ $shelter->image_at }}" alt="避難所">
+              <div class="imformation">
+                <p>エリア:{{ $shelter->area->area }}</p>
+                <p>施設名:{{ $shelter->shelter_name }}</p>
+              </div>
             </div>
         </a>
-        <a href="#">
-            <div class="container">
-            <img src="{{ asset('img/shelter.jpg')}}" alt="避難所">
-            <div class="imformation">
-                <p>エリア:長崎</p>
-                <p>施設名:がんばらんど</p>
-            </div>
-            </div>
-        </a>
-        <a href="#">
-            <div class="container">
-            <img src="{{ asset('img/shelter.jpg')}}" alt="避難所">
-            <div class="imformation">
-                <p>エリア:長崎</p>
-                <p>施設名:がんばらんど</p>
-            </div>
-            </div>
-        </a>
+        @endforeach
     </div>
+
+    
+    {{-- <div class="containers">
+        <a href="#">
+            <div class="container">
+            <img src="{{ asset('img/shelter.jpg')}}" alt="避難所">
+            <div class="imformation">
+                <p>エリア:長崎</p>
+                <p>施設名:がんばらんど</p>
+            </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="container">
+            <img src="{{ asset('img/shelter.jpg')}}" alt="避難所">
+            <div class="imformation">
+                <p>エリア:長崎</p>
+                <p>施設名:がんばらんど</p>
+            </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="container">
+            <img src="{{ asset('img/shelter.jpg')}}" alt="避難所">
+            <div class="imformation">
+                <p>エリア:長崎</p>
+                <p>施設名:がんばらんど</p>
+            </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="container">
+            <img src="{{ asset('img/shelter.jpg')}}" alt="避難所">
+            <div class="imformation">
+                <p>エリア:長崎</p>
+                <p>施設名:がんばらんど</p>
+            </div>
+            </div>
+        </a>
+    </div> --}}
 
 
     <div class="pulus">

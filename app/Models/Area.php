@@ -13,4 +13,9 @@ class Area extends Model
     {
         return $this->hasMany(User::class, 'area_id');
     }
+
+    public function shelters()
+    {
+        return $this->hasMany(Shelter::class, 'area_id');
+    }
 }
