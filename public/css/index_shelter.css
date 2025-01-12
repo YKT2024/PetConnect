@@ -13,17 +13,28 @@ body {
     /* 画面端の余白 */
 }
 
+
 .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: #A19AD3;
-    height: 40px;
+}
+
+.top a img {
+    width: 24px;
+    height: 24px;
+    padding: 10px;
 }
 
 .top p {
-    font-size: 16px;
+    font-size: 18px;
     color: #FFF;
-    padding-top: 10px;
-    text-align: center;
+    font-weight:bold;
+    margin-bottom: 10px;
+    letter-spacing: 0.1em; /* 文字間隔を調整 */
 }
+
 
 .search {
     text-align: center;
@@ -173,4 +184,29 @@ hr {
     font-size: 12px;
     color: #FFF;
     border-radius: 10px;
+}
+
+/* ==ラベル== */
+    /* 探しています */
+    .status-searching {
+            background-color: #DB4E0D; /* ボタンの背景色 */
+            color: white; /* テキストの色 */
+            font-size: 14px; /* フォントサイズ */
+            font-weight: bold; /* 太字 */
+            padding: 8px 14px; /* 内側の余白 */
+            border-radius: 5px; /* 角丸 */
+            display: inline-block; /* インラインボックス */
+            text-align: center; /* テキストを中央揃え */
+    }
+
+    /* 保護・目撃 */
+    .status-found {
+        background-color:#0D6FDB;; /* ボタンの背景色 */
+        color: white; /* テキストの色 */
+        font-size: 14px; /* フォントサイズ */
+        font-weight: bold; /* 太字 */
+        padding: 8px 14px; /* 内側の余白 */
+        border-radius: 5px; /* 角丸 */
+        display: inline-block; /*インラインボックス */
+        text-align: center; /* テキストを中央揃え */
 }

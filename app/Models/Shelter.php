@@ -10,7 +10,16 @@ class Shelter extends Model
     use HasFactory;
 
     // 変更可能なカラムを指定
-    protected $fillable = ['user_id', 'body', 'address', 'area_id', 'image_at', 'shelter_name', 'shelter_contact', 'evacuation_type'];
+    protected $fillable = [
+        'user_id', 
+        'body', 
+        'address', 
+        'area_id', 
+        'image_at', 
+        'shelter_name', 
+        'shelter_contact', 
+        'evacuation_type'
+    ];
 
     // リレーションを設定
     public function user()
@@ -21,5 +30,10 @@ class Shelter extends Model
     public function area()
     {
         return $this->belongsTo(Area::class, 'area_id');
+    }
+
+    public function pet_subcategory()
+    {
+        return $this->belongsTo(PetSubcategory::class);
     }
 }

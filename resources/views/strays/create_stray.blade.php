@@ -29,20 +29,20 @@
             </div>
         </div>
                     <!-- ラジオボタン -->
-                    <div class="radio"><span class="asterisk">*</span><label for="contactInput">⚪︎⚪︎⚪︎</label>
+                    <div class="radio"><span class="asterisk">*</span><label for="contactInput">状況</label>
                         <div class="radio-btn">
                             <label>
                                 <input type="radio" name="status" value="1" required>探しています
                             </label>
                             <label>
-                                <input type="radio" name="status" value="0" required>見かけました
+                                <input type="radio" name="status" value="0" required>保護・目撃
                             </label>
                         </div>
                     </div>
                     <!-- ペットの名前 -->
                     <div class="input">
                         <label for="accoutname"><span class="asterisk">*</span>ペットの名前</label>
-                        <input type="text" name="accountname" placeholder="不明の場合は「なし」と記入">
+                        <input type="text" name="accountname" placeholder="不明の場合は「なし」と記入"required>
                     </div>
                     <!-- エリアプル -->
                     <div class="input">

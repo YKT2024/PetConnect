@@ -14,31 +14,38 @@ class StrayController extends Controller
 public function index(Request $request)
 {
     $query = Stray::query();
-
-    $searchableColumns = ['name', 'body', 'address', 'date']; // 直接検索できるカラム
+    $searchableColumns = ['name', 'body', 'address', 'date']; // 検索対象のカラム
     $search = $request->input('search'); // フォームからの検索キーワード
+    $filter = $request->input('filter', 'all'); // デフォルトは「すべての投稿」
 
+    // 検索条件を適用
     if ($search) {
         $query->where(function ($subQuery) use ($searchableColumns, $search) {
             foreach ($searchableColumns as $column) {
-                $subQuery->orWhere($column, 'LIKE', '%' . $search . '%'); //あいまい検索
+                $subQuery->orWhere($column, 'LIKE', '%' . $search . '%'); // あいまい検索
             }
 
-            // リレーション先（エリアとカテゴリ）の検索条件を追加
+            // エリア名とカテゴリ名も検索対象に追加
             $subQuery->orWhereHas('area', function ($query) use ($search) {
-                $query->where('area', 'LIKE', '%' . $search . '%'); // エリア名を検索
+                $query->where('area', 'LIKE', '%' . $search . '%');
             });
 
             $subQuery->orWhereHas('pet_subcategory', function ($query) use ($search) {
-                $query->where('subcategory', 'LIKE', '%' . $search . '%'); // カテゴリ名を検索
+                $query->where('subcategory', 'LIKE', '%' . $search . '%');
             });
         });
+    }
+
+    // ラジオボタンでの絞り込み
+    if ($filter === 'mine') {
+        $query->where('user_id', auth()->id()); // 自分の投稿のみ
     }
 
     $strays = $query->with('area', 'pet_subcategory')->orderBy('created_at', 'desc')->get();
 
     return view('strays.index_stray', compact('strays'));
 }
+
 
 
     // == 新規投稿 ==
@@ -160,5 +167,13 @@ public function index(Request $request)
         $stray->delete();
 
         return redirect()->route('strays.index')->with('success', '情報を削除しました！');
+    }
+
+    // == 詳細表示 ==
+    public function show($id)
+    {
+        $stray = Stray::with('area', 'pet_subcategory')->findOrFail($id);
+
+        return view('strays.show_stray', compact('stray'));
     }
 }

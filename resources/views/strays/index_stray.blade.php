@@ -10,31 +10,41 @@
     @section('content')
     <header>
     <div class="top">
-        <p>迷子情報</p>
+    <p>迷子情報</p>
     </div>
     </header>
-
-    <div class="search">
-        <form action="{{ route('strays.index') }}" method="GET">
-            <input type="search" name="search">
-            <input type="submit" name="submit" value="  🔍  ">
-        </form>
-    </div>
 
     <div class="imformation_pet">
         <a href="#">お知らせ</a>
     </div>
 
+    <div class="search">
+    <form action="{{ route('strays.index') }}" method="GET">
+        <input type="search" name="search" placeholder="検索キーワード">
+        <label>
+            <input type="radio" name="filter" value="mine"> 自分の投稿
+        </label>
+        <label>
+            <input type="radio" name="filter" value="all" checked> すべて
+        </label>
+        <input type="submit" name="submit" value="🔍">
+    </form>
+</div>
+
+
+
     <div class="containers">
     @foreach ($strays as $stray)
-        <a href="#">
+        <a href="{{ route('strays.show', $stray->id) }}">
             <div class="container">
             <img src="{{ $stray->image_at ? asset($stray->image_at) : asset('img/logo_defaultimg.png') }}" alt="迷子">
-                <div class="imformation">                    
-                    <p>{{ $stray->status == 1 ? '探しています' : '見かけました' }}</p>
-                    <p>エリア: {{ $stray->area->area }}</p>
-                    <p>場所: {{ $stray->address }}</p>
-                </div>
+            <div class="imformation">                    
+                <p class="{{ $stray->status == 1 ? 'status-searching' : 'status-found' }}">
+                    {{ $stray->status == 1 ? '探しています' : '保護・目撃' }}
+                </p>
+                <p>エリア: {{ $stray->area->area }}</p>
+                <p>場所: {{ $stray->address }}</p>
+            </div>
             </div>
         </a>
     @endforeach

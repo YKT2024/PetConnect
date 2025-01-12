@@ -21,9 +21,12 @@ body {
 }
 
 .top p {
-    color: #FFF;
     font-size: 18px;
+    font-weight: bold; /* 太字 */
+    color: #FFF;
     padding-top: 10px;
+    text-align: center;
+    letter-spacing: 0.1em; /* 文字間隔を調整 */
 }
 
 .select_button {
