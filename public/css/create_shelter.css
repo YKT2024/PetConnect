@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    
+    }
+    
+    body{
+        background-color:hwb(300 94% 4%);
+    }
+    
+    /* Nao-pのヘッダーできるまで */
+    .header-dayo {
+        background-color: rgba(161, 154, 211, 1);
+        height:47px;
+        font-size: 16px;
+        color: white;
+        display: flex;
+        justify-content: center; 
+        align-items: center; 
+    }
+    /* Nao-pのヘッダーできるまで */
+    
+    .maincontent {
+        text-align: left;
+        margin: 52px 24px 40px;
+        
+    }
+    
+    .asterisk {
+        color: red;
+        font-size: 16px;   
+        vertical-align: middle; 
+    }
+    
+    .register {
+        margin-bottom: 18px;
+    }
+    
+    
+    .input {
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 30px;
+    }
+
+    .input label ,.radio label {
+        /* text-align: left; */
+        padding-bottom: 8px;
+    }
+    
+    .input input , .input select {
+        height: 40px;
+        border-radius: 10px;
+        padding-left: 16px;
+        border-width: 1px;
+        border-style: solid; /* これを追加 */
+        border-color: rgba(217, 217, 217, 1);
+    }
+
+    .input .input-unit:first-of-type {
+        padding-bottom: 30px;
+    }
+
+   /*ラジオボタン */
+    .radio-btn {
+        text-align: left;
+        padding-left: 20px;
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+
+    .radio-btn :first-child {
+        padding-right: 30px;
+    }
+
+
+    textarea {
+        height: 100px;
+        resize: none;
+        padding-left: 10px;
+        font-size: 14px;
+        border-radius: 10px;
+        border-style: solid;
+        border-color: rgba(217, 217, 217, 1);
+        border-width: 1px;
+    }
+
+    .btn {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .btn-1 {
+        font-size: 15px;
+        color: white;
+        border: none;
+        width: 60%;
+        height: 30px;
+        border-radius: 50px;
+        margin-bottom: 30px;
+        background-color: rgba(124, 224, 221, 1);
+    }
+    
+    .btn-3 {
+        border: none;
+    }
