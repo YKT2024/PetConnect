@@ -42,9 +42,6 @@
                     <label for="select_pettype2"><span class="asterisk">*</span>カテゴリ2(種類)</label>
                     <select name="select_pettype2" id="select_pettype2" required disabled>
                         <option value="" disabled selected>カテゴリ1(分類)を先に選択してください</option>
-                         {{-- @foreach ($subcategories as $subcategory)
-                         <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory }}</option>
-                         @endforeach --}}
                     </select>
                 </div>
                 <div class="input">
