@@ -100,3 +100,7 @@ Route::get('/mypage', function () { return view('/pets/mypage_pet'); });
 // Route::get('/shelters', function () { return view('/shelters/index_shelter'); });
 // ↑これはなおp
 //↑ここまで！
+
+// 1/11にCanaが作りました↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+Route::get('/shelters/create', function () { return view('/shelters/create_shelter'); });
+// 邪魔なら消してください↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
