@@ -32,7 +32,7 @@
                 </div>
                 <div class="input">
                     <label for="select_pettype"><span class="asterisk">*</span>カテゴリ1(分類)</label>
-                    <select name="select_pettype" id="select_pet" required>
+                    <select name="select_pettype" id="select_pettype" required>
                         <option value="{{ $pet->pet_category_id }}" disabled selected>{{ $pet->pet_category->category }}</option>
                         @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->category }}</option>
@@ -41,11 +41,8 @@
                 </div>
                 <div class="input">
                     <label for="select_pettype2"><span class="asterisk">*</span>カテゴリ2(種類)</label>
-                    <select name="select_pettype2" required>
+                    <select name="select_pettype2" id="select_pettype2" required>
                         <option value="{{ $pet->pet_subcategory_id }}" disabled selected>{{ $pet->pet_subcategory->subcategory }}</option>
-                        @foreach ($subcategories as $subcategory)
-                        <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory }}</option>
-                        @endforeach
                     </select>
                 </div>
                 <div class="input">
@@ -81,13 +78,14 @@
                 <div class="btn">
                     <button type="button" class="btn-3" onclick="window.location.href='#'">キャンセル</button>
                 </div>
+        </form>
                 <div class="btn">
                     <form action="{{ route('pets.destroy', $pet->id) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn-2">削除</button>
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn-2">削除</button>
+                    </form>
                 </div>        
-        </form>
     </main>
 
     <script>
@@ -100,7 +98,38 @@
         };
         reader.readAsDataURL(file);
     }
-});
+    });
+    </script>
+    <script>
+        document.getElementById('select_pettype').addEventListener('change', function () {
+            const categoryId = this.value;
+            const subcategorySelect = document.getElementById('select_pettype2');
+
+            //初期化
+            subcategorySelect.innerHTML = '<option value="{{ $pet->pet_subcategory_id }}" disabled selected>{{ $pet->pet_subcategory->subcategory }}</option>';
+            subcategorySelect.disabled = true;
+
+            if(categoryId) {
+                //Ajaxリクエストでサブカテゴリを取得
+                fetch(`/api/subcategories/${categoryId}`)
+                  .then(response => response.json())
+                  .then(data => {
+                    if (data.length > 0) {
+                        subcategorySelect.disabled = false;
+
+                        data.forEach(subcategory => {
+                            const option = document.createElement('option');
+                            option.value = subcategory.id;
+                            option.textContent = subcategory.subcategory;
+                            subcategorySelect.appendChild(option);
+                        });
+                    }
+                  })
+                  .catch(error => {
+                    console.error('Error fetching subcategories', error);
+                  });
+            }
+        });
     </script>
     
 </body>

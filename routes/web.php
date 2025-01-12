@@ -44,14 +44,16 @@ Route::get('/', function () {
 // Route::middleware('auth')->group(function () {   ---@guestと@authを使うからいらなそう
     Route::get('/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('posts.create_post'); // 新規投稿作成フォーム
     Route::post('posts/create', [App\Http\Controllers\PostController::class, 'store'])->name('create_post.store'); // 新規投稿作成
-
     Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show_post'); // 投稿詳細
+    Route::get('/posts/{id}/edit', [App\Http\Controllers\PostController::class, 'edit'])->name('posts.edit'); // 投稿編集フォーム
+    Route::put('/posts/{id}', [App\Http\Controllers\PostController::class, 'update'])->name('posts.update'); // 投稿編集
+    Route::delete('/posts/{id}', [App\Http\Controllers\PostController::class, 'destroy'])->name('posts.destroy'); // 投稿削除
 
     // プロフィール
     // Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
 
     // Shelters関連
-    // Route::get('/shelters', [App\Http\Controllers\ShelterController::class, 'index_shelter'])->name('shelters.index_shelter');
+    Route::get('/shelters', [App\Http\Controllers\ShelterController::class, 'index'])->name('shelters.index'); //投稿一覧表示
     // Route::get('/shelters/{id}', [App\Http\Controllers\ShelterController::class, 'show_shelter'])->name('shelters.show_shelter');
     // Route::get('/shelters/create', [App\Http\Controllers\ShelterController::class, 'create_shelter'])->name('shelters.create_shelter');
     // Route::post('/shelters', [App\Http\Controllers\ShelterController::class, 'store_shelter'])->name('shelters.store_shelter');
@@ -95,5 +97,6 @@ Route::get('/pets/hidden', function () { return view('/pets/hidden_pet'); });
 Route::get('/favorites', function () { return view('/favorites/index_favorite'); });
 
 Route::get('/mypage', function () { return view('/pets/mypage_pet'); });
+// Route::get('/shelters', function () { return view('/shelters/index_shelter'); });
 // ↑これはなおp
 //↑ここまで！
