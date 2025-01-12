@@ -102,6 +102,7 @@ Route::get('/strays/show', function () { return view('/strays/show_stray'); });
 // ↑これはなおp
 //↑ここまで！
 
-// 1/11にCanaが作りました↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-// Route::get('/shelters/create', function () { return view('/shelters/create_shelter'); });
+
+//  1/12にCanaが作りました↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+Route::get('/shelters/edit', function () { return view('/shelters/edit_shelter'); });
 // 邪魔なら消してください↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
