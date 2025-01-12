@@ -4,6 +4,7 @@
 {{-- css --}}
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('css/index_shelter.css') }}">
+<link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/png">
 @endsection
 
     @section('content')
@@ -14,7 +15,7 @@
     </header>
 
     <div class="search">
-        <form action="http://127.0.0.1:8010/strays" method="get">
+        <form action="{{ route('strays.index') }}" method="GET">
             <input type="search" name="search">
             <input type="submit" name="submit" value="  🔍  ">
         </form>
@@ -25,63 +26,23 @@
     </div>
 
     <div class="containers">
+    @foreach ($strays as $stray)
         <a href="#">
             <div class="container">
-            <img src="{{ asset('img/strays.jpg')}}" alt="迷子">
-            <div class="imformation">
-                <p>探していますor見かけました</p>
-                <p>エリア:長崎</p>
-                <p>施設名:がんばらんど</p>
-            </div>
-            </div>
-        </a>
-        <a href="#">
-            <div class="container">
-            <img src="{{ asset('img/strays.jpg')}}" alt="迷子">
-            <div class="imformation">
-                <p>探していますor見かけました</p>
-                <p>エリア:長崎</p>
-                <p>施設名:がんばらんど</p>
-            </div>
+            <img src="{{ $stray->image_at ? asset($stray->image_at) : asset('img/logo_defaultimg.png') }}" alt="迷子">
+                <div class="imformation">                    
+                    <p>{{ $stray->status == 1 ? '探しています' : '見かけました' }}</p>
+                    <p>エリア: {{ $stray->area->area }}</p>
+                    <p>場所: {{ $stray->address }}</p>
+                </div>
             </div>
         </a>
-        <a href="#">
-            <div class="container">
-            <img src="{{ asset('img/strays.jpg')}}" alt="迷子">
-            <div class="imformation">
-                <p>探していますor見かけました</p>
-                <p>エリア:長崎</p>
-                <p>施設名:がんばらんど</p>
-            </div>
-            </div>
-        </a>
-        <a href="#">
-            <div class="container">
-            <img src="{{ asset('img/strays.jpg')}}" alt="迷子">
-            <div class="imformation">
-                <p>探していますor見かけました</p>
-                <p>エリア:長崎</p>
-                <p>施設名:がんばらんど</p>
-            </div>
-            </div>
-        </a>
-        <a href="#">
-            <div class="container">
-            <img src="{{ asset('img/strays.jpg')}}" alt="迷子">
-            <div class="imformation">
-                <p>探していますor見かけました</p>
-                <p>エリア:長崎</p>
-                <p>施設名:がんばらんど</p>
-            </div>
-            </div>
-        </a>
+    @endforeach
     </div>
 
-
     <div class="pulus">
-        <a href="">
+        <a href="{{ route('strays.create') }}">
             <span class="dli-plus-circle"><span></span></span>
         </a>
     </div>
-
 @endsection

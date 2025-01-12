@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>迷子情報の投稿</title>
-    <link rel="stylesheet" href="{{ asset('/css/create_stray.css') }}">
-    <link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/png">
-</head>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>迷子情報の投稿</title>
+        <link rel="stylesheet" href="{{ asset('/css/create_stray.css') }}">
+        <link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/png">
+    </head>
 <body>
     <!--↓↓↓↓↓仮のヘッダーだよ↓↓↓↓↓-->
     <header class="header-dayo">
@@ -20,14 +20,14 @@
         @csrf
             <div class="register">
             <section class="section1">
-                    <!-- 画像アップロード -->
-                    <div class="photo-upload">
-                        <div class="photo-frame">
-                            <img id="photo-preview" src="{{ asset('img/defaultimg.png') }}" alt="Default Image">
-                            <input type="file" id="photo-input" accept="image/*" hidden>
-                            <label for="photo-input" class="upload-button">+</label>
-                        </div>
-                    </div>
+        <!-- 画像アップロード -->
+        <div class="photo-upload">
+        <div class="photo-frame">
+            <img id="photo-preview" src="{{ asset('img/defaultimg.png') }}" alt="Default Image">
+            <input type="file" name="photo" id="photo-input" accept="image/png, image/jpeg" hidden>
+            <label for="photo-input" class="upload-button">+</label>
+            </div>
+        </div>
                     <!-- ラジオボタン -->
                         <div class="radio"><span class="asterisk">*</span>
                             <label>

@@ -73,16 +73,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 // Strays関連
-Route::post('/strays', [StrayController::class, 'index'])->name('strays.index'); // 一覧表示ページ(仮)
+Route::get('/strays', [StrayController::class, 'index'])->name('strays.index'); // 一覧表示ページ(仮)
 Route::get('/strays/create', [StrayController::class, 'create'])->name('strays.create'); // 迷子新規登録フォーム
-Route::get('/strays/edit', [App\Http\Controllers\StrayController::class, 'edit'])->name('strays.edit');  //新規登録フォーム編集
 Route::get('/strays/show', [App\Http\Controllers\StrayController::class, 'show'])->name('strays.show');  //新規登録表示
 Route::post('/strays', [StrayController::class, 'store'])->name('strays.store'); // データを保存するルート
 
-// ↓↓index_stray.blade.phpができるまでの仮↓↓
-Route::get('/strays', function () {
-    return view('strays.index_stray');
-})->name('strays.index');
+Route::get('/strays/{id}/edit', [StrayController::class, 'edit'])->name('strays.edit'); // 編集ページ表示
+Route::put('/strays/{id}', [StrayController::class, 'update'])->name('strays.update'); // 更新処理
+Route::delete('/strays/{id}', [StrayController::class, 'destroy'])->name('strays.destroy');
 
 //↓仮のやつなのであとで消します：AYAKA
 // Route::get('/posts', function () { return view('/posts/index_post'); });
@@ -95,11 +93,6 @@ Route::get('/posts/show', function () { return view('/posts/show_post'); });
 Route::get('/pets/show', function () { return view('pets/show_pet'); });
 Route::get('/pets/mypage', function () { return view('pets/mypage_pet'); });
 Route::get('/pets/hidden', function () { return view('/pets/hidden_pet'); });
-
-// Route::get('/strays', function () { return view('/strays/index_stray'); });
-// Route::get('/strays/create', function () { return view('/strays/create_stray'); });
-// Route::get('/strays/edit', function () { return view('/strays/edit_stray'); });
-// Route::get('/strays/show', function () { return view('/strays/show_stray'); });
 
 Route::get('/favorites', function () { return view('/favorites/index_favorite'); });
 
