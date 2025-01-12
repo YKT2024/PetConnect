@@ -49,6 +49,21 @@ body {
     border-radius: 10px;
 }
 
+.help_pet {
+    text-align: center;
+}
+
+
+.help_pet a {
+    background-color: #DB4E0D;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px 30px;
+    font-size: 12px;
+    color: #FFF;
+    border-radius: 10px;
+}
+
 .containers {
     margin: 0 45px;
 }
@@ -70,6 +85,18 @@ body {
     padding: 5px;
 }
 
+.day_picture p {
+    font-size: 10px;
+    padding-left: 5px;
+}
+
+.imformation {
+    margin-top: 16px;
+}
+
+.imformation p {
+    line-height: 8px
+}
 
 
 
@@ -125,4 +152,25 @@ body {
     top: 80%;
     right: 10%;
 
+}
+
+hr {
+    width: 250px;
+    margin: 0 auto; /* 左右の余白を自動で設定して中央揃え */
+    border: 1px solid #ccc; /* 線のスタイルを指定 */
+}
+
+.comment_pet {
+    text-align: center;
+}
+
+
+.comment_pet a {
+    background-color: #7CE0DD;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px 30px;
+    font-size: 12px;
+    color: #FFF;
+    border-radius: 10px;
 }
