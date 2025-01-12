@@ -78,13 +78,14 @@
                 <div class="btn">
                     <button type="button" class="btn-3" onclick="window.location.href='#'">キャンセル</button>
                 </div>
+        </form>
                 <div class="btn">
                     <form action="{{ route('pets.destroy', $pet->id) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn-2">削除</button>
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn-2">削除</button>
+                    </form>
                 </div>        
-        </form>
     </main>
 
     <script>
