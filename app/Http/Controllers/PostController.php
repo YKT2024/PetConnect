@@ -11,7 +11,7 @@ class PostController extends Controller
     public function index()
     {
         // 投稿一覧（全ユーザー共通で同じ投稿を取得）
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'desc')->get();
 
         return view('posts.index_post', compact('posts'));
     }
