@@ -49,6 +49,8 @@ Route::get('/', function () {
     Route::get('/posts/{id}/edit', [App\Http\Controllers\PostController::class, 'edit'])->name('posts.edit'); // 投稿編集フォーム
     Route::put('/posts/{id}', [App\Http\Controllers\PostController::class, 'update'])->name('posts.update'); // 投稿編集
     Route::delete('/posts/{id}', [App\Http\Controllers\PostController::class, 'destroy'])->name('posts.destroy'); // 投稿削除
+    Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show_post'); // 詳細ページのルート
+
 
     // プロフィール
     // Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');

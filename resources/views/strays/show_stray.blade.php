@@ -17,8 +17,14 @@
 
     <div class="help_pet">
     <p class="{{ $stray->status == 1 ? 'status-searching' : 'status-found' }}">
-    {{ $stray->status == 1 ? '探しています' : '保護・目撃' }}
-    </div>
+        {{ $stray->status == 1 ? '探しています' : '保護・目撃' }}
+    </p>
+
+    <!-- 自分の投稿なら「編集」リンクを表示 -->
+    @if ($isOwner)
+    <a href="{{ route('strays.edit', $stray->id) }}" class="my-edit-link">編集</a>
+    @endif
+</div>
 
     <div class="containers">
     <div class="container">

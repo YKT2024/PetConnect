@@ -48,3 +48,15 @@
   margin: 0 25%
 }
 
+/* 投稿の編集ページのキャンセル */
+  .my-edit-link {
+    color: #333; /* シンプルな濃いグレー */
+    text-decoration: none; /* 下線を消す */
+    font-size: 12px; /* 小さめの文字サイズ */
+    margin-left: 10px; /* 少し余白を追加 */
+    cursor: pointer; /* マウスホバー時にクリックできることを示す */
+  }
+
+  .my-edit-link:hover {
+    color: #555; /* ホバー時に少し色を変える */
+  }
