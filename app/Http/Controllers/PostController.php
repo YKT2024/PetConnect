@@ -89,4 +89,13 @@ class PostController extends Controller
 
         return redirect('/pets/mypage');
     }
+      // == 詳細表示 ==
+        public function show($id)
+    {
+          // 指定されたIDの投稿を取得
+        $post = Post::findOrFail($id);
+
+          // ビューを返す
+        return view('posts.show_post', compact('post'));
+    }
 }
