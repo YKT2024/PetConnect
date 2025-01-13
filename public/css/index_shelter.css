@@ -32,7 +32,8 @@ body {
     color: #FFF;
     font-weight:bold;
     letter-spacing: 0.1em; /* 文字間隔を調整 */
-    padding: 0 146px;
+    text-align: center;
+    padding-left: 143px;
 }
 
 
