@@ -1,0 +1,37 @@
+/* 全体のスタイル */
+body {
+    background-color: #A19AD3; /* 背景色 */
+    font-family: 'Arial', sans-serif; /* フォント */
+    margin: 0;
+    padding: 0;
+    display: flex; /* フレックスボックスの有効化 */
+    justify-content: center; /* 水平方向の中央寄せ */
+    align-items: center; /* 垂直方向の中央寄せ */
+    height: 100vh; /* ビューポート全体の高さを確保 */
+    text-align: center;
+}
+
+/* ロゴスタイル */
+.logo {
+    max-width: 150px; /* ロゴの最大幅 */
+    margin: 20px auto; /* 上下マージン */
+    display: block; /* センター寄せ */
+}
+
+/* 見出しスタイル */
+h1 {
+    color: white;
+    font-size: 2.5rem; /* フォントサイズ */
+    margin-top: 30px;
+}
+
+/* 説明文スタイル */
+p {
+    color: white;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.navbar {
+    display: none;
+}

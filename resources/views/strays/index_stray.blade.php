@@ -44,6 +44,7 @@
                 </p>
                 <p>エリア: {{ $stray->area->area }}</p>
                 <p>場所: {{ $stray->address }}</p>
+                <p>カテゴリー: {{ $stray->pet_subcategory->subcategory ?? '不明' }}</p>
             </div>
             </div>
         </a>

@@ -108,8 +108,14 @@ public function index(Request $request)
     public function edit($id)
     {
         $stray = Stray::findOrFail($id); // 編集対象のデータを取得
+
+        // 投稿者が自分かどうかを判定
+        if ($stray->user_id !== auth()->id()) {
+        abort(403, 'Unauthorized action.'); // 権限がない場合は403エラーを返す
+        }
+
         $areas = Area::all(); // エリアデータを取得
-        $pet_subcategories = PetSubcategory::all(); // クラス名修正
+        $pet_subcategories = Pet_Subcategory::all(); // クラス名修正
 
         return view('strays.edit_stray', compact('stray', 'areas', 'pet_subcategories'));
     }
@@ -169,11 +175,15 @@ public function index(Request $request)
         return redirect()->route('strays.index')->with('success', '情報を削除しました！');
     }
 
-    // == 詳細表示 ==
-    public function show($id)
-    {
-        $stray = Stray::with('area', 'pet_subcategory')->findOrFail($id);
+// == 詳細表示 ==
+public function show($id)
+{
+    // 投稿データを取得
+    $stray = Stray::with('area', 'pet_subcategory')->findOrFail($id);
 
-        return view('strays.show_stray', compact('stray'));
-    }
-}
+    // 投稿者が自分かどうかを判定
+    $isOwner = $stray->user_id === auth()->id();
+
+    // ビューにデータを渡す
+    return view('strays.show_stray', compact('stray', 'isOwner'));
+}}
