@@ -9,32 +9,32 @@
 
     @section('content')
     <header>
-    <div class="top">
+   <div class="top">
+    <a href="{{ route('strays.index') }}"><img src="{{ asset('img/return.png')}}" alt="戻る"></a>
         <p>迷子情報</p>
     </div>
     </header>
 
     <div class="help_pet">
-        <a href="#">探しています</a>
+    <p class="{{ $stray->status == 1 ? 'status-searching' : 'status-found' }}">
+    {{ $stray->status == 1 ? '探しています' : '保護・目撃' }}
     </div>
 
     <div class="containers">
-        <a href="#">
-            <div class="container">
-            <div class="day_picture">
-                <p>投稿日:</p>
-                <img src="{{asset('img/logo_defaultimg.png') }}" alt="迷子">
-            </div>
-            <div class="imformation">                    
-                <p>ペットのなまえ:</p>
-                <p>エリア:</p>
-                <p>いなくなった日:</p>
-                <p>カテゴリー:</p>
-                <p>性別:</p>
-                <p>色:</p>
-            </div>
-            </div>
-        </a>
+    <div class="container">
+        <div class="day_picture">
+            <p>投稿日: {{ $stray->created_at->format('Y-m-d') }}</p>
+            <img src="{{ $stray->image_at ? asset($stray->image_at) : asset('img/logo_defaultimg.png') }}" alt="迷子">
+        </div>
+        <div class="imformation">                    
+            <p>ペットのなまえ: {{ $stray->name }}</p>
+            <p>エリア: {{ $stray->area->area }}</p>
+            <p>いなくなった日: {{ $stray->date }}</p>
+            <p>カテゴリー: {{ $stray->pet_subcategory->subcategory ?? '不明' }}</p>
+            <p>性別: {{ $stray->sex ?? '不明' }}</p>
+            <p>備考: {{ $stray->body }}</p>
+        </div>
+    </div>
     </div>
 
     <hr>
