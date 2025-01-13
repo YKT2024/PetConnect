@@ -1,0 +1,193 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    
+    }
+    
+    body{
+        background-color:hwb(300 94% 4%);
+    }
+    
+/* Nao-pのヘッダーできるまで */
+.header-dayo {
+    background-color: rgba(161, 154, 211, 1);
+    height:47px;
+    font-size: 18px;
+    color: white;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+/* Nao-pのヘッダーできるまで */
+
+
+.maincontent {
+    text-align: left;
+    margin: 52px 24px 40px;
+}
+
+
+
+/* エリア名 */
+.area-name {
+    text-align: center;
+    font-size: 10vw;
+    width: 100%;
+    background-color: yellow;
+    margin-bottom: 20px;
+}
+
+/* 施設名 */
+.shelter-name {
+    width: 70%;
+}
+.shelter-name p {
+    font-size: 3vw;
+}
+
+.shelter-name h1 {
+    font-size: 6vw;
+}
+
+/* 詳細エリア */
+
+.section2 {
+    margin: 50px 0;
+}
+
+    /* アイコン */
+    .icon-area {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    margin-bottom: 30px;
+}
+.icon img{
+    height:6vw;
+    width:6vw;
+    border-radius: 50%;
+    
+}
+
+/* シェルター情報詳細*/
+.sectionarea {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+.details {
+    display: flex; /* 横並びにする */
+    border-bottom: 2px solid #0b0909; 
+    padding-bottom: 5px;
+    align-items: center; /* 縦方向で中央揃え */
+    gap: 10px; /* 間隔を調整 */
+}
+    
+.title {
+    width: 20%;
+    font-weight: bold; /* ラベルを強調する（任意） */
+}
+
+.info {
+    font-size: 14px;
+    width: 75%;
+}
+
+.label {
+    font-size: 3vw; /* 「住所：」のフォントサイズ */
+    font-weight: bold; /* 太字にする場合 */
+    color: #333; /* 文字色の変更 */
+}
+
+.value {
+    font-size: 4vw; /* 住所部分のフォントサイズ */
+    font-weight: normal; /* 通常の太さ */
+    color: #555; /* 文字色を薄くする */
+}
+
+
+
+/* コメントするボタン */
+.btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.btn-1 {
+    font-size: 15px;
+    color: white;
+    border: none;
+    width: 60%;
+    height: 30px;
+    border-radius: 50px;
+    margin-bottom: 30px;
+    background-color: rgba(124, 224, 221, 1);
+}
+
+/* モーダルウィンドウの基本スタイル */
+#commentModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+}
+
+/* モーダル内のテキストエリアとボタン */
+#commentModal textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+#commentModal button {
+    padding: 8px;
+    background-color: rgba(124, 224, 221, 1);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+.modalbtn{
+    display: flex;
+    justify-content: space-around;
+}
+
+/* モーダル内のキャンセルボタン */
+#commentModal .cancel-btn {
+    background-color: #f44336;
+}
+
+/* コメント削除ボタン */
+.delbtn {
+    display: flex;
+    justify-content: right;
+}
+
+.btn-4 {
+    font-size: 15px;
+    color: white;
+    border: none;
+    width: 20%;
+    height: 30px;
+    border-radius: 50px;
+    margin-bottom: 30px;
+    background-color: rgba(124, 224, 221, 1);
+}
