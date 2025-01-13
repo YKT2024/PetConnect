@@ -211,3 +211,83 @@ hr {
         display: inline-block; /*インラインボックス */
         text-align: center; /* テキストを中央揃え */
 }
+
+/* モーダルウィンドウの基本スタイル */
+#commentModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+}
+
+/* モーダル内のテキストエリアとボタン */
+#commentModal textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+#commentModal button {
+    padding: 8px;
+    background-color: rgba(124, 224, 221, 1);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+.modalbtn{
+    display: flex;
+    justify-content: space-around;
+}
+
+/* モーダル内のキャンセルボタン */
+#commentModal .cancel-btn {
+    background-color: #f44336;
+}
+
+/* コメント削除ボタン */
+.btn-4 {
+    font-size: 3.5vw;
+    color: white;
+    border: none;
+    width: 20%;
+    height: 30px;
+    border-radius: 50px;
+    margin-bottom: 30px;
+    background-color: rgba(124, 224, 221, 1);
+}
+
+#deleteModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+#deleteModal .modalbtn {
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal-content {
+    text-align: center;
+}
