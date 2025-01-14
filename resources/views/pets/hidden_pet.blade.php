@@ -47,7 +47,7 @@
                
             </div>
                 <div class="btn">
-                    <button type="submit" class="btn-1">次へ</button>
+                    <button type="submit" class="btn-1">つぎへ</button>
                 </div>
                                
         </form>
