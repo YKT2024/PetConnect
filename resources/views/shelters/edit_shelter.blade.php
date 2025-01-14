@@ -16,81 +16,76 @@
     <!--↑↑↑↑仮のヘッダーだよ↑↑↑↑-->
 
     <main class="maincontent">
-        {{-- <form action="/submit" method="POST">
-            @csrf --}}
-            <div class="register">
-                    <!-- 避難施設 -->
-                    <div class="input">
-                        <label for="shelter_name"><span class="asterisk">*</span>避難施設名</label>
-                        <input type="text" name="accountname" placeholder="施設名" required>
-                    </div>
-                    <!-- エリアプル -->
-                    <div class="input">
-                        <label for="area_id"><span class="asterisk">*</span>エリア</label>
-                        <select name="area_id" id="area_id" required>
-                            <option value="" disabled selected>どこで？〜</option>
-                            {{-- @foreach ($areas as $area)
-                            <option value="#">{{ $area->area }}</option>
-                            @endforeach --}}
-                        </select>
-                    </div>
-                    <!-- エリア手入力 -->
-                    <div class="input">
-                        <label for="address"><span class="asterisk">*</span>詳細住所</label>
-                        <input type="text" name="address" id="address" value="#" required>
-                    </div>
-                    <!-- ラジオボタン -->
-                    <div class="radio"><span class="asterisk">*</span><label for="contactInput">受け入れ態勢</label>
-                        <div class="radio-btn">
-                            <label>
-                                <input type="radio" name="status" value="1" required>同伴避難
-                            </label>
-                            <label>
-                                <input type="radio" name="status" value="0" required>同室避難
-                            </label>
-                        </div>
-                    </div>
-        {{-- ラジオボタンのデータベースからのあれ？ --}}
-        {{-- 使えるか知らんけど、試してみてください --}}
-        {{-- 選択されたやつがクリアになっててもいいなら --}}
-                    {{-- <div class="radio">
-                        <span class="asterisk">*</span>
-                        <label for="contactInput">受け入れ態勢</label>
-                        <div class="radio-btn">
-                            <label>
-                                <input type="radio" name="status" value="1" 
-                                       {{ $post->evacuation_type == 1 ? 'checked' : '' }} required>同伴避難
-                            </label>
-                            <label>
-                                <input type="radio" name="status" value="0" 
-                                       {{ $post->evacuation_type == 0 ? 'checked' : '' }} required>同室避難
-                            </label>
-                        </div>
-                    </div> --}}
+        <!-- フォーム開始 -->
+        <form action="{{ route('shelters.update', $shelter->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT') <!-- PUT メソッドを指定 -->
 
-                    
-                    <!-- 備考 -->
-                    <div class="input">
-                        <label for="introduce"><span class="asterisk">*</span>備考</label>
-                        <textarea id="introduce" name="introduce" rows="4" maxlength="280" placeholder="受け入れ数に上限あり など"></textarea>
-                    </div>
+        <div class="register">
+        <!-- 避難施設名 -->
+        <div class="input">
+            <label for="shelter_name"><span class="asterisk">*</span>避難施設名</label>
+            <input type="text" name="shelter_name" value="{{ old('shelter_name', $shelter->shelter_name) }}" placeholder="施設名" required>
+        </div>
+
+        <!-- エリアプルダウン -->
+        <div class="input">
+            <label for="area_id"><span class="asterisk">*</span>エリア</label>
+            <select name="area_id" id="area_id" required>
+                <option value="" disabled>どこで？〜</option>
+                @foreach ($areas as $area)
+                    <option value="{{ $area->id }}" {{ $area->id == $shelter->area_id ? 'selected' : '' }}>
+                        {{ $area->area }}
+                    </option>
+                @endforeach
+        </select>
+        </div>
+
+        <!-- 詳細住所 -->
+            <div class="input">
+                <label for="address"><span class="asterisk">*</span>詳細住所</label>
+                <input type="text" name="address" value="{{ old('address', $shelter->address) }}" required>
+            </div>
+
+        <!-- ラジオボタン (受け入れ態勢) -->
+        <div class="radio">
+            <span class="asterisk">*</span><label for="evacuation_type">受け入れ態勢</label>
+            <div class="radio-btn">
+                <label>
+                    <input type="radio" name="evacuation_type" value="1" {{ $shelter->evacuation_type == 1 ? 'checked' : '' }} required>
+                    同伴避難
+                </label>
+                <label>
+                    <input type="radio" name="evacuation_type" value="0" {{ $shelter->evacuation_type == 0 ? 'checked' : '' }} required>
+                    同室避難
+                </label>
+            </div>
+        </div>
+
+            
+        <!-- 備考 -->
+        <div class="input">
+            <label for="body"><span class="asterisk">*</span>備考</label>
+            <textarea id="body" name="body" rows="4" maxlength="280" placeholder="受け入れ数に上限あり など">{{ old('body', $shelter->body) }}</textarea>
+        </div>
+    </div>
                 
-                </div>
-                <div class="btn">
-                    <button type="submit" class="btn-1">更新</button>
-                </div>
-                <div class="btn">
-                    <a href="#"></a><button type="button" class="btn-3" onclick="window.location.href='#'">キャンセル</button></a>
-                </div>
-            {{-- </form> --}}
-                <div class="btn">
-                    {{-- <form action="{{ route('posts.destroy', $post->id) }}" method="POST" onsubmit="return confirm('本当に削除しますか？')">
-                    @csrf
-                    @method('DELETE') --}}
-                    <button type="submit" class="btn-2">削除</button>
-                    </form>
-                </div>
 
-    </main>  
+        <!-- ボタン -->
+        <div class="btn">
+            <button type="submit" class="btn-1">更新する</button>
+            <button type="button" class="btn-3" onclick="window.location.href='{{ route('shelters.index') }}'">キャンセル</button>
+        </div>
+    </form>
+
+        <!-- 削除ボタン -->
+        <div class="btn">
+            <form action="{{ route('shelters.destroy', $shelter->id) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn-2">削除</button>
+            </form>
+        </div>
+    </main>
 </body>
 </html>

@@ -36,7 +36,7 @@ public function index(Request $request)
         });
     }
 
-    // ラジオボタンでの絞り込み
+// ラジオボタンでの絞り込み
     if ($filter === 'mine') {
         $query->where('user_id', auth()->id()); // 自分の投稿のみ
     }
@@ -48,7 +48,7 @@ public function index(Request $request)
 
 
 
-    // == 新規投稿 ==
+// == 新規投稿 ==
     public function create()
     {
         $areas = Area::all();
@@ -89,22 +89,22 @@ public function index(Request $request)
         $stray->body = $validated['introduce'];
         $stray->user_id = auth()->id(); 
     
-        // 写真がアップロードされた場合の処理
-        if ($request->hasFile('photo')) {
-            $destinationPath = public_path('strays_img'); // 保存先のフォルダ
-            $fileName = time() . '_' . $request->file('photo')->getClientOriginalName(); // ファイル名の作成
-            $request->file('photo')->move($destinationPath, $fileName); // ファイルを移動
-    
-            $stray->image_at = 'strays_img/' . $fileName; // パスをデータベースに保存
-        }
-    
-        $stray->save();
-    
-        return redirect()->route('strays.index')->with('success', '投稿が完了しました！');
-    }
-    
+// 写真がアップロードされた場合の処理
+    if ($request->hasFile('photo')) {
+        $destinationPath = public_path('strays_img'); // 保存先のフォルダ
+        $fileName = time() . '_' . $request->file('photo')->getClientOriginalName(); // ファイル名の作成
+        $request->file('photo')->move($destinationPath, $fileName); // ファイルを移動
 
-    // == 投稿の編集 ==
+        $stray->image_at = 'strays_img/' . $fileName; // パスをデータベースに保存
+    }
+
+    $stray->save();
+
+    return redirect()->route('strays.index')->with('success', '投稿が完了しました！');
+}
+
+
+// == 投稿の編集 ==
     public function edit($id)
     {
         $stray = Stray::findOrFail($id); // 編集対象のデータを取得
@@ -139,7 +139,7 @@ public function index(Request $request)
         'photo' => 'nullable|image|max:2048', // 写真のバリデーション
     ]);
 
-    // データを更新
+// データを更新
     $stray->update([
         'status' => $validated['status'],
         'name' => $validated['accountname'],
@@ -154,7 +154,7 @@ public function index(Request $request)
         'body' => $validated['introduce'],
     ]);
 
-    // 写真がアップロードされた場合
+// 写真がアップロードされた場合
     if ($request->hasFile('photo')) {
         $destinationPath = public_path('strays_img'); // 保存先のフォルダ
         $fileName = time() . '_' . $request->file('photo')->getClientOriginalName(); // ファイル名の作成
@@ -176,14 +176,17 @@ public function index(Request $request)
     }
 
 // == 詳細表示 ==
-public function show($id)
-{
-    // 投稿データを取得
-    $stray = Stray::with('area', 'pet_subcategory')->findOrFail($id);
+    public function show($id)
+    {
+        // 投稿データを取得
+        $stray = Stray::with('area', 'pet_subcategory')->findOrFail($id);
 
-    // 投稿者が自分かどうかを判定
-    $isOwner = $stray->user_id === auth()->id();
+        // 投稿者が自分かどうかを判定
+        $isOwner = $stray->user_id === auth()->id();
 
-    // ビューにデータを渡す
-    return view('strays.show_stray', compact('stray', 'isOwner'));
-}}
+        // コメントデータを取得
+        $comments = $stray->comments; 
+
+        // ビューにデータを渡す
+        return view('strays.show_stray', compact('stray','comments','isOwner'));
+    }}

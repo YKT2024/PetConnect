@@ -9,6 +9,9 @@ class Comment extends Model
 {
     use HasFactory;
 
+    // フォームから受け取るデータを指定
+    protected $fillable = ['body', 'user_id', 'post_id', 'shelter_id', 'stray_id'];
+
     // リレーションを設定
     public function user()
     {
