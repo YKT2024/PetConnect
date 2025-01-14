@@ -107,4 +107,11 @@ textarea {
 .btn-3 {
     border: none;
     margin-bottom: 30px;
+    background-color: transparent;
+}
+
+.btn form {
+    width :100%;
+    display: flex;
+    justify-content: center;
 }

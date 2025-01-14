@@ -164,7 +164,7 @@
         justify-content: center;
     }
     
-    .btn-1 , .btn-2{
+    .btn-1 {
         font-size: 15px;
         color: white;
         border: none;
@@ -180,4 +180,5 @@
     
     .btn-3 {
         border: none;
+        background-color: transparent;
     }
