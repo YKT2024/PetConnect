@@ -68,7 +68,7 @@ Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'show'])-
     Route::put('/shelters/{id}', [ShelterController::class, 'update'])->name('shelters.update'); // 更新処理
     Route::post('/shelters', [App\Http\Controllers\ShelterController::class, 'store_shelter'])->name('shelters.store'); //避難所新規登録
     Route::post('/shelters/{id}/comments', [CommentController::class, 'storeForShelter'])->name('shelters.comments.store'); //コメント用
-    Route::delete('/shelters/{id}', [ShelterController::class, 'destroy'])->name('shelters.destroy')
+    Route::delete('/shelters/{id}', [ShelterController::class, 'destroy'])->name('shelters.destroy');
 
 // Pets関連
 Route::get('/pets/create', [App\Http\Controllers\PetController::class, 'show_create_pet'])->name('create_pet.show'); //ペット新規登録フォームw
