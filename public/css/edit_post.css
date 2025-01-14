@@ -14,9 +14,19 @@ body {
     font-size: 18px;
     color: white;
     display: flex;
-    justify-content: center;
     align-items: center;
 }
+
+.header-dayo img{
+    width: 24px;
+    height: 24px;
+    margin-left: 15px;
+}
+
+.header-desu {
+    margin-left: 90px;
+}
+
 
 /* 写真登録フォーム */
 .photo-upload {

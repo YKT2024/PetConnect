@@ -1,16 +1,15 @@
+@extends('layouts.footer')
 
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>投稿編集</title>
+@section('css')
+{{-- css --}}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/edit_post.css') }}">
-</head>
-<body>
+    @endsection
+
+    @section('content')
 <!-- ↓↓↓↓↓仮のヘッダーだよ↓↓↓↓↓--}} -->
 <header class="header-dayo">
+        <a href="#"><img src="{{ asset('img/return.png')}}" alt=""></a>
         <div class="header-desu">投稿編集</div>
     </header>
 <!-- ↑↑↑↑仮のヘッダーだよ↑↑↑↑　--}} -->
@@ -58,5 +57,5 @@ if (file) {
 }
 });
 </script>
-</body>
-</html>
+
+@endsection
