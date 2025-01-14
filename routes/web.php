@@ -89,11 +89,19 @@ Route::put('/strays/{id}', [StrayController::class, 'update'])->name('strays.upd
 Route::delete('/strays/{id}', [StrayController::class, 'destroy'])->name('strays.destroy');
 Route::get('/strays/{id}', [StrayController::class, 'show'])->name('strays.show'); // 詳細を表示
 
+// ブックマークに使う関連
+Route::post('/posts/{post}/favorite', [App\Http\Controllers\FavoriteController::class, 'store'])->name('favorites.store');
+Route::delete('/posts/{post}/favorite', [App\Http\Controllers\FavoriteController::class, 'destroy'])->name('favorites.destroy');
+
+// かわいいねに使う関連
+Route::post('/posts/{post}/like', [App\Http\Controllers\LikeController::class, 'store'])->name('likes.store');
+Route::delete('/posts/{post}/like', [App\Http\Controllers\LikeController::class, 'destroy'])->name('likes.destroy');
+
 //↓仮のやつなのであとで消します：AYAKA
 Route::get('/pets/show', function () { return view('pets/show_pet'); });
 Route::get('/pets/hidden', function () { return view('/pets/hidden_pet'); });
 
-Route::get('/favorites', function () { return view('/favorites/index_favorite'); });
+// Route::get('/favorites', function () { return view('/favorites/index_favorite'); });
 
 // Route::get('/shelters', function () { return view('/shelters/index_shelter'); });
 Route::get('/strays/show', function () { return view('/strays/show_stray'); });
