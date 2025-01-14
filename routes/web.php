@@ -49,8 +49,7 @@ Route::get('/', function () {
     Route::get('/posts/{id}/edit', [App\Http\Controllers\PostController::class, 'edit'])->name('posts.edit'); // 投稿編集フォーム
     Route::put('/posts/{id}', [App\Http\Controllers\PostController::class, 'update'])->name('posts.update'); // 投稿編集
     Route::delete('/posts/{id}', [App\Http\Controllers\PostController::class, 'destroy'])->name('posts.destroy'); // 投稿削除
-    Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show_post'); // 詳細ページのルート
-
+    Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show'); //投稿詳細
 
     // プロフィール
     // Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
@@ -89,8 +88,8 @@ Route::get('/strays/{id}', [StrayController::class, 'show'])->name('strays.show'
 //↓仮のやつなのであとで消します：AYAKA
 // Route::get('/posts', function () { return view('/posts/index_post'); });
 // Route::get('/posts/create', function () { return view('/posts/create_post'); });
-Route::get('/posts/edit', function () { return view('/posts/edit_post'); });
-Route::get('/posts/show', function () { return view('/posts/show_post'); });
+// Route::get('/posts/edit', function () { return view('/posts/edit_post'); });
+// Route::get('/posts/show', function () { return view('/posts/show_post'); });
 
 // Route::get('/pets', function () { return view('/pets/create_pet'); });
 // Route::get('/pets/edit', function () { return view('pets/edit_pet'); });

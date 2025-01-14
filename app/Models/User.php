@@ -24,6 +24,13 @@ class User extends Authenticatable
         return $this->belongsTo(Area::class, 'area_id');
     }
 
+    // app/Models/User.php
+    public function pet()
+    {
+        return $this->hasOne(Pet::class);
+    }
+
+
     /**
      * The attributes that should be hidden for serialization.
      *
