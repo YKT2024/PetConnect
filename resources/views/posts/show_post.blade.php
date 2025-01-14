@@ -18,16 +18,11 @@
     <section class="section1">
         <div class="photo-area">
             <div class="photo-frame">
-                <img id="#" src="./postedimg2.jpg" alt="posted-img">
-                <!-- <img id="#" src="{{ asset('images/postedimg2.jpg') }}" alt="posted-img"> -->
-                <!-- 上の1行消してここ変える 投稿した写真取得-->
-                <!-- <img src="{{ $post->image_at }}" alt=""> 的な？ -->
+                <img src="{{ asset('storage/' . $post->image_at) }}" alt="posted_img">
             </div>
             <div class="underimg">
                 <div class="posted-date">
-                    <p>2050-12-31</p>
-                    <!-- 上の1行消してここ変える 投稿した日取得-->
-                    <!-- <p>{{ $post->created_at }}</p> -->
+                    <p>{{ $post->created_at }}</p>
                 </div>
                     <!--いいねとか実装するで  -->
                     <div class="actionarea">
@@ -51,21 +46,13 @@
         <div class="caption-comment">
             <div class="icon-area">
                 <div class="icon">
-                    <img src="{{ asset('images/postedimg3.png') }}" alt="アイコン">
-                    <!-- 上の1行消してここ変える 投稿者のアイコン取得-->
-                    <!-- <img src="{{ $pet->image_at}}" alt="icon"> 的な？-->
+                    <img src="{{ asset('storage/' . $icon) }}" alt="アイコン">
                 </div>
             </div>
             <div class="caption">
-                <p>ここに本文が入ります〜！あなたの可愛いペットの自慢はここですよ〜！<br>
-                   文字数は280文字までで、今のとこ80文字以上は長いから続きを読むボタンで隠しています❤️<br>
-                   表示文字の制限は下のStr::limit($post->body, 80, '…')の数字をいじればかえられます〜✌️<br>
-                   とりあえずがっちゃんこしてもろて、できる限り頑張っていいねとかつけますね。
-                </p>
-                <!-- 上の<p>の行消してここ変える 投稿文取得-->
                 <!-- {{-- 80文字以上は表示されないようになっているはず --}} -->
-                <!-- <p class="post-body" data-full-text="{{ $post->body }}">
-                {{ Str::limit($post->body, 80, '…') }} -->
+                <p class="post-body" data-full-text="{{ $post->body }}">
+                {{ Str::limit($post->body, 80, '…') }}
                 </p>
                 <button class="read-more-btn" style="display: none;">続きを読む</button>
             </div>
@@ -81,7 +68,7 @@
             <div id="commentModal">
                 <div class="modal-content">
                     <!--コメント機能 ここの下もあってるかわからん -->
-                    <form id="commentForm" action="{{ route('comments.store') }}" method="POST">
+                    <form id="commentForm" action="#kokoni-route-ireru" method="POST">
                         <!-- @csrf -->
                         <textarea name="comment" maxlength="150" placeholder="コメントを入力"></textarea>
                         <div class="modalbtn">
@@ -94,29 +81,29 @@
 
             <!-- コメントリストを表示 -->
             <div id="commentList">
-                <!-- @foreach($comments as $comment) -->
+                {{-- <!-- @foreach($comments as $comment) --> --}}
                     <div class="caption-comment">
                         <div class="icon-area">
                             <div class="icon">
-                                <img src="{{ asset('images/postedimg3.png') }}" alt="アイコン"> -->
+                                <img src="{{ asset('images/postedimg3.png') }}" alt="アイコン">
                                 <!-- 上の1行消してここ変える　コメント投稿者のアイコン取得 -->
-                                <!-- <img src="{{  }}" alt=""> -->
+                                <!-- <img src="    " alt=""> -->
                             </div>
                         </div>
                         <div class="caption">
                             <p>コメントはここやで</p>
                             <!-- 上の1行消してここ変える 投稿されたコメント取得-->
-                            <!-- <p>{{ $comment->text }}</p> -->
+                            <!-- <p>    $comment->text     </p> -->
                         </div>
                         <!-- コメント削除ボタン -->
                         <!-- 削除機能 ここの下もあってるかわからん -->
-                        <!-- <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" onsubmit="return confirm('コメントを削除しますか？')"> -->
-                            <!-- @csrf -->
-                            <!-- @method('DELETE') -->
+                        <!-- <form action="     route('comments.destroy', $comment->id)     " method="POST" onsubmit="return confirm('コメントを削除しますか？')"> -->
+                            {{-- <!-- @csrf --> --}}
+                            {{-- <!-- @method('DELETE') --> --}}
                             <button class="btn-4" type="submit">削除</button>
                         </form>
                     </div>
-                <!-- @endforeach -->
+                {{-- <!-- @endforeach --> --}}
             </div>
         </div>
     </section>

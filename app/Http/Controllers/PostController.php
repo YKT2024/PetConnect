@@ -89,13 +89,19 @@ class PostController extends Controller
 
         return redirect('/pets/mypage');
     }
-      // == 詳細表示 ==
-        public function show($id)
-    {
-          // 指定されたIDの投稿を取得
-        $post = Post::findOrFail($id);
 
-          // ビューを返す
-        return view('posts.show_post', compact('post'));
+    function show($id)
+    {
+        // dd($id);
+        $post = Post::with('user.pet')->find($id);
+
+        if (!$post) {
+            abort(404, 'Post not found.');
+        }
+
+        // ユーザーのアイコンを取得
+        $icon = $post->user->pet ? 'pets/img/' . $post->user->pet->image_at : null;
+        
+        return view('posts.show_post', ['post'=>$post, 'icon'=>$icon]);
     }
 }
