@@ -41,6 +41,9 @@ Route::get('/', function () {
     return view('auth.login_auth'); // ログインページ
 });
 
+Route::get('/users/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
+Route::post('/users', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
+
 // ログイン済みユーザー専用ルート   ---@guestと@authを使うからいらなそう
 // Route::middleware('auth')->group(function () {   ---@guestと@authを使うからいらなそう
     Route::get('/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('posts.create_post'); // 新規投稿作成フォーム
@@ -86,11 +89,19 @@ Route::put('/strays/{id}', [StrayController::class, 'update'])->name('strays.upd
 Route::delete('/strays/{id}', [StrayController::class, 'destroy'])->name('strays.destroy');
 Route::get('/strays/{id}', [StrayController::class, 'show'])->name('strays.show'); // 詳細を表示
 
+// ブックマークに使う関連
+Route::post('/posts/{post}/favorite', [App\Http\Controllers\FavoriteController::class, 'store'])->name('favorites.store');
+Route::delete('/posts/{post}/favorite', [App\Http\Controllers\FavoriteController::class, 'destroy'])->name('favorites.destroy');
+
+// かわいいねに使う関連
+Route::post('/posts/{post}/like', [App\Http\Controllers\LikeController::class, 'store'])->name('likes.store');
+Route::delete('/posts/{post}/like', [App\Http\Controllers\LikeController::class, 'destroy'])->name('likes.destroy');
+
 //↓仮のやつなのであとで消します：AYAKA
 Route::get('/pets/show', function () { return view('pets/show_pet'); });
 Route::get('/pets/hidden', function () { return view('/pets/hidden_pet'); });
 
-Route::get('/favorites', function () { return view('/favorites/index_favorite'); });
+// Route::get('/favorites', function () { return view('/favorites/index_favorite'); });
 
 // Route::get('/shelters', function () { return view('/shelters/index_shelter'); });
 Route::get('/strays/show', function () { return view('/strays/show_stray'); });

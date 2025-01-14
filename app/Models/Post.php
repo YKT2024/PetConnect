@@ -16,4 +16,17 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function favoritedBy()
+    {
+    return $this->belongsToMany(User::class, 'favorites', 'post_id', 'user_id')
+                ->withTimestamps();
+    }
+
+    public function likedBy()
+    {
+    return $this->belongsToMany(User::class, 'likes', 'post_id', 'user_id')
+                ->withTimestamps();
+    }
+
 }

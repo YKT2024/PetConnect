@@ -37,7 +37,9 @@
             @if ($index == 0)
                 <div class="row"> {{-- 新しい行の開始 --}}
             @endif
-            <img src="{{ asset('storage/' . $post->image_at)}}" alt="投稿画像">
+             <a href="{{ route('posts.show', ['id' => $post->id]) }}">
+             <img src="{{ asset('storage/' . $post->image_at)}}" alt="投稿画像">
+             </a>
             @if ($index == 1)
                 </div> {{-- 行の終了 --}}
             @endif
@@ -45,7 +47,9 @@
         {{-- 2段目（3番目） --}}
         @elseif ($index == 2)
             <div class="row1">
+              <a href="{{ route('posts.show', ['id' => $post->id]) }}">
               <img src="{{ asset('storage/' . $post->image_at)}}" alt="投稿画像">
+              </a>
             </div>
 
         {{-- 3段目（4番目と5番目） --}}
@@ -53,7 +57,9 @@
             @if ($index == 3)
                 <div class="row">
             @endif
-            <img src="{{ asset('storage/' . $post->image_at)}}" alt="投稿画像">
+              <a href="{{ route('posts.show', ['id' => $post->id]) }}">
+              <img src="{{ asset('storage/' . $post->image_at)}}" alt="投稿画像">
+              </a>
             @if ($index == 4)
                 </div>
             @endif
@@ -61,7 +67,9 @@
         {{-- 4段目（6番目） --}}
         @elseif ($index == 5)
             <div class="row1">
+              <a href="{{ route('posts.show', ['id' => $post->id]) }}">
               <img src="{{ asset('storage/' . $post->image_at)}}" alt="投稿画像">
+              </a>
             </div>
         @endif
     @endforeach
@@ -118,7 +126,7 @@
 </div>
 
 <div class="pulus">
-  <a href="">
+  <a href="{{ route('posts.create_post') }}">
     <span class="dli-plus-circle"><span></span></span>
   </a>
 </div>

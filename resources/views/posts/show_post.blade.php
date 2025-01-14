@@ -24,19 +24,53 @@
                 <div class="posted-date">
                     <p>{{ $post->created_at }}</p>
                 </div>
-                    <!--いいねとか実装するで  -->
                     <div class="actionarea">
-                    <button type="button" class="likeButton">
-                        <svg class="likeButton__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" >
-                            <path d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z"/>
-                        </svg>
-                    </button>
-                    <button type="button" class="likeButton2">
-                        <svg class="likeButton__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50">
-                            <path d="M6 2C5.447 2 5 2.447 5 3v18.586c0 .527.673.792 1.06.415l5.94-5.94 5.94 5.94c.387.377 1.06.112 1.06-.415V3c0-.553-.447-1-1-1H6z"/>
-                        </svg>
-                    </button>
-                    <a href="#"><button><i class="far fa-edit edit-icon"></i></button></a>
+                    {{-- かわいいねボタン --}}
+                    @if (auth()->user()->likes->contains($post->id))
+                        <form action="{{ route('likes.destroy', $post) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="likeButton liked">
+                                <svg class="likeButton__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" >
+                                 <path d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z"/>
+                                </svg>
+                            </button>
+                        </form>
+                    @else
+                        <form action="{{ route('likes.store', $post) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="likeButton">
+                                <svg class="likeButton__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" >
+                                 <path d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z"/>
+                                </svg>
+                            </button>
+                        </form>
+                    @endif
+
+                    {{-- ブックマークボタン --}}
+                    @if (auth()->user()->favorites->contains($post->id))
+                        <form action="{{ route('favorites.destroy', $post) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="likeButton2 liked">
+                                <svg class="likeButton__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50">
+                                 <path d="M6 2C5.447 2 5 2.447 5 3v18.586c0 .527.673.792 1.06.415l5.94-5.94 5.94 5.94c.387.377 1.06.112 1.06-.415V3c0-.553-.447-1-1-1H6z"/>
+                                </svg>
+                            </button>
+                        </form>
+                    @else
+                        <form action="{{ route('favorites.store', $post) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="likeButton2">
+                                <svg class="likeButton__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50">
+                                 <path d="M6 2C5.447 2 5 2.447 5 3v18.586c0 .527.673.792 1.06.415l5.94-5.94 5.94 5.94c.387.377 1.06.112 1.06-.415V3c0-.553-.447-1-1-1H6z"/>
+                                </svg>
+                            </button>
+                        </form>
+                    @endif
+
+                    {{-- 編集ボタン --}}
+                    <a href="{{ route('posts.edit', $post->id) }}"><button><i class="far fa-edit edit-icon"></i></button></a>
                     </div>
             </div>
         </div>
@@ -217,68 +251,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
-
-
-    // いいねボタンくりっくでいろかわるとこ
-
-    document.addEventListener('DOMContentLoaded', function () {
-  // 対象のクラス名を配列で管理
-  var targetClasses = ['likeButton', 'likeButton2'];
-
-  // 各クラスごとに処理を実行
-  targetClasses.forEach(function (className) {
-    var buttons = document.getElementsByClassName(className);
-
-    Array.from(buttons).forEach(function (button, index) {
-      // 各ボタンに固有のキーを生成
-      var storageKey = className + '_' + index;
-
-      // ページ読み込み時に状態を反映
-      var isLiked = localStorage.getItem(storageKey);
-      if (isLiked === 'true') {
-        button.classList.add('liked'); // 保存された状態を反映
-      }
-
-      // ボタンがクリックされたときに状態を保存
-      button.addEventListener('click', function () {
-        button.classList.toggle('liked');
-        var isLikedNow = button.classList.contains('liked');
-        localStorage.setItem(storageKey, isLikedNow); // 状態を保存
-      });
-    });
-  });
-}, false);
-
-//     document.addEventListener('DOMContentLoaded', function () {
-//   var likeButtons = document.getElementsByClassName('likeButton');
-  
-//   // ページ読み込み時に状態を反映
-//   Array.from(likeButtons).forEach(function (likeButton, index) {
-//     var isLiked = localStorage.getItem('likeButton_' + index);
-//     if (isLiked === 'true') {
-//       likeButton.classList.add('liked'); // 保存された状態を反映
-//     }
-
-//     // ボタンがクリックされたときに状態を保存
-//     likeButton.addEventListener('click', function () {
-//       likeButton.classList.toggle('liked');
-//       var isLikedNow = likeButton.classList.contains('liked');
-//       localStorage.setItem('likeButton_' + index, isLikedNow); // 状態を保存
-//     });
-//   });
-// }, false);
-
-//     document.addEventListener('DOMContentLoaded', function() {
-// var likeButtons = document.getElementsByClassName('likeButton');
-// Array.from(likeButtons).forEach(function(likeButton) {
-// likeButton.addEventListener('click', function() {
-// likeButton.classList.toggle('liked');
-// });
-// });
-// }, false);
-
-
-
 </script>
 
 

@@ -120,9 +120,7 @@ class PetController extends Controller
         $pet->save();
 
       //更新後、マイページにリダイレクト
-      return redirect('/pets/mypage');
-      //ほんとは↓の感じにしたいけどまだルートできてないからできない：太田メモ
-      //return redirect()->route('mypage');
+      return redirect()->route('pets.mypage');
     }
 
     function destroy($id)
@@ -131,8 +129,7 @@ class PetController extends Controller
 
         $pet -> delete();
 
-        return redirect('/pets/mypage');
-        // return redirect()->route('pets.index'); ：太田メモ
+        return redirect()->route('pets.mypage');
     }
 
     public function getSubcategories($categoryId)
