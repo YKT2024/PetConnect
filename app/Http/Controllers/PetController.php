@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Pet_category;
 use App\Models\Pet_subcategory;
 use App\Models\Pet;
+use App\Models\Post;
 
 
 class PetController extends Controller
@@ -131,13 +132,23 @@ class PetController extends Controller
         $pet -> delete();
 
         return redirect('/pets/mypage');
-        // return redirect()->route('pets.index');
+        // return redirect()->route('pets.index'); ：太田メモ
     }
 
     public function getSubcategories($categoryId)
     {
         $subcategories = Pet_subcategory::where('pet_category_id', $categoryId)->get();
         return response()->json($subcategories);
+    }
+
+    public function showMypage()
+    {
+        $user = Auth::user();
+        $pet = Pet::where('user_id', $user->id)->first();
+        
+        $posts = Post::where('user_id', $user->id)->get();
+
+        return view('pets.mypage_pet', compact('user', 'pet', 'posts'));
     }
 
 }

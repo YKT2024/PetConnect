@@ -18,51 +18,44 @@
     </header>
 
     <div class="container">
+    @if ($pet)
         <div class="pet_img">
-            <img src="{{ asset('img/lion.jpg') }}" alt="ペット">
+        <img src="{{ asset('storage/' . $pet->image_at)}}" alt="ペット">
         </div>
     </div>
 
     <hr>
 
     <div class="pet_profile">
-        <p>あゆちゃん</p>
-        <p>29さい</p>
+        <p>{{ $pet->name }}</p>
+        <p>1000かわいいね</p>
     </div>
 
     <div class="pet_comment">
-        <p>穏やかな人間です</p>
+        <p>{{ $pet->body }}</p>
     </div>
 
-    <div  id="all-container" class="all_container">
-    @php
-        // ダミーデータ: 投稿画像のURLを仮で定義
-        $dummyPosts = [
-            'https://via.placeholder.com/200x150?text=1',
-            'https://via.placeholder.com/200x150?text=2',
-            'https://via.placeholder.com/200x150?text=3',
-            'https://via.placeholder.com/200x150?text=4',
-            'https://via.placeholder.com/200x150?text=5',
-            'https://via.placeholder.com/200x150?text=6',
-        ];
-    @endphp
+    @else
+        <p>ペット情報が登録されていません</p>
+    @endif
 
-    {{-- ダミーデータで投稿画像を表示 --}}
-    @foreach ($dummyPosts as $index => $post)
+    <div  id="all-container" class="all_container">    
+
+    @foreach ($posts as $index => $post)
         {{-- 1段目（1番目と2番目） --}}
         @if ($index == 0 || $index == 1)
             @if ($index == 0)
-                <div class="row"> {{-- 新しい行の開始 --}}
+                <div class="row">
             @endif
-            <img src="{{ asset('img/test1.jpg')}}" alt="ダミー画像">
+            <img src="{{ asset('storage/' . $post->image_at)}}" alt="投稿画像">
             @if ($index == 1)
-                </div> {{-- 行の終了 --}}
+                </div>
             @endif
 
         {{-- 2段目（3番目） --}}
         @elseif ($index == 2)
             <div class="row1">
-                <img src="{{ asset('img/test1.jpg')}}" alt="ダミー画像">
+            <img src="{{ asset('storage/' . $post->image_at)}}" alt="投稿画像">
             </div>
 
         {{-- 3段目（4番目と5番目） --}}
@@ -70,7 +63,7 @@
             @if ($index == 3)
                 <div class="row">
             @endif
-            <img src="{{ asset('img/test1.jpg')}}" alt="ダミー画像">
+            <img src="{{ asset('storage/' . $post->image_at)}}" alt="投稿画像">
             @if ($index == 4)
                 </div>
             @endif
@@ -78,7 +71,7 @@
         {{-- 4段目（6番目） --}}
         @elseif ($index == 5)
             <div class="row1">
-                <img src="{{ asset('img/test1.jpg')}}" alt="ダミー画像">
+            <img src="{{ asset('storage/' . $post->image_at)}}" alt="投稿画像">
             </div>
         @endif
     @endforeach
