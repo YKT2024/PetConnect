@@ -130,7 +130,7 @@
         justify-content: center;
     }
     
-    .btn-1 , .btn-2 ,.btn-3 {
+    .btn-1 , .btn-2{
         font-size: 15px;
         color: white;
         border: none;
@@ -146,11 +146,18 @@
     
     .btn-2 {
         background-color: rgba(255, 131, 131, 1);
-        margin-bottom: 30px;
+        margin-bottom: 40px;
     }
     
     .btn-3 {
         border: none;
+        margin-bottom: 30px;
+        background-color: transparent;
     }
     
+    .btn form {
+        width :100%;
+        display: flex;
+        justify-content: center;
+    }
     
