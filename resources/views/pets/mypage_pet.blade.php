@@ -13,7 +13,7 @@
     <div class="top">
         <a href="#"><img src="{{ asset('img/return.png')}}" alt=""></a>
         <p>マイページ</p>
-        <a href="#"><img src="{{ asset('img/setting.png')}}" alt=""></a>
+        <a href="{{ route('users.edit') }}"><img src="{{ asset('img/setting.png')}}" alt=""></a>
     </div>
     </header>
 
@@ -47,7 +47,9 @@
             @if ($index == 0)
                 <div class="row">
             @endif
+            <a href="{{ route('posts.show', ['id' => $post->id]) }}">
             <img src="{{ asset('storage/' . $post->image_at)}}" alt="投稿画像">
+            </a>
             @if ($index == 1)
                 </div>
             @endif

@@ -41,6 +41,9 @@ Route::get('/', function () {
     return view('auth.login_auth'); // ログインページ
 });
 
+Route::get('/users/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
+Route::post('/users', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
+
 // ログイン済みユーザー専用ルート   ---@guestと@authを使うからいらなそう
 // Route::middleware('auth')->group(function () {   ---@guestと@authを使うからいらなそう
     Route::get('/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('posts.create_post'); // 新規投稿作成フォーム

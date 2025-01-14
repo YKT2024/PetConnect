@@ -19,7 +19,7 @@
         <a href="{{ route('strays.index') }}"><img class="icons" src="{{ asset('img/footer_search.png') }}" alt="検索"></a>
         {{-- <a href="#"><img class=icons src="{{ asset('img/footer_bookmark.png')}}" alt="ブックマーク"></a> --}}
         <a href="{{ route('shelters.index') }}"><img class="icons" src="{{ asset('img/footer_comment.png')}}" alt="コメント"></a>
-        <a href="#"><img class=icons src="{{ asset('img/footer_mypage.png')}}" alt="マイぺージ"></a>
+        <a href="{{ route('pets.mypage') }}"><img class=icons src="{{ asset('img/footer_mypage.png')}}" alt="マイぺージ"></a>
     </div>
     
 </footer>
