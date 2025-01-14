@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>見る専？create</title>
-    <link rel="stylesheet" href="{{ asset('/css/register.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/edit_user.css') }}">
   
     <link rel="stylesheet" href="./register.css">
 </head>
 <body>
     {{-- ↓↓↓↓↓仮のヘッダーだよ↓↓↓↓ --}}
 <header class="header-dayo">
-    <div class="header-desu">アカウント登録</div>
-{{-- </header>   ↑↑↑↑仮のヘッダーだよ↑↑↑ --}}
+    <div class="header-desu">アカウント登録・編集</div>
+</header> 
+    {{-- ↑↑↑↑仮のヘッダーだよ↑↑↑ --}}
 
     <main class="maincontent">
         <form action="{{ route('users.update') }}" method="POST" enctype="multipart/form-data">
-            <@csrf
+            @csrf
             <div class="register">
                 <div class="input">
                     <label for="accoutname"><span class="asterisk">*
