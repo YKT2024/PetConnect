@@ -131,8 +131,6 @@
     @endforeach
 </div>
 
-
-
 {{-- - コメントのためのモーダル --}}
 {{-- - コメントされた際の表示 --}}
 <script>
@@ -149,6 +147,7 @@ let comments = [];
 
 // コメントフォームの送信処理
     document.getElementById('commentForm').addEventListener('submit', function(event) {
+
     event.preventDefault(); // ページリロードを防ぐ
 
     const commentText = this.querySelector('textarea[name="comment"]').value;
@@ -158,7 +157,7 @@ let comments = [];
         return;
     }
 
-    // コメントオブジェクトを追加
+// コメントオブジェクトを追加
     const newComment = {
         text: commentText,
         // 投稿者名やIDなども追加できます（例: userId: 12345）
