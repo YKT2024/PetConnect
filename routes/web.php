@@ -42,16 +42,20 @@ Route::get('/', function () {
     return view('auth.login_auth'); // ログインページ
 });
 
+Route::get('/users/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
+Route::post('/users', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
+
 // ログイン済みユーザー専用ルート   ---@guestと@authを使うからいらなそう
 // Route::middleware('auth')->group(function () {   ---@guestと@authを使うからいらなそう
-    Route::get('/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('posts.create_post'); // 新規投稿作成フォーム
-    Route::post('posts/create', [App\Http\Controllers\PostController::class, 'store'])->name('create_post.store'); // 新規投稿作成
-    Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show_post'); // 投稿詳細
-    Route::get('/posts/{id}/edit', [App\Http\Controllers\PostController::class, 'edit'])->name('posts.edit'); // 投稿編集フォーム
-    Route::put('/posts/{id}', [App\Http\Controllers\PostController::class, 'update'])->name('posts.update'); // 投稿編集
-    Route::delete('/posts/{id}', [App\Http\Controllers\PostController::class, 'destroy'])->name('posts.destroy'); // 投稿削除
-    Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show_post'); // 詳細ページのルート
 
+// posts関連
+Route::get('/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('posts.create_post'); // 新規投稿作成フォーム
+Route::post('posts/create', [App\Http\Controllers\PostController::class, 'store'])->name('create_post.store'); // 新規投稿作成
+Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show_post'); // 投稿詳細
+Route::get('/posts/{id}/edit', [App\Http\Controllers\PostController::class, 'edit'])->name('posts.edit'); // 投稿編集フォーム
+Route::put('/posts/{id}', [App\Http\Controllers\PostController::class, 'update'])->name('posts.update'); // 投稿編集
+Route::delete('/posts/{id}', [App\Http\Controllers\PostController::class, 'destroy'])->name('posts.destroy'); // 投稿削除
+Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show'); //投稿詳細
 
     // プロフィール
     // Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
@@ -64,18 +68,18 @@ Route::get('/', function () {
     Route::put('/shelters/{id}', [ShelterController::class, 'update'])->name('shelters.update'); // 更新処理
     Route::post('/shelters', [App\Http\Controllers\ShelterController::class, 'store_shelter'])->name('shelters.store'); //避難所新規登録
     Route::post('/shelters/{id}/comments', [CommentController::class, 'storeForShelter'])->name('shelters.comments.store'); //コメント用
-    Route::delete('/shelters/{id}', [ShelterController::class, 'destroy'])->name('shelters.destroy');
+    Route::delete('/shelters/{id}', [ShelterController::class, 'destroy'])->name('shelters.destroy')
 
 // Pets関連
-    Route::get('/pets/create', [App\Http\Controllers\PetController::class, 'show_create_pet'])->name('create_pet.show'); //ペット新規登録フォーム
-    Route::post('/pets/create', [App\Http\Controllers\PetController::class, 'store_create_pet'])->name('create_pet.store'); //ペット新規登録
-    Route::get('/pets/{id}/edit', [App\Http\Controllers\PetController::class, 'edit'])->name('pets.edit'); //ペット情報変更フォーム
-    Route::put('/pets/{id}', [App\Http\Controllers\PetController::class, 'update'])->name('pets.update'); //ペット情報変更
-    Route::delete('/pets/{id}', [App\Http\Controllers\PetController::class, 'destroy'])->name('pets.destroy'); //ペット情報削除
-    Route::get('/api/subcategories/{category}', [App\Http\Controllers\PetController::class, 'getSubcategories'])->name('getSubcategories'); //いい感じのプルダウンにするためのルート
+Route::get('/pets/create', [App\Http\Controllers\PetController::class, 'show_create_pet'])->name('create_pet.show'); //ペット新規登録フォームw
+Route::post('/pets/create', [App\Http\Controllers\PetController::class, 'store_create_pet'])->name('create_pet.store'); //ペット新規登録
+Route::get('/pets/{id}/edit', [App\Http\Controllers\PetController::class, 'edit'])->name('pets.edit'); //ペット情報変更フォーム
+Route::put('/pets/{id}', [App\Http\Controllers\PetController::class, 'update'])->name('pets.update'); //ペット情報変更
+Route::delete('/pets/{id}', [App\Http\Controllers\PetController::class, 'destroy'])->name('pets.destroy'); //ペット情報削除
+Route::get('/api/subcategories/{category}', [App\Http\Controllers\PetController::class, 'getSubcategories'])->name('getSubcategories'); //いい感じのプルダウンにするためのルート
+Route::get('/pets/mypage', [App\Http\Controllers\PetController::class, 'showMypage'])->name('pets.mypage'); //マイページ
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 
 // Strays関連
     Route::get('/strays', [StrayController::class, 'index'])->name('strays.index'); // 一覧表示ページ
@@ -88,27 +92,28 @@ Route::get('/', function () {
     Route::get('/strays/{id}', [StrayController::class, 'show'])->name('strays.show'); // 詳細を表示
     Route::post('/strays/{id}/comments', [CommentController::class, 'storeForStray'])->name('strays.comments.store'); //コメント用
 
-    //↓仮のやつなのであとで消します：AYAKA
-// Route::get('/posts', function () { return view('/posts/index_post'); });
-// Route::get('/posts/create', function () { return view('/posts/create_post'); });
-Route::get('/posts/edit', function () { return view('/posts/edit_post'); });
-Route::get('/posts/show', function () { return view('/posts/show_post'); });
+// ブックマークに使う関連
+Route::post('/posts/{post}/favorite', [App\Http\Controllers\FavoriteController::class, 'store'])->name('favorites.store');
+Route::delete('/posts/{post}/favorite', [App\Http\Controllers\FavoriteController::class, 'destroy'])->name('favorites.destroy');
 
-// Route::get('/pets', function () { return view('/pets/create_pet'); });
-// Route::get('/pets/edit', function () { return view('pets/edit_pet'); });
+// かわいいねに使う関連
+Route::post('/posts/{post}/like', [App\Http\Controllers\LikeController::class, 'store'])->name('likes.store');
+Route::delete('/posts/{post}/like', [App\Http\Controllers\LikeController::class, 'destroy'])->name('likes.destroy');
+
+
+//↓仮のやつなのであとで消します：AYAKA
 Route::get('/pets/show', function () { return view('pets/show_pet'); });
-Route::get('/pets/mypage', function () { return view('pets/mypage_pet'); });
 Route::get('/pets/hidden', function () { return view('/pets/hidden_pet'); });
 
-Route::get('/favorites', function () { return view('/favorites/index_favorite'); });
-
-Route::get('/mypage', function () { return view('/pets/mypage_pet'); });
 // Route::get('/shelters', function () { return view('/shelters/index_shelter'); });
 Route::get('/strays/show', function () { return view('/strays/show_stray'); });
 // ↑これはなおp
 //↑ここまで！
 
 
-//  1/12にCanaが作りました↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+///  1/12にCanaが作りました↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 Route::get('/shelters/edit', function () { return view('/shelters/edit_shelter'); });
+// 邪魔なら消してください↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+//  1/12にCanaが作りました↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+Route::get('/shelters/show', function () { return view('/shelters/show_shelter'); });
 // 邪魔なら消してください↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑

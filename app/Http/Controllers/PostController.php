@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
+use App\Models\Favorite;
 
 class PostController extends Controller
 {
@@ -13,7 +14,12 @@ class PostController extends Controller
         // 投稿一覧（全ユーザー共通で同じ投稿を取得）
         $posts = Post::orderBy('created_at', 'desc')->get();
 
-        return view('posts.index_post', compact('posts'));
+        // お気に入りした投稿を取得
+        $userId = Auth::id();
+        $favoritePosts = Favorite::where('user_id', $userId)->pluck('post_id');
+        $favposts = Post::whereIn('id', $favoritePosts)->get();
+
+        return view('posts.index_post', compact('posts', 'favposts'));
     }
 
     public function create()
@@ -89,13 +95,19 @@ class PostController extends Controller
 
         return redirect('/pets/mypage');
     }
-      // == 詳細表示 ==
-        public function show($id)
-    {
-          // 指定されたIDの投稿を取得
-        $post = Post::findOrFail($id);
 
-          // ビューを返す
-        return view('posts.show_post', compact('post'));
+    function show($id)
+    {
+        // dd($id);
+        $post = Post::with('user.pet')->find($id);
+
+        if (!$post) {
+            abort(404, 'Post not found.');
+        }
+
+        // ユーザーのアイコンを取得
+        $icon = $post->user->pet ? 'pets/img/' . $post->user->pet->image_at : null;
+        
+        return view('posts.show_post', ['post'=>$post, 'icon'=>$icon]);
     }
 }

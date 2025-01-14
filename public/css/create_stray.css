@@ -15,10 +15,20 @@
         font-size: 18px;
         color: white;
         display: flex;
-        justify-content: center; 
         align-items: center; 
         letter-spacing: 0.1em; /* 文字間隔を調整 */
     }
+
+    .header-dayo img{
+        width: 24px;
+        height: 24px;
+        margin-left: 15px;
+    }
+
+    .header-desu {
+        margin-left: 90px;
+    }
+
     /* Nao-pのヘッダーできるまで */
     
 
@@ -154,7 +164,7 @@
         justify-content: center;
     }
     
-    .btn-1 , .btn-2{
+    .btn-1 {
         font-size: 15px;
         color: white;
         border: none;
@@ -170,4 +180,5 @@
     
     .btn-3 {
         border: none;
+        background-color: transparent;
     }

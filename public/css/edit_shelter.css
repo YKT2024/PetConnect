@@ -15,9 +15,19 @@
         font-size: 18px;
         color: white;
         display: flex;
-        justify-content: center; 
         align-items: center; 
     }
+
+    .header-dayo img{
+        width: 24px;
+        height: 24px;
+        margin-left: 15px;
+    }
+
+    .header-desu {
+        margin-left: 90px;
+    }
+
     /* Nao-pのヘッダーできるまで */
     
     .maincontent {
@@ -114,5 +124,11 @@
     .btn-3 {
         border: none;
         margin-bottom: 30px;
+        background-color: transparent;
     }
     
+    .btn form {
+        width :100%;
+        display: flex;
+        justify-content: center;
+    }

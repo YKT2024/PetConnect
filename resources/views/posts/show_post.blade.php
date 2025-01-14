@@ -1,47 +1,76 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>投稿詳細</title>
+@extends('layouts.footer')
+
+@section('css')
+{{-- css --}}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/show_post.css') }}">
     {{-- <link rel="stylesheet" href="./show_post.css"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-</head>
-<body>
+    @endsection
+
+    @section('content')
 
 <header class="header-dayo">
-    <div class="header-desu">投稿詳細</div>
+    <a href="#"><img src="{{ asset('img/return.png')}}" alt=""></a>
 </header>
 
 <main class="maincontent">
     <section class="section1">
         <div class="photo-area">
             <div class="photo-frame">
-                <img id="#" src="./postedimg2.jpg" alt="posted-img">
-                <!-- <img id="#" src="{{ asset('images/postedimg2.jpg') }}" alt="posted-img"> -->
-                <!-- 上の1行消してここ変える 投稿した写真取得-->
-                <!-- <img src="{{ $post->image_at }}" alt=""> 的な？ -->
+                <img src="{{ asset('storage/' . $post->image_at) }}" alt="posted_img">
             </div>
             <div class="underimg">
                 <div class="posted-date">
-                    <p>2050-12-31</p>
-                    <!-- 上の1行消してここ変える 投稿した日取得-->
-                    <!-- <p>{{ $post->created_at }}</p> -->
+                    <p>{{ $post->created_at }}</p>
                 </div>
-                    <!--いいねとか実装するで  -->
                     <div class="actionarea">
-                    <button type="button" class="likeButton">
-                        <svg class="likeButton__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" >
-                            <path d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z"/>
-                        </svg>
-                    </button>
-                    <button type="button" class="likeButton2">
-                        <svg class="likeButton__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50">
-                            <path d="M6 2C5.447 2 5 2.447 5 3v18.586c0 .527.673.792 1.06.415l5.94-5.94 5.94 5.94c.387.377 1.06.112 1.06-.415V3c0-.553-.447-1-1-1H6z"/>
-                        </svg>
-                    </button>
-                    <a href="#"><button><i class="far fa-edit edit-icon"></i></button></a>
+                    {{-- かわいいねボタン --}}
+                    @if (auth()->user()->likes->contains($post->id))
+                        <form action="{{ route('likes.destroy', $post) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="likeButton liked">
+                                <svg class="likeButton__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" >
+                                 <path d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z"/>
+                                </svg>
+                            </button>
+                        </form>
+                    @else
+                        <form action="{{ route('likes.store', $post) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="likeButton">
+                                <svg class="likeButton__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" >
+                                 <path d="M91.6 13A28.7 28.7 0 0 0 51 13l-1 1-1-1A28.7 28.7 0 0 0 8.4 53.8l1 1L50 95.3l40.5-40.6 1-1a28.6 28.6 0 0 0 0-40.6z"/>
+                                </svg>
+                            </button>
+                        </form>
+                    @endif
+
+                    {{-- ブックマークボタン --}}
+                    @if (auth()->user()->favorites->contains($post->id))
+                        <form action="{{ route('favorites.destroy', $post) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="likeButton2 liked">
+                                <svg class="likeButton__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50">
+                                 <path d="M6 2C5.447 2 5 2.447 5 3v18.586c0 .527.673.792 1.06.415l5.94-5.94 5.94 5.94c.387.377 1.06.112 1.06-.415V3c0-.553-.447-1-1-1H6z"/>
+                                </svg>
+                            </button>
+                        </form>
+                    @else
+                        <form action="{{ route('favorites.store', $post) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="likeButton2">
+                                <svg class="likeButton__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50">
+                                 <path d="M6 2C5.447 2 5 2.447 5 3v18.586c0 .527.673.792 1.06.415l5.94-5.94 5.94 5.94c.387.377 1.06.112 1.06-.415V3c0-.553-.447-1-1-1H6z"/>
+                                </svg>
+                            </button>
+                        </form>
+                    @endif
+
+                    {{-- 編集ボタン --}}
+                    <a href="{{ route('posts.edit', $post->id) }}"><button><i class="far fa-edit edit-icon"></i></button></a>
                     </div>
             </div>
         </div>
@@ -51,21 +80,13 @@
         <div class="caption-comment">
             <div class="icon-area">
                 <div class="icon">
-                    <img src="{{ asset('images/postedimg3.png') }}" alt="アイコン">
-                    <!-- 上の1行消してここ変える 投稿者のアイコン取得-->
-                    <!-- <img src="{{ $pet->image_at}}" alt="icon"> 的な？-->
+                    <img src="{{ asset('storage/' . $icon) }}" alt="アイコン">
                 </div>
             </div>
             <div class="caption">
-                <p>ここに本文が入ります〜！あなたの可愛いペットの自慢はここですよ〜！<br>
-                   文字数は280文字までで、今のとこ80文字以上は長いから続きを読むボタンで隠しています❤️<br>
-                   表示文字の制限は下のStr::limit($post->body, 80, '…')の数字をいじればかえられます〜✌️<br>
-                   とりあえずがっちゃんこしてもろて、できる限り頑張っていいねとかつけますね。
-                </p>
-                <!-- 上の<p>の行消してここ変える 投稿文取得-->
                 <!-- {{-- 80文字以上は表示されないようになっているはず --}} -->
-                <!-- <p class="post-body" data-full-text="{{ $post->body }}">
-                {{ Str::limit($post->body, 80, '…') }} -->
+                <p class="post-body" data-full-text="{{ $post->body }}">
+                {{ Str::limit($post->body, 80, '…') }}
                 </p>
                 <button class="read-more-btn" style="display: none;">続きを読む</button>
             </div>
@@ -81,7 +102,7 @@
             <div id="commentModal">
                 <div class="modal-content">
                     <!--コメント機能 ここの下もあってるかわからん -->
-                    <form id="commentForm" action="{{ route('comments.store') }}" method="POST">
+                    <form id="commentForm" action="#kokoni-route-ireru" method="POST">
                         <!-- @csrf -->
                         <textarea name="comment" maxlength="150" placeholder="コメントを入力"></textarea>
                         <div class="modalbtn">
@@ -94,29 +115,29 @@
 
             <!-- コメントリストを表示 -->
             <div id="commentList">
-                <!-- @foreach($comments as $comment) -->
+                {{-- <!-- @foreach($comments as $comment) --> --}}
                     <div class="caption-comment">
                         <div class="icon-area">
                             <div class="icon">
-                                <img src="{{ asset('images/postedimg3.png') }}" alt="アイコン"> -->
+                                <img src="{{ asset('images/postedimg3.png') }}" alt="アイコン">
                                 <!-- 上の1行消してここ変える　コメント投稿者のアイコン取得 -->
-                                <!-- <img src="{{  }}" alt=""> -->
+                                <!-- <img src="    " alt=""> -->
                             </div>
                         </div>
                         <div class="caption">
                             <p>コメントはここやで</p>
                             <!-- 上の1行消してここ変える 投稿されたコメント取得-->
-                            <!-- <p>{{ $comment->text }}</p> -->
+                            <!-- <p>    $comment->text     </p> -->
                         </div>
                         <!-- コメント削除ボタン -->
                         <!-- 削除機能 ここの下もあってるかわからん -->
-                        <!-- <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" onsubmit="return confirm('コメントを削除しますか？')"> -->
-                            <!-- @csrf -->
-                            <!-- @method('DELETE') -->
+                        <!-- <form action="     route('comments.destroy', $comment->id)     " method="POST" onsubmit="return confirm('コメントを削除しますか？')"> -->
+                            {{-- <!-- @csrf --> --}}
+                            {{-- <!-- @method('DELETE') --> --}}
                             <button class="btn-4" type="submit">削除</button>
                         </form>
                     </div>
-                <!-- @endforeach -->
+                {{-- <!-- @endforeach --> --}}
             </div>
         </div>
     </section>
@@ -230,70 +251,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
-
-
-    // いいねボタンくりっくでいろかわるとこ
-
-    document.addEventListener('DOMContentLoaded', function () {
-  // 対象のクラス名を配列で管理
-  var targetClasses = ['likeButton', 'likeButton2'];
-
-  // 各クラスごとに処理を実行
-  targetClasses.forEach(function (className) {
-    var buttons = document.getElementsByClassName(className);
-
-    Array.from(buttons).forEach(function (button, index) {
-      // 各ボタンに固有のキーを生成
-      var storageKey = className + '_' + index;
-
-      // ページ読み込み時に状態を反映
-      var isLiked = localStorage.getItem(storageKey);
-      if (isLiked === 'true') {
-        button.classList.add('liked'); // 保存された状態を反映
-      }
-
-      // ボタンがクリックされたときに状態を保存
-      button.addEventListener('click', function () {
-        button.classList.toggle('liked');
-        var isLikedNow = button.classList.contains('liked');
-        localStorage.setItem(storageKey, isLikedNow); // 状態を保存
-      });
-    });
-  });
-}, false);
-
-//     document.addEventListener('DOMContentLoaded', function () {
-//   var likeButtons = document.getElementsByClassName('likeButton');
-  
-//   // ページ読み込み時に状態を反映
-//   Array.from(likeButtons).forEach(function (likeButton, index) {
-//     var isLiked = localStorage.getItem('likeButton_' + index);
-//     if (isLiked === 'true') {
-//       likeButton.classList.add('liked'); // 保存された状態を反映
-//     }
-
-//     // ボタンがクリックされたときに状態を保存
-//     likeButton.addEventListener('click', function () {
-//       likeButton.classList.toggle('liked');
-//       var isLikedNow = likeButton.classList.contains('liked');
-//       localStorage.setItem('likeButton_' + index, isLikedNow); // 状態を保存
-//     });
-//   });
-// }, false);
-
-//     document.addEventListener('DOMContentLoaded', function() {
-// var likeButtons = document.getElementsByClassName('likeButton');
-// Array.from(likeButtons).forEach(function(likeButton) {
-// likeButton.addEventListener('click', function() {
-// likeButton.classList.toggle('liked');
-// });
-// });
-// }, false);
-
-
-
 </script>
 
-
-</body>
-</html>
+@endsection

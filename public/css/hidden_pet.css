@@ -15,19 +15,9 @@
         font-size: 18px;
         color: white;
         display: flex;
+        justify-content: center; 
         align-items: center; 
     }
-
-    .header-dayo img{
-        width: 24px;
-        height: 24px;
-        margin-left: 15px;
-    }
-
-    .header-desu {
-        margin-left: 90px;
-    }
-
     /* Nao-pのヘッダーできるまで */
     
     .maincontent {
@@ -36,14 +26,12 @@
         
     }
     
-    .asterisk {
-        color: red;
-        font-size: 16px;   
-        vertical-align: middle; 
+    .hello p {
+        font-size: 4vw;
     }
-    
+
     .register {
-        margin-bottom: 18px;
+    margin-bottom: 50px;
     }
     
     
@@ -53,8 +41,8 @@
         flex-direction: column;
         padding-bottom: 30px;
     }
-
-    .input label ,.radio label {
+    
+    .input label {
         /* text-align: left; */
         padding-bottom: 8px;
     }
@@ -64,36 +52,8 @@
         border-radius: 10px;
         padding-left: 16px;
         border-width: 1px;
-        border-style: solid; /* これを追加 */
-        border-color: rgba(217, 217, 217, 1);
-    }
-
-    .input .input-unit:first-of-type {
-        padding-bottom: 30px;
-    }
-
-   /*ラジオボタン */
-    .radio-btn {
-        text-align: left;
-        padding-left: 20px;
-        font-size: 16px;
-        margin-bottom: 30px;
-    }
-
-    .radio-btn :first-child {
-        padding-right: 30px;
-    }
-
-
-    textarea {
-        height: 100px;
-        resize: none;
-        padding-left: 10px;
-        font-size: 14px;
-        border-radius: 10px;
         border-style: solid;
         border-color: rgba(217, 217, 217, 1);
-        border-width: 1px;
     }
 
     .btn {
@@ -108,11 +68,9 @@
         width: 60%;
         height: 30px;
         border-radius: 50px;
-        margin-bottom: 30px;
-        background-color: rgba(124, 224, 221, 1);
     }
     
-    .btn-3 {
-        border: none;
-        background-color: transparent;
+    .btn-1 {
+        margin-bottom: 30px;
+        background-color: rgba(124, 224, 221, 1);
     }

@@ -50,7 +50,7 @@
                 </div>
                 <div class="input">
                     <label for="birth_year">誕生年</label>
-                    <input name="birth_year">
+                    <input name="birth_year" min="2020">
                 </div>
                 <div class="input">
                     <label for="birth_month">誕生月</label>

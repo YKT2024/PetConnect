@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('sex')->nullable(); //ペットの性別
             $table->tinyInteger('weight')->nullable(); //体重
             $table->tinyInteger('height')->nullable(); //身長
-            $table->tinyInteger('age')->nullable; //年齢
+            $table->tinyInteger('age')->nullable(); //年齢
             $table->timestamps();
         });
     }

@@ -24,6 +24,25 @@ class User extends Authenticatable
         return $this->belongsTo(Area::class, 'area_id');
     }
 
+    // app/Models/User.php
+    public function pet()
+    {
+        return $this->hasOne(Pet::class);
+    }
+
+    public function favorites()
+    {
+    return $this->belongsToMany(Post::class, 'favorites', 'user_id', 'post_id')
+                ->withTimestamps();
+    }
+
+    public function likes()
+    {
+    return $this->belongsToMany(Post::class, 'likes', 'user_id', 'post_id')
+                ->withTimestamps();
+    }
+
+
     /**
      * The attributes that should be hidden for serialization.
      *
