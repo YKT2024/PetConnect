@@ -4,8 +4,8 @@
   {{-- css --}}
   <link rel="stylesheet" href="{{ asset('css/index_post.css') }}">
   <link rel="stylesheet" href="{{ asset('css/mypage_pet.css') }}">
+  
   @endsection
-{{-- </head> --}}
 
     @section('content')
     <header>
