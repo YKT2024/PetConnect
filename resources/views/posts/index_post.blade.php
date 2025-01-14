@@ -30,6 +30,7 @@
       <input type="submit" name="submit" value="🔍">
     </form>
   </div>
+  
 <div  id="all-container" class="all_container">
     @foreach ($posts as $index => $post)
         {{-- 1段目（1番目と2番目） --}}
@@ -76,26 +77,16 @@
 </div>
 
 <div id="favorites-container" class="favorite_container" style="display: none;">
-  @php
-      // ダミーデータ: 投稿画像のURLを仮で定義
-      $dummyPosts = [
-          'https://via.placeholder.com/200x150?text=1',
-          'https://via.placeholder.com/200x150?text=2',
-          'https://via.placeholder.com/200x150?text=3',
-          'https://via.placeholder.com/200x150?text=4',
-          'https://via.placeholder.com/200x150?text=5',
-          'https://via.placeholder.com/200x150?text=6',
-      ];
-  @endphp
-
   {{-- ダミーデータで投稿画像を表示 --}}
-  @foreach ($dummyPosts as $index => $post)
+  @foreach ($favposts as $index => $favpost)
       {{-- 1段目（1番目と2番目） --}}
       @if ($index == 0 || $index == 1)
           @if ($index == 0)
               <div class="row"> {{-- 新しい行の開始 --}}
           @endif
-          <img src="{{ asset('img/lion.jpg')}}" alt="ダミー画像">
+          <a href="{{ route('posts.show', ['id' => $favpost->id]) }}">
+           <img src="{{ asset('storage/' . $favpost->image_at) }}" alt="投稿画像">
+          </a>
           @if ($index == 1)
               </div> {{-- 行の終了 --}}
           @endif
@@ -103,7 +94,9 @@
       {{-- 2段目（3番目） --}}
       @elseif ($index == 2)
           <div class="row1">
-              <img src="{{ asset('img/lion.jpg')}}" alt="ダミー画像">
+            <a href="{{ route('posts.show', ['id' => $favpost->id]) }}">
+              <img src="{{ asset('storage/' . $favpost->image_at) }}" alt="投稿画像">
+             </a>
           </div>
 
       {{-- 3段目（4番目と5番目） --}}
@@ -111,7 +104,9 @@
           @if ($index == 3)
               <div class="row">
           @endif
-          <img src="{{ asset('img/lion.jpg')}}" alt="ダミー画像">
+          <a href="{{ route('posts.show', ['id' => $favpost->id]) }}">
+            <img src="{{ asset('storage/' . $favpost->image_at) }}" alt="投稿画像">
+           </a>
           @if ($index == 4)
               </div>
           @endif
@@ -119,7 +114,9 @@
       {{-- 4段目（6番目） --}}
       @elseif ($index == 5)
           <div class="row1">
-              <img src="{{ asset('img/lion.jpg')}}" alt="ダミー画像">
+            <<a href="{{ route('posts.show', ['id' => $favpost->id]) }}">
+              <img src="{{ asset('storage/' . $favpost->image_at) }}" alt="投稿画像">
+             </a>
           </div>
       @endif
   @endforeach
