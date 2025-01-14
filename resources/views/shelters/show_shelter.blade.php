@@ -5,142 +5,147 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/show_shelter.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/png">
 </head>
 <body>
 
 <header class="header-dayo">
+    <div class="header-desu">投稿詳細</div>    
     <a href="#"><img src="{{ asset('img/return.png')}}" alt=""></a>
 </header>
 
-<main class="maincontent">
-    <section class="section1">
-        <div class="area-name">
-            <p>鹿児島県</p>
-        </div>
-        <div class="shelter-name">
-            <p>施設名</p>
-            <h1>The Pad Co living</h1>
-        </div>
-    </section>
 
-    <section class="section2">
-            <div class="sectionarea">
-                <div class="icon-area">
-                    <div class="icon">
-                        <img src="{{ asset('images/defaultimg.png') }}" alt="アイコン">
-                         {{-- 上の1行消してここ変える 投稿者のアイコン取得--> --}}
-                         {{-- <img src="{{ $pet->image_at}}" alt="icon"> 的な？--> --}}
-                    </div>
-                    <div class="edit-btn">
-                        <a href="#">投稿の編集</a>
-                    </div>
-                </div>
-
-                <div class="details">
-                    <div class="title">
-                        <span class="label">投稿日：</span>
-                    </div>
-                    <div class="info">
-                        <span class="value">2050-12-31</span>
-                        {{-- 上の1行消してここ変える 投稿した日取得--> --}}
-                        {{-- <span>{{ $post->created_at }}</span> --> --}}
-                    </div>
-                </div>
-                <div class="details">
-                    <div class="title">
-                        <span class="label">住所：</span>
-                    </div>
-                    <div class="info">   
-                        <span class="value">room No.208 Gov. M. Cuenco Ave, Cebu City, 6000 Cebu, フィリピン</span>
-                    {{-- 上の1行消してここ変える --}}
-                    </div>
-                </div>
-                <div class="details">
-                    <div class="title">
-                        <span class="label">避難態勢：</span>
-                    </div>
-                    <div class="info">
-                        <span class="value">同担拒否</span>
-                        {{-- 上の1行消してここ変える --}}
-                    </div>
-                </div>
-                <div class="details">
-                    <div class="title">
-                        <span class="label">備考：</span>
-                    </div>
-                    <div class="info">
-                        <span class="value">朝から爆音でマツケンサンバⅡが流れます</span>
-                    </div>
-                </div>
+    <main class="maincontent">
+        <section class="section1">
+            @if ($isOwner) <!-- 自分の投稿なら「編集」リンクを表示 -->
+                <a href="{{ route('shelters.edit', $shelter->id) }}" class="my-edit-link">編集</a>
+            @endif
+            <div class="area-name">
+                <p>{{ $shelter->area->area }}</p> <!-- エリア名を表示 -->
             </div>
-        {{-- コメントセクション --> --}}
-        <div class="comment">
-            <div class="btn">
-                <button class="btn-1" id="commentBtn">コメントする</button>
+            <div class="shelter-name">
+                <p>施設名</p>
+                <h1>{{ $shelter->shelter_name }}</h1> <!-- 避難所名を表示 -->
             </div>
+        </section>
 
-             {{-- モーダルウィンドウ --> --}}
-            <div id="commentModal">
-                <div class="modal-content">
-                    {{-- コメント機能 ここの下もあってるかわからん --> --}}
-                    {{-- <form id="commentForm" action="{{ route('comments.store') }}" method="POST"> --}}
-                         {{-- @csrf --> --}}
-                        <textarea name="comment" maxlength="150" placeholder="コメントを入力"></textarea>
-                        <div class="modalbtn">
-                            <button type="submit">コメント投稿</button>
-                            <button type="button" id="cancelBtn" class="cancel-btn">キャンセル</button>
-                        </div>
-                    </form>
+        <section class="section2">
+        <div class="sectionarea">
+            <div class="icon-area">
+                <div class="icon">
+                    <img src="{{ $shelter->image_at ? asset($shelter->image_at) : asset('images/defaultimg.png') }}" alt="アイコン">
                 </div>
             </div>
 
-             {{-- コメントリストを表示 --> --}}
-            <div id="commentList">
-                 {{-- @foreach($comments as $comment) --> --}}
-                    <div class="caption-comment">
-                        <div class="icon-area">
-                            <div class="icon">
-                                {{-- <img src="{{ asset('images/postedimg3.png') }}" alt="アイコン"> --> --}}
-                                {{-- 上の1行消してここ変える　コメント投稿者のアイコン取得 --> --}}
-                                 {{-- <img src="{{  }}" alt=""> --}}
-                            </div>
-                        </div>
-                        <div class="caption">
-                            <p>コメントはここやで</p>
-                             {{-- 上の1行消してここ変える 投稿されたコメント取得--> --}}
-                            {{-- <p>{{ $comment->text }}</p> --> --}}
-                        </div>
-                         {{-- コメント削除ボタン --> --}}
-                         {{-- 削除機能 ここの下もあってるかわからん --> --}}
-                         {{-- <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" onsubmit="return confirm('コメントを削除しますか？')"> --> --}}
-                             {{-- @csrf --> --}}
-                             {{-- @method('DELETE') --> --}}
-                         <div class="delbtn">   
-                            <button class="btn-4" type="submit">削除</button>
-                        </div> 
-                        </form>
-                    </div>
-                 {{-- @endforeach --> --}}
+
+        <div class="details">
+            <div class="title">
+                    <span class="label">投稿日：</span>
+                </div>
+                <div class="info">
+                    <span class="value">{{ $shelter->created_at->format('Y-m-d') }}</span> <!-- 作成日時を表示 -->
+                </div>
+            </div>
+            <div class="details">
+                <div class="title">
+                    <span class="label">住所：</span>
+                </div>
+                <div class="info">
+                    <span class="value">{{ $shelter->address }}</span> <!-- 住所を表示 -->
+                </div>
+            </div>
+            <div class="details">
+                <div class="title">
+                    <span class="label">避難態勢：</span>
+                </div>
+                <div class="info">
+                    <span class="value">
+                        {{ $shelter->evacuation_type ? '開設中' : '未開設' }} <!-- 避難態勢を表示 -->
+                    </span>
+                </div>
+            </div>
+            <div class="details">
+                <div class="title">
+                    <span class="label">備考：</span>
+                </div>
+                <div class="info">
+                    <span class="value">{{ $shelter->body }}</span> <!-- 備考を表示 -->
+                </div>
             </div>
         </div>
     </section>
 </main>
 
+</body>
+</html>
 
-{{-- - コメントのためのモーダル --> --}}
-{{-- - コメントされた際の表示 --> --}}
+    <!-- コメント一覧を更新する関数 -->
+        <div class="comment">
+            <div class="btn">
+                <button class="btn-1" id="commentBtn">コメントする</button>
+            </div>
+
+        {{-- モーダルウィンドウ --}}
+            <div id="commentModal">
+                <div class="modal-content">
+        {{-- コメント機能 ここの下もあってるかわからん --}}
+            <form action="{{ route('shelters.comments.store', $shelter->id) }}" method="POST">
+            @csrf
+            <textarea name="body" maxlength="150" placeholder="コメントを入力" required></textarea>
+                <button type="submit">コメント投稿</button>
+                <button type="button" id="cancelBtn" class="cancel-btn">キャンセル</button>
+            </div>
+            </form>
+        </div>
+            </div>
+
+{{-- コメントリストを表示 --}}
+<div id="commentList">
+    {{-- コメントをループで表示 --}}
+    @foreach($comments as $comment)
+        <div class="caption-comment">
+            {{-- アイコンエリア --}}
+            <div class="icon-area">
+                <div class="icon">
+                    {{-- 投稿者のアイコン画像を取得 --}}
+                    <img src="{{ $comment->user->photo_url ?? asset('images/default-avatar.png') }}" alt="アイコン">
+                </div>
+            </div>
+            
+            {{-- コメント内容 --}}
+            <div class="caption">
+                <p><strong>{{ $comment->user->name ?? '匿名' }}:</strong> {{ $comment->body }}</p>
+            </div>
+
+            {{-- コメント削除ボタン --}}
+            @if(auth()->id() === $comment->user_id) {{-- 自分のコメントのみ削除可能 --}}
+                <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" onsubmit="return confirm('コメントを削除しますか？')">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn-4" type="submit">削除</button>
+                </form>
+            @endif
+        </div>
+    @endforeach
+</div>
+
+{{-- - コメントのためのモーダル --}}
+{{-- - コメントされた際の表示 --}}
 <script>
 let comments = [];
-
-document.getElementById('commentBtn').addEventListener('click', function() {
+// コメント投稿ボタン
+    document.getElementById('commentBtn').addEventListener('click', function() {
     document.getElementById('commentModal').style.display = 'flex';
 });
 
-document.getElementById('cancelBtn').addEventListener('click', function() {
+// コメント投稿キャンセルボタン
+    document.getElementById('cancelBtn').addEventListener('click', function() {
     document.getElementById('commentModal').style.display = 'none';
 });
 
-document.getElementById('commentForm').addEventListener('submit', function(event) {
+// コメントフォームの送信処理
+    document.getElementById('commentForm').addEventListener('submit', function(event) {
+
     event.preventDefault(); // ページリロードを防ぐ
 
     const commentText = this.querySelector('textarea[name="comment"]').value;
@@ -150,7 +155,7 @@ document.getElementById('commentForm').addEventListener('submit', function(event
         return;
     }
 
-    // コメントオブジェクトを追加
+// コメントオブジェクトを追加
     const newComment = {
         text: commentText,
         // 投稿者名やIDなども追加できます（例: userId: 12345）
@@ -188,7 +193,7 @@ function updateComments() {
         p.textContent = comment.text;
         caption.appendChild(p);
 
-        // 削除ボタン
+    // 削除ボタン
         const deleteBtn = document.createElement('button');
         deleteBtn.textContent = '削除';
         deleteBtn.classList.add('delete-btn');
@@ -210,9 +215,6 @@ function deleteComment(index) {
     comments.splice(index, 1); // コメントを配列から削除
     updateComments(); // コメントリストを再更新
 }
-
-
-
 
 // 文字数の制限に関するjs
 
@@ -236,34 +238,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // いいねボタンくりっくでいろかわるとこ
+// いいねボタンくりっくでいろかわるとこ
 
     document.addEventListener('DOMContentLoaded', function () {
   // 対象のクラス名を配列で管理
-  var targetClasses = ['likeButton', 'likeButton2'];
+    var targetClasses = ['likeButton', 'likeButton2'];
 
   // 各クラスごとに処理を実行
-  targetClasses.forEach(function (className) {
+    targetClasses.forEach(function (className) {
     var buttons = document.getElementsByClassName(className);
 
     Array.from(buttons).forEach(function (button, index) {
-      // 各ボタンに固有のキーを生成
-      var storageKey = className + '_' + index;
+    // 各ボタンに固有のキーを生成
+        var storageKey = className + '_' + index;
 
-      // ページ読み込み時に状態を反映
-      var isLiked = localStorage.getItem(storageKey);
-      if (isLiked === 'true') {
+    // ページ読み込み時に状態を反映
+        var isLiked = localStorage.getItem(storageKey);
+        if (isLiked === 'true') {
         button.classList.add('liked'); // 保存された状態を反映
-      }
+        }
 
-      // ボタンがクリックされたときに状態を保存
-      button.addEventListener('click', function () {
+    // ボタンがクリックされたときに状態を保存
+        button.addEventListener('click', function () {
         button.classList.toggle('liked');
         var isLikedNow = button.classList.contains('liked');
         localStorage.setItem(storageKey, isLikedNow); // 状態を保存
-      });
+        });
     });
-  });
+    });
 }, false);
 </script>
 

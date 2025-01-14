@@ -57,4 +57,9 @@ public function pet_subcategory()
     return $this->belongsTo(Pet_subcategory::class);
 }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
 }

@@ -14,9 +14,9 @@
     </div>
     </header>
 
-    <div class="imformation_pet">
+    <!-- <div class="imformation_pet">
         <a href="#">お知らせ</a>
-    </div>
+    </div> -->
 
     <div class="search">
     <form action="{{ route('strays.index') }}" method="GET">
@@ -27,7 +27,8 @@
         <label>
             <input type="radio" name="filter" value="all" checked> すべて
         </label>
-        <input type="submit" name="submit" value="🔍">
+        </br>
+        <button type="submit">検索 🔍</button>
     </form>
 </div>
 
@@ -45,6 +46,7 @@
                 <p>エリア: {{ $stray->area->area }}</p>
                 <p>場所: {{ $stray->address }}</p>
                 <p>カテゴリー: {{ $stray->pet_subcategory->subcategory ?? '不明' }}</p>
+                <p>コメント数：{{ $stray->comments->count() }}</p>
             </div>
             </div>
         </a>

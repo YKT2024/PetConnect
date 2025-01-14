@@ -36,4 +36,10 @@ class Shelter extends Model
     {
         return $this->belongsTo(PetSubcategory::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
 }

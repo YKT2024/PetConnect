@@ -42,8 +42,8 @@
                         <label for="address"><span class="asterisk">*</span>詳細住所</label>
                         <input type="text" name="address" id="address" placeholder="〇〇町△△×町目◻︎◻︎" required>
                     </div>
-                   <!-- ラジオボタン -->
-                   <div class="radio"><span class="asterisk">*</span><label for="contactInput">受け入れ態勢</label>
+                    <!-- ラジオボタン -->
+                    <div class="radio"><span class="asterisk">*</span><label for="contactInput">受け入れ態勢</label>
                         <div class="radio-btn">
                             <label>
                                 <input type="radio" name="status" value="1" required>同伴避難

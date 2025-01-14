@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Area;
 use App\Http\Controllers\StrayController;
 use App\Http\Controllers\ShelterController;
+use App\Http\Controllers\CommentController;
 
 //== Ayakaさん！、以下のルートはログインするための仮です == //
 
@@ -60,17 +61,17 @@ Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'show'])-
     // Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
 
 // Shelters関連
-Route::get('/shelters', [ShelterController::class, 'index'])->name('shelters.index');
-// Route::get('/shelters', [App\Http\Controllers\ShelterController::class, 'index'])->name('shelters.index'); //投稿一覧表示
-// Route::get('/shelters/{id}', [App\Http\Controllers\ShelterController::class, 'show_shelter'])->name('shelters.show_shelter');
-Route::get('/shelters/create', [App\Http\Controllers\ShelterController::class, 'create_shelter'])->name('shelters.create'); //避難所新規登録フォーム
-Route::post('/shelters', [App\Http\Controllers\ShelterController::class, 'store_shelter'])->name('shelters.store'); //避難所新規登録
-// });   ---@guestと@authを使うからいらなそう
-
-// Auth::routes();
+    Route::get('/shelters', [ShelterController::class, 'index'])->name('shelters.index'); //投稿一覧表示
+    Route::get('/shelters/create', [App\Http\Controllers\ShelterController::class, 'create_shelter'])->name('shelters.create'); //避難所新規登録フォーム
+    Route::get('/shelters/{id}', [ShelterController::class, 'show'])->name('shelters.show'); // 詳細を表示
+    Route::get('/shelters/{id}/edit', [ShelterController::class, 'edit'])->name('shelters.edit'); //編集ページ表示
+    Route::put('/shelters/{id}', [ShelterController::class, 'update'])->name('shelters.update'); // 更新処理
+    Route::post('/shelters', [App\Http\Controllers\ShelterController::class, 'store_shelter'])->name('shelters.store'); //避難所新規登録
+    Route::post('/shelters/{id}/comments', [CommentController::class, 'storeForShelter'])->name('shelters.comments.store'); //コメント用
+    Route::delete('/shelters/{id}', [ShelterController::class, 'destroy'])->name('shelters.destroy')
 
 // Pets関連
-Route::get('/pets/create', [App\Http\Controllers\PetController::class, 'show_create_pet'])->name('create_pet.show'); //ペット新規登録フォーム
+Route::get('/pets/create', [App\Http\Controllers\PetController::class, 'show_create_pet'])->name('create_pet.show'); //ペット新規登録フォームw
 Route::post('/pets/create', [App\Http\Controllers\PetController::class, 'store_create_pet'])->name('create_pet.store'); //ペット新規登録
 Route::get('/pets/{id}/edit', [App\Http\Controllers\PetController::class, 'edit'])->name('pets.edit'); //ペット情報変更フォーム
 Route::put('/pets/{id}', [App\Http\Controllers\PetController::class, 'update'])->name('pets.update'); //ペット情報変更
@@ -78,18 +79,18 @@ Route::delete('/pets/{id}', [App\Http\Controllers\PetController::class, 'destroy
 Route::get('/api/subcategories/{category}', [App\Http\Controllers\PetController::class, 'getSubcategories'])->name('getSubcategories'); //いい感じのプルダウンにするためのルート
 Route::get('/pets/mypage', [App\Http\Controllers\PetController::class, 'showMypage'])->name('pets.mypage'); //マイページ
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Strays関連
-Route::get('/strays', [StrayController::class, 'index'])->name('strays.index'); // 一覧表示ページ
-Route::get('/strays/create', [StrayController::class, 'create'])->name('strays.create'); // 迷子新規登録フォーム
-Route::get('/strays/show', [App\Http\Controllers\StrayController::class, 'show'])->name('strays.show');  //新規登録表示
-Route::post('/strays', [StrayController::class, 'store'])->name('strays.store'); // データを保存するルート
-Route::get('/strays/{id}/edit', [StrayController::class, 'edit'])->name('strays.edit'); // 編集ページ表示
-Route::put('/strays/{id}', [StrayController::class, 'update'])->name('strays.update'); // 更新処理
-Route::delete('/strays/{id}', [StrayController::class, 'destroy'])->name('strays.destroy');
-Route::get('/strays/{id}', [StrayController::class, 'show'])->name('strays.show'); // 詳細を表示
+    Route::get('/strays', [StrayController::class, 'index'])->name('strays.index'); // 一覧表示ページ
+    Route::get('/strays/create', [StrayController::class, 'create'])->name('strays.create'); // 迷子新規登録フォーム
+    Route::get('/strays/show', [App\Http\Controllers\StrayController::class, 'show'])->name('strays.show');  //新規登録表示
+    Route::post('/strays', [StrayController::class, 'store'])->name('strays.store'); // データを保存するルート
+    Route::get('/strays/{id}/edit', [StrayController::class, 'edit'])->name('strays.edit'); // 編集ページ表示
+    Route::put('/strays/{id}', [StrayController::class, 'update'])->name('strays.update'); // 更新処理
+    Route::delete('/strays/{id}', [StrayController::class, 'destroy'])->name('strays.destroy');
+    Route::get('/strays/{id}', [StrayController::class, 'show'])->name('strays.show'); // 詳細を表示
+    Route::post('/strays/{id}/comments', [CommentController::class, 'storeForStray'])->name('strays.comments.store'); //コメント用
 
 // ブックマークに使う関連
 Route::post('/posts/{post}/favorite', [App\Http\Controllers\FavoriteController::class, 'store'])->name('favorites.store');
@@ -98,6 +99,7 @@ Route::delete('/posts/{post}/favorite', [App\Http\Controllers\FavoriteController
 // かわいいねに使う関連
 Route::post('/posts/{post}/like', [App\Http\Controllers\LikeController::class, 'store'])->name('likes.store');
 Route::delete('/posts/{post}/like', [App\Http\Controllers\LikeController::class, 'destroy'])->name('likes.destroy');
+
 
 //↓仮のやつなのであとで消します：AYAKA
 Route::get('/pets/show', function () { return view('pets/show_pet'); });
@@ -109,10 +111,9 @@ Route::get('/strays/show', function () { return view('/strays/show_stray'); });
 //↑ここまで！
 
 
-//  1/12にCanaが作りました↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+///  1/12にCanaが作りました↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 Route::get('/shelters/edit', function () { return view('/shelters/edit_shelter'); });
 // 邪魔なら消してください↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 //  1/12にCanaが作りました↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 Route::get('/shelters/show', function () { return view('/shelters/show_shelter'); });
 // 邪魔なら消してください↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-

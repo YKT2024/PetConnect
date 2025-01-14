@@ -9,7 +9,7 @@
 
     @section('content')
     <header>
-   <div class="top">
+    <div class="top">
     <a href="{{ route('strays.index') }}"><img src="{{ asset('img/return.png')}}" alt="戻る"></a>
         <p>迷子情報</p>
     </div>
@@ -66,31 +66,33 @@
 
             <!-- コメントリストを表示 -->
             <div id="commentList">
-                {{-- <!-- @foreach($comments as $comment) --> --}}
-                    <div class="caption-comment">
-                        <div class="icon-area">
-                            <div class="icon">
-                                <img src="{{ asset('img/footer_field.png') }}" alt="アイコン"> -->
-                                <!-- 上の1行消してここ変える　コメント投稿者のアイコン取得 -->
-                                <!-- <img src="" alt=""> -->
-                            </div>
-                        </div>
-                        <div class="caption">
-                            <p>コメントはここやで</p>
-                            <!-- 上の1行消してここ変える 投稿されたコメント取得-->
-                            {{-- <!-- <p>{{ $comment->text }}</p> --> --}}
-                        </div>
-                        <!-- コメント削除ボタン -->
-                        <!-- 削除機能 ここの下もあってるかわからん -->
-                        {{-- <!-- <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" onsubmit="return confirm('コメントを削除しますか？')"> --> --}}
-                            <!-- @csrf -->
-                            <!-- @method('DELETE') -->
-                            <button class="btn-4" id="delete-btn">削除</button>
-                        </form>
-                    </div>
-                {{-- <!-- @endforeach --> --}}
+            @foreach($comments as $comment)
+            <div class="caption-comment">
+            <!-- アイコンエリア -->
+            <div class="icon-area">
+                <div class="icon">
+
+            <!-- 投稿者のアイコン画像を取得 -->
+                    <img src="{{ $comment->user->photo_url ?? asset('images/default-avatar.png') }}" alt="アイコン">
+                </div>
             </div>
+
+            <!-- コメント内容 -->
+            <div class="caption">
+                <p><strong>{{ $comment->user->name ?? '匿名' }}:</strong> {{ $comment->body }}</p>
+            </div>
+
+            <!-- コメント削除ボタン  -->
+            @if(auth()->id() === $comment->user_id) <!-- 自分のコメントのみ削除可能 -->
+                <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" onsubmit="return confirm('コメントを削除しますか？')">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn-4" type="submit">削除</button>
+                </form>
+            @endif
         </div>
+    @endforeach
+</div>
 
 
 <!-- {{-- コメントのためのモーダル --}} -->
