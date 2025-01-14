@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>投稿詳細</title>
+@extends('layouts.footer')
+
+@section('css')
+{{-- css --}}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/show_post.css') }}">
     {{-- <link rel="stylesheet" href="./show_post.css"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-</head>
-<body>
+    @endsection
+
+    @section('content')
 
 <header class="header-dayo">
-    <div class="header-desu">投稿詳細</div>
+    <a href="#"><img src="{{ asset('img/return.png')}}" alt=""></a>
 </header>
 
 <main class="maincontent">
@@ -281,6 +281,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </script>
 
-
-</body>
-</html>
+@endsection
