@@ -10,8 +10,8 @@
 <body>
 
 <header class="header-dayo">
-    <div class="header-desu">投稿詳細</div>    
     <a href="#"><img src="{{ asset('img/return.png')}}" alt=""></a>
+    <div class="header-desu">投稿詳細</div>    
 </header>
 
 
