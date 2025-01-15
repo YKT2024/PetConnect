@@ -11,7 +11,7 @@
     <header>
     @auth
     <div class="top">
-        <a href="#"><img src="{{ asset('img/return.png')}}" alt=""></a>
+        <button onclick="window.history.back()"><img src="{{ asset('img/return.png')}}" alt=""></button>
         <p>マイページ</p>
         <a href="{{ route('users.edit') }}"><img src="{{ asset('img/setting.png')}}" alt=""></a>
     </div>

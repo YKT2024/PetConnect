@@ -27,6 +27,18 @@ body {
     padding: 10px;
 }
 
+.top button {
+    background-color: transparent;
+    border: none;
+}
+
+.top button img{
+    width: 24px;
+    height: 24px;
+    padding: 10px;
+}
+
+
 .top p {
     font-size: 18px;
     color: #FFF;

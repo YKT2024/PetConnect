@@ -19,7 +19,12 @@
     align-items: center; 
 }
 
-.header-dayo img{
+.header-dayo button {
+    background-color: transparent;
+    border: none;
+}
+
+.header-dayo button img{
     width: 24px;
     height: 24px;
     margin-left: 15px;

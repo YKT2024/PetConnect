@@ -11,7 +11,7 @@
     @section('content')
 
 <header class="header-dayo">
-    <a href="#"><img src="{{ asset('img/return.png')}}" alt=""></a>
+    <button onclick="window.history.back()"><img src="{{ asset('img/return.png')}}" alt=""></button>
 </header>
 
 <main class="maincontent">
