@@ -25,11 +25,12 @@
     <a href="#" id="show-favorites">お気に入り</a>
   </div>
   <div class="search">
-    <form action="http://127.0.0.1:8002/posts" method="get">
-      <input type="search" name="search">
-      <input type="submit" name="submit" value="🔍">
+    <form action="{{ route('posts.index_post') }}" method="GET">
+        <input type="text" name="search" placeholder="キーワードで検索" value="{{ request('search') }}">
+        <button type="submit">🔍 検索</button>
     </form>
-  </div>
+</div>
+
   
 <div  id="all-container" class="all_container">
     @foreach ($posts as $index => $post)
@@ -38,9 +39,9 @@
             @if ($index == 0)
                 <div class="row"> {{-- 新しい行の開始 --}}
             @endif
-             <a href="{{ route('posts.show', ['id' => $post->id]) }}">
-             <img src="{{ asset('storage/' . $post->image_at)}}" alt="投稿画像">
-             </a>
+              <a href="{{ route('posts.show', ['id' => $post->id]) }}">
+              <img src="{{ asset('storage/' . $post->image_at)}}" alt="投稿画像">
+              </a>
             @if ($index == 1)
                 </div> {{-- 行の終了 --}}
             @endif

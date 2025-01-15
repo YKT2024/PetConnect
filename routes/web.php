@@ -84,7 +84,7 @@ Route::get('/pets/mypage', [App\Http\Controllers\PetController::class, 'showMypa
 // Strays関連
     Route::get('/strays', [StrayController::class, 'index'])->name('strays.index'); // 一覧表示ページ
     Route::get('/strays/create', [StrayController::class, 'create'])->name('strays.create'); // 迷子新規登録フォーム
-    Route::get('/strays/show', [App\Http\Controllers\StrayController::class, 'show'])->name('strays.show');  //新規登録表示
+    Route::get('/strays/show', [App\Http\Controllers\StrayController::class, 'showCreate'])->name('strays.showCreate'); // 新規登録表示
     Route::post('/strays', [StrayController::class, 'store'])->name('strays.store'); // データを保存するルート
     Route::get('/strays/{id}/edit', [StrayController::class, 'edit'])->name('strays.edit'); // 編集ページ表示
     Route::put('/strays/{id}', [StrayController::class, 'update'])->name('strays.update'); // 更新処理
