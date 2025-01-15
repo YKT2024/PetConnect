@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Area;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -22,24 +23,34 @@ class UserController extends Controller
     public function update(Request $request)
     {
         // dd($request->all());
+        $user = Auth::user();
         $request->validate([
             'accountname' => 'nullable|string|max:255', // ユーザー名
-            'email' => 'nullable|string|email|max:255|unique:users', // メールアドレス
+            'email' => 'nullable|string|email|max:255|unique:users,email,' . $user->id, // メールアドレス
             'address' => 'nullable|exists:areas,id', // エリア
             'password' => 'nullable|string|min:8', // パスワード
         ]);
-        $user = Auth::user();
 
-        //情報更新
-        $user->name = $request->accountname ? : $user->name;
-        $user->email = $request->email ? : $user->email;
-        $user->password = Hash::make($request->password);
-        $user->area_id = $request->address ? : $user->area_id;
+        if ($request->filled('accountname')) {
+            $user->name = $request->accountname;
+        }
+    
+        if ($request->filled('email')) {
+            $user->email = $request->email;
+        }
+    
+        if ($request->filled('address')) {
+            $user->area_id = $request->address;
+        }
+    
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
 
         //更新した情報をDBに保存
-        $user -> save();
+        $user->save();
         
-        //更新後、マイページにリダイレクト
-        return redirect('pets.mypage');
+        //更新後、苦手ペット登録ページにリダイレクト
+        return redirect()->route('hidden_pet.show');
     }
 }

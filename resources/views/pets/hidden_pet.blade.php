@@ -18,7 +18,7 @@
 {{-- ↑↑↑↑仮のヘッダーだよ↑↑↑↑--}}
 
     <main class="maincontent">
-        <form action="{{ route('create_pet.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('hidden_pet.store') }}" method="POST" enctype="multipart/form-data">
          @csrf
             <div class="register">
                 <div class="hello">
@@ -27,29 +27,35 @@
         
                 <div class="input">
                     <label for="select_pettype2">カテゴリ2(種類)</label>
-                    <select name="select_pettype2" id="select_pettype2" disabled>
-                        <option value="" disabled selected>カテゴリ1(分類)を先に選択してください</option>
+                    <select name="select_pettype2[]" id="select_pettype2_1">
+                        <option value="" disabled selected>選択してください</option>
+                        @foreach ($subcategories as $subcategory)
+                        <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="input">
                     <label for="select_pettype2">カテゴリ2(種類)</label>
-                    <select name="select_pettype2" id="select_pettype2" disabled>
-                        <option value="" disabled selected>カテゴリ1(分類)を先に選択してください</option>
+                    <select name="select_pettype2[]" id="select_pettype2_2">
+                        <option value="" disabled selected>選択してください</option>
+                        @foreach ($subcategories as $subcategory)
+                        <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="input">
                     <label for="select_pettype2">カテゴリ2(種類)</label>
-                    <select name="select_pettype2" id="select_pettype2" disabled>
-                        <option value="" disabled selected>カテゴリ1(分類)を先に選択してください</option>
+                    <select name="select_pettype2[]" id="select_pettype2_3">
+                        <option value="" disabled selected>選択してください</option>
+                        @foreach ($subcategories as $subcategory)
+                        <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory }}</option>
+                        @endforeach
                     </select>
                 </div>
-                
-               
             </div>
                 <div class="btn">
                     <button type="submit" class="btn-1">つぎへ</button>
-                </div>
-                               
+                </div>             
         </form>
     </main>    
 </body>

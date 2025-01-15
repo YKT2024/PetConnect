@@ -9,6 +9,7 @@ use App\Models\Pet_category;
 use App\Models\Pet_subcategory;
 use App\Models\Pet;
 use App\Models\Post;
+use App\Models\Hidden_pet;
 
 
 class PetController extends Controller
@@ -82,6 +83,10 @@ class PetController extends Controller
 
         // dd($request->all());
 
+        $user = Auth::user();
+
+        $pet = Pet::where('id', $id)->where('user_id', $user->id)->firstOrFail();
+
         $request->validate([
             'accountname' => 'nullable|string|max:255', // ペットの名前
             'select_pettype' => 'nullable|exists:pet_categories,id', // ペットカテゴリ１
@@ -94,9 +99,6 @@ class PetController extends Controller
             'introduce' => 'nullable|string|max:200', // 紹介文
             'photo-input' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // 写真
         ]);
-
-        //指定したIDの情報をDBから取得
-        $pet = Pet::findOrFail($id);
 
         //情報更新
         $pet->name = $request->accountname;
@@ -146,6 +148,41 @@ class PetController extends Controller
         $posts = Post::where('user_id', $user->id)->get();
 
         return view('pets.mypage_pet', compact('user', 'pet', 'posts'));
+    }
+
+    public function show_hidden_pet()
+    {
+        $subcategories = Pet_subcategory::all();
+
+        return view('pets.hidden_pet', compact('subcategories'));
+    }
+
+    public function store_hidden_pet(Request $request)
+    {
+        // dd($request->all());
+
+        $request->validate([
+            'select_pettype2' => 'nullable|array', // 配列であることを検証
+            'select_pettype2' => 'exists:pet_subcategories,id', // ペットカテゴリ2
+        ]);
+
+         // 空の値を取り除く（未選択の場合に備える）
+        $selectedSubcategories = array_filter($request->input('select_pettype2'), fn($value) => !empty($value));
+
+        // 選択された値ごとにレコードを作成
+        foreach ($selectedSubcategories as $subcategoryId) {
+        Hidden_pet::create([
+            'user_id' => Auth::id(),
+            'pet_subcategory_id' => $subcategoryId,
+        ]);
+        }
+
+        $user = Auth::user();
+
+        $pet = Pet::where('user_id', Auth::id())->firstOrFail();
+
+        // ペット情報編集ページにリダイレクト
+        return redirect()->route('pets.edit', ['id' => $pet->id]);
     }
 
 }

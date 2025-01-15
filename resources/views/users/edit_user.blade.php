@@ -19,6 +19,7 @@
     <main class="maincontent">
         <form action="{{ route('users.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="register">
                 <div class="input">
                     <label for="accoutname"><span class="asterisk">*
@@ -40,13 +41,13 @@
                 </div>
                 <div class="input">
                     <label for="password"><span class="asterisk">*</span>パスワード</label>
-                        <input type="password" name="password" placeholder="パスワードを入力してください" required>
+                        <input type="password" name="password" placeholder="パスワードを入力してください">
                 </div>
             </div>
             <div class="btn">
                 <button type="submit" class="btn-1">次へ</button>
             </div>
-     </form>
+        </form>
     </main>
     
 </body>
