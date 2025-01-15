@@ -1,13 +1,30 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Shelter;
 use App\Models\Stray;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
+    // コメント削除
+    public function destroy($id)
+    {
+        $comment = Comment::findOrFail($id);
+
+        // コメントがログイン中のユーザーのものか確認
+        if ($comment->user_id !== auth()->id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $comment->delete();
+
+        return redirect()->back()->with('success', 'コメントを削除しました！');
+    }
+
     // Shelter 用コメント保存
     public function storeForShelter(Request $request, $shelterId)
     {

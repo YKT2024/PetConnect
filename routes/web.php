@@ -102,6 +102,9 @@ Route::delete('/posts/{post}/favorite', [App\Http\Controllers\FavoriteController
 Route::post('/posts/{post}/like', [App\Http\Controllers\LikeController::class, 'store'])->name('likes.store');
 Route::delete('/posts/{post}/like', [App\Http\Controllers\LikeController::class, 'destroy'])->name('likes.destroy');
 
+// コメント削除用
+Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
+
 
 //↓仮のやつなのであとで消します：AYAKA
 // Route::get('/pets/show', function () { return view('pets/show_pet'); });

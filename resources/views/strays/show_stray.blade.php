@@ -49,21 +49,20 @@
         <a href="#" id="commentBtn">コメントする</a>
     </div>
     
-            <!-- モーダルウィンドウ -->
-            <div id="commentModal">
+                <div id="commentModal">
                 <div class="modal-content">
-                    <!--コメント機能 ここの下もあってるかわからん -->
-                    <form id="commentForm" action="" method="POST">
-                        <!-- @csrf -->
-                        <textarea name="comment" maxlength="150" placeholder="コメントを入力"></textarea>
+                    <!-- コメント投稿フォーム -->
+                    <form id="commentForm" action="{{ route('strays.comments.store', $stray->id) }}" method="POST">
+                        @csrf
+                        <textarea name="body" maxlength="150" placeholder="コメントを入力" required></textarea>
                         <div class="modalbtn">
                             <button type="submit">コメント投稿</button>
                             <button type="button" id="cancelBtn" class="cancel-btn">キャンセル</button>
                         </div>
                     </form>
                 </div>
+                
             </div>
-
             <!-- コメントリストを表示 -->
             <div id="commentList">
             @foreach($comments as $comment)
