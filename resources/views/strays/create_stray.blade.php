@@ -10,7 +10,7 @@
         @section('content')
     <!--↓↓↓↓↓仮のヘッダーだよ↓↓↓↓↓-->
     <header class="header-dayo">
-        <a href="#"><img src="{{ asset('img/return.png')}}" alt=""></a>
+    <a href="{{ route('strays.index') }}"><img src="{{ asset('img/return.png')}}" alt="戻る"></a>
         <div class="header-desu">迷子情報の投稿</div>
     </header>
     <!--↑↑↑↑仮のヘッダーだよ↑↑↑↑-->

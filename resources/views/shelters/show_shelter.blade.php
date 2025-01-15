@@ -60,7 +60,7 @@
                 </div>
                 <div class="info">
                     <span class="value">
-                        {{ $shelter->evacuation_type ? '開設中' : '未開設' }} <!-- 避難態勢を表示 -->
+                        {{ $shelter->evacuation_type ? '同伴避難' : '同室避難' }} <!-- 避難態勢を表示 -->
                     </span>
                 </div>
             </div>

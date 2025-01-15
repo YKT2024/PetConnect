@@ -181,11 +181,11 @@ public function index(Request $request)
         // 投稿データを取得
         $stray = Stray::with('area', 'pet_subcategory')->findOrFail($id);
 
-        // 投稿者が自分かどうかを判定
-        $isOwner = $stray->user_id === auth()->id();
-
         // コメントデータを取得
         $comments = $stray->comments; 
+
+        // 投稿者が自分かどうかを判定
+        $isOwner = $stray->user_id === auth()->id();
 
         // ビューにデータを渡す
         return view('strays.show_stray', compact('stray','comments','isOwner'));
