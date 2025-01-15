@@ -129,19 +129,20 @@
                 </section> 
                 </div>
                 <div class="btn">
-            <button type="submit" class="btn-1">更新する</button>
-            <button type="button" class="btn-3" onclick="window.location.href='{{ route('strays.index') }}'">キャンセル</button>
-        </div>
+                <div class="btn1">
+                    <button type="submit" class="btn-1">更新する</button>
     </form>
+                <div class="btn2">
+                <form action="{{ route('strays.destroy', $stray->id) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');"> 
+                @csrf
+                @method('DELETE')
+                    <button type="submit" class="btn-2">削除</button>
+                </form>
+                </div>
+                <button type="button" class="btn-3" onclick="window.location.href='{{ route('strays.index') }}'">キャンセル</button>
+                </div>
+                </div>
 </main>
-    <div class="btn">
-        <form action="{{ route('strays.destroy', $stray->id) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');"> 
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn-2">削除</button>
-        </form>
-</div>
-        </main>
     
 <script>
             document.getElementById('photo-input').addEventListener('change', function(event) {
