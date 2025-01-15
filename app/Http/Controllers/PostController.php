@@ -9,16 +9,28 @@ use App\Models\Favorite;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // 投稿一覧（全ユーザー共通で同じ投稿を取得）
-        $posts = Post::orderBy('created_at', 'desc')->get();
+        // 検索キーワードを取得
+        $search = $request->input('search');
 
-        // お気に入りした投稿を取得
+        // 投稿クエリの初期化
+        $query = Post::query();
+
+        // 検索条件を適用
+        if ($search) {
+            $query->where('body', 'LIKE', '%' . $search . '%'); // 本文の部分一致検索
+        }
+
+        // 投稿を取得
+        $posts = $query->orderBy('created_at', 'desc')->get();
+
+        // お気に入りの投稿を取得
         $userId = Auth::id();
         $favoritePosts = Favorite::where('user_id', $userId)->pluck('post_id');
         $favposts = Post::whereIn('id', $favoritePosts)->get();
 
+        // ビューにデータを渡す
         return view('posts.index_post', compact('posts', 'favposts'));
     }
 
@@ -74,8 +86,7 @@ class PostController extends Controller
         $post->body = $request->introduce;
 
         //画像ファイルのアップロード
-        $imagePath = null;
-        if($request->hasFile('photo-input')) {
+        if ($request->hasFile('photo-input')) {
             $imagePath = $request->file('photo-input')->store('posts/img', 'public');
             $post->image_at = $imagePath;
         }
@@ -87,16 +98,16 @@ class PostController extends Controller
         return redirect('/pets/mypage');
     }
 
-    function destroy($id)
+    public function destroy($id)
     {
         $post = Post::find($id);
 
-        $post -> delete();
+        $post->delete();
 
         return redirect('/pets/mypage');
     }
 
-    function show($id)
+    public function show($id)
     {
         // dd($id);
         $post = Post::with('user.pet')->find($id);
@@ -107,7 +118,7 @@ class PostController extends Controller
 
         // ユーザーのアイコンを取得
         $icon = $post->user->pet ? 'pets/img/' . $post->user->pet->image_at : null;
-        
-        return view('posts.show_post', ['post'=>$post, 'icon'=>$icon]);
+
+        return view('posts.show_post', ['post' => $post, 'icon' => $icon]);
     }
 }
