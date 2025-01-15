@@ -21,7 +21,12 @@ body {
     background-color: #A19AD3;
 }
 
-.top a img {
+.top button {
+    background-color: transparent;
+    border: none;
+}
+
+.top button img {
     width: 24px;
     height: 24px;
     padding: 10px;

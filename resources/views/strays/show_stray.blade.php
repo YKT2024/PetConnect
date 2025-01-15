@@ -10,7 +10,7 @@
     @section('content')
     <header>
     <div class="top">
-    <a href="{{ route('strays.index') }}"><img src="{{ asset('img/return.png')}}" alt="戻る"></a>
+        <button onclick="window.history.back()"><img src="{{ asset('img/return.png')}}" alt=""></button>
         <p>迷子情報</p>
     </div>
     </header>
