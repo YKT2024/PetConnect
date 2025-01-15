@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (!Schema::hasTable('pets')) {
         Schema::create('pets', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained(); //ユーザーID(外部キー)
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->text('body')->nullable(); //備考
             $table->timestamps();
         });
+        }
     }
 
     /**

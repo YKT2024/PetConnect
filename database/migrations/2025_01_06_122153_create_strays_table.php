@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (!Schema::hasTable('pets')) {
         Schema::create('strays', function (Blueprint $table) {
             $table->id();
             $table->text('body'); //備考欄
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->tinyInteger('age')->nullable(); //年齢
             $table->timestamps();
         });
+        }
     }
 
     /**
