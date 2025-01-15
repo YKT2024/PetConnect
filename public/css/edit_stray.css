@@ -148,18 +148,18 @@
     }
 
     .btn {
-        display: flex;
-        justify-content: center;
+        text-align: center;
     }
     
     .btn-1 , .btn-2{
         font-size: 15px;
         color: white;
         border: none;
-        width: 60%;
+        width: 150px;
         height: 30px;
         border-radius: 50px;
     }
+
     
     .btn-1 {
         margin-bottom: 30px;
@@ -175,5 +175,6 @@
         border: none;
         margin-bottom: 30px;
         background-color: transparent;
+        text-align: center;
     }
     
