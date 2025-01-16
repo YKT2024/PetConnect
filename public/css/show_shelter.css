@@ -93,7 +93,6 @@
     .icon-area {
     display: flex;
     height: 100%;
-    width: 100%;
     border-radius: 50%;
     margin-bottom: 30px;
 }
@@ -220,9 +219,14 @@
     font-size: 15px;
     color: white;
     border: none;
-    width: 20%;
+    width: 50%;
     height: 30px;
     border-radius: 50px;
     margin-bottom: 30px;
     background-color: rgba(124, 224, 221, 1);
 }
+
+.caption-comment {
+    width: 100%;
+    display: flex;
+y}
