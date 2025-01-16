@@ -90,7 +90,7 @@
 }
 
     /* アイコン */
-    .icon-area {
+.icon-area {
     display: flex;
     height: 100%;
     width: 100%;
@@ -98,8 +98,8 @@
     margin-bottom: 30px;
 }
 .icon img{
-    height:6vw;
-    width:6vw;
+    height:10vw;
+    width:10vw;
     border-radius: 50%;
 }
 
@@ -124,6 +124,10 @@
 .title {
     width: 30%;
     font-weight: bold; /* ラベルを強調する（任意） */
+    text-align: right;
+    padding-right: 40px;
+    text-align: justify;
+    text-align-last: justify;
 }
 
 .info {
