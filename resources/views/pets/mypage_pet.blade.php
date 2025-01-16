@@ -28,7 +28,10 @@
 
     <div class="pet_profile">
         <p>{{ $pet->name }}</p>
-        <p>1000かわいいね</p>
+        <div>
+            <p>{{ $totalLikes }}かわいいね</p>
+        </div>
+        {{-- <p>1000かわいいね</p> --}}
     </div>
 
     <div class="pet_comment">
