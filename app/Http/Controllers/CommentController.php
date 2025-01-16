@@ -7,6 +7,8 @@ use App\Models\Comment;
 use App\Models\Shelter;
 use App\Models\Stray;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\Pet;
 
 class CommentController extends Controller
 {
@@ -38,6 +40,12 @@ class CommentController extends Controller
             'user_id' => auth()->id(),
             'shelter_id' => $shelterId,
         ]);
+
+        // ユーザーのアイコンを取得
+        $userId = Shelter::where('id', $shelterId)->pluck('user_id');
+        $icon = Pet::where('user_id', $userId)->value('image_at');
+        // 投稿者名を取得
+        $userName = User::where('id', $userId)->value('name');
 
         return redirect()->route('shelters.show', $shelterId)->with('success', 'コメントを投稿しました！');
     }

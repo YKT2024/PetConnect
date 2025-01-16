@@ -113,7 +113,7 @@
             <div class="icon-area">
                 <div class="icon">
                     {{-- 投稿者のアイコン画像を取得 --}}
-                    <img src="{{ $comment->user->photo_url ?? asset('images/default-avatar.png') }}" alt="アイコン">
+                    <img src="{{ $icon ? asset('storage/' . $icon) : asset('img/logo_defaultimg.png') }}" alt="アイコン">
                 </div>
             </div>
             
