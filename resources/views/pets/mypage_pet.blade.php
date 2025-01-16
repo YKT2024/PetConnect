@@ -20,9 +20,9 @@
 
     <div class="container">
      @if ($pet)
-        <div class="pet_img">
-        <img src="{{ asset('storage/' . $pet->image_at)}}" alt="ペット">
-        </div>
+     <div class="pet_img">
+        <img src="{{ $pet->image_at ? asset('storage/' . $pet->image_at) : asset('img/logo_defaultimg.png') }}" alt="ペット">
+     </div>
     </div>
 
     <hr>
@@ -82,8 +82,9 @@
         @endif
     @endforeach
 </div>
-@else
+@endauth
 
+@guest
 <div class="guest">
     <div class="guest_top">
         <img src="{{ asset('img/logo_yoko.png')}}" alt="ロゴ">
@@ -91,7 +92,6 @@
     <p>マイページは登録者のみご利用いただけます。</p>
     <a href="{{ route('register') }}">新規登録はこちら</a>
 </div>
-
-@endauth
+@endguest
 
 @endsection
