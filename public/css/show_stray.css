@@ -1,0 +1,297 @@
+* {
+    margin: 0;
+}
+
+
+body {
+    background-color: #EFF0F4;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* 各行の間隔 */
+    padding: 0;
+    /* 画面端の余白 */
+}
+
+
+.top {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    background-color: #A19AD3;
+}
+
+.top button {
+    background-color: transparent;
+    border: none;
+}
+
+.top button img {
+    width: 24px;
+    height: 24px;
+    padding: 10px;
+}
+
+.top p {
+    font-size: 18px;
+    color: #FFF;
+    font-weight:bold;
+    letter-spacing: 0.1em; /* 文字間隔を調整 */
+    text-align: center;
+    padding-left: 110px;
+}
+
+
+.search {
+    text-align: center;
+}
+
+.search input {
+    border: 0.5px solid #333;
+    border-radius: 10px;
+}
+
+.imformation_pet {
+    text-align: center;
+}
+
+
+.imformation_pet a {
+    background-color: #7CE0DD;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px 30px;
+    font-size: 12px;
+    color: #FFF;
+    border-radius: 10px;
+}
+
+.help_pet {
+    text-align: center;
+}
+
+/* == ごめんなさい、編集を普通の文字にするために非表示にしました 1/14よこた */
+    /* .help_pet a { 
+        background-color: #DB4E0D;
+        text-align: center;
+        text-decoration: none;
+        padding: 5px 30px;
+        font-size: 12px;
+        color: #FFF;
+        border-radius: 10px;
+    }*/
+
+.containers {
+    margin: 0 45px;
+}
+
+.containers a {
+    text-decoration: none;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    background-color: #FFF;
+    padding: 15px 5px;
+    margin: 10px 0;
+}
+
+.imformation p {
+    font-size: 12px;
+    padding: 5px;
+    line-height: 15px;
+}
+
+.day_picture p {
+    font-size: 10px;
+    padding-left: 5px;
+}
+
+.imformation {
+    margin-top: 16px;
+}
+
+
+
+
+
+.container img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    padding: 5px;
+}
+
+.dli-plus-circle {
+    display: inline-block;
+    vertical-align: middle;
+    color: #FFF;
+    line-height: 1;
+    position: relative;
+    width: 4em;
+    height: 4em;
+    border: 0.1em solid #FFF;
+    border-radius: 50%;
+    box-sizing: content-box;
+    background-color: #FF8383;
+}
+
+.dli-plus-circle>span {
+    width: 52%;
+    height: 0.1em;
+    background: currentColor;
+    border-radius: 0.1em;
+    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.dli-plus-circle>span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: inherit;
+    transform: rotate(90deg);
+}
+
+.pulus {
+    position: fixed;
+    top: 80%;
+    right: 10%;
+
+}
+
+hr {
+    width: 250px;
+    margin: 0 auto; /* 左右の余白を自動で設定して中央揃え */
+    border: 1px solid #ccc; /* 線のスタイルを指定 */
+}
+
+.comment_pet {
+    text-align: center;
+}
+
+
+.comment_pet a {
+    background-color: #7CE0DD;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px 30px;
+    font-size: 12px;
+    color: #FFF;
+    border-radius: 10px;
+}
+
+/* ==ラベル== */
+    /* 探しています */
+    .status-searching {
+            background-color: #DB4E0D; /* ボタンの背景色 */
+            color: white; /* テキストの色 */
+            font-size: 14px; /* フォントサイズ */
+            font-weight: bold; /* 太字 */
+            padding: 8px 14px; /* 内側の余白 */
+            border-radius: 5px; /* 角丸 */
+            display: inline-block; /* インラインボックス */
+            text-align: center; /* テキストを中央揃え */
+    }
+
+    /* 保護・目撃 */
+    .status-found {
+        background-color:#0D6FDB;; /* ボタンの背景色 */
+        color: white; /* テキストの色 */
+        font-size: 14px; /* フォントサイズ */
+        font-weight: bold; /* 太字 */
+        padding: 8px 14px; /* 内側の余白 */
+        border-radius: 5px; /* 角丸 */
+        display: inline-block; /*インラインボックス */
+        text-align: center; /* テキストを中央揃え */
+}
+
+/* モーダルウィンドウの基本スタイル */
+#commentModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+}
+
+/* モーダル内のテキストエリアとボタン */
+#commentModal textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+#commentModal button {
+    padding: 8px;
+    background-color: rgba(124, 224, 221, 1);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+.modalbtn{
+    display: flex;
+    justify-content: space-around;
+}
+
+/* モーダル内のキャンセルボタン */
+#commentModal .cancel-btn {
+    background-color:  #4F4F4F;
+} 
+
+/* コメント削除ボタン */
+.btn-4 {
+    font-size: 3.5vw;
+    color: white;
+    border: none;
+    width: 20%;
+    height: 30px;
+    border-radius: 50px;
+    margin-bottom: 30px;
+    background-color:#f44336;
+}
+
+#deleteModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+#deleteModal .modalbtn {
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal-content {
+    text-align: center;
+}

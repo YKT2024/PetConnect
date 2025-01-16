@@ -3,7 +3,7 @@
 @section('css')
 {{-- css --}}
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-<link rel="stylesheet" href="{{ asset('css/index_shelter.css') }}">
+<link rel="stylesheet" href="{{ asset('css/show_stray.css') }}">
 <link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/png">
 @endsection
 
