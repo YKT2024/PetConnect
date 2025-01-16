@@ -19,6 +19,7 @@ body {
     align-items: center;
     justify-content: space-between;
     background-color: #A19AD3;
+    height: 50px;
 }
 
 .top button {
