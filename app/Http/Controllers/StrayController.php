@@ -7,6 +7,8 @@ use App\Models\Stray;
 use App\Models\Area;
 use App\Models\Pet_Category;
 use App\Models\Pet_Subcategory;
+use App\Models\User;
+use App\Models\Pet;
 
 class StrayController extends Controller
 {
@@ -176,7 +178,7 @@ public function index(Request $request)
     }
 
 // == 詳細表示 ==
-    public function show($id)
+public function show($id)
     {
         // 投稿データを取得
         $stray = Stray::with('area', 'pet_subcategory')->findOrFail($id);
@@ -187,6 +189,14 @@ public function index(Request $request)
         // 投稿者が自分かどうかを判定
         $isOwner = $stray->user_id === auth()->id();
 
+        // ユーザーのアイコンを取得
+        $userId = Stray::where('id', $id)->pluck('user_id');
+        $icon = Pet::where('user_id', $userId)->value('image_at');
+        // 投稿者名を取得
+        $userName = User::where('id', $userId)->value('name');
+
         // ビューにデータを渡す
-        return view('strays.show_stray', compact('stray','comments','isOwner'));
+        return view('strays.show_stray', compact('stray','comments','isOwner', 'icon', 'userName'));
     }}
+
+    
