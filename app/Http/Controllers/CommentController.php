@@ -66,4 +66,27 @@ class CommentController extends Controller
 
         return redirect()->route('strays.show', $strayId)->with('success', 'コメントを投稿しました！');
     }
+
+    // Post 用コメント保存
+    public function storeForPost(Request $request, $postId)
+    {
+        $validated = $request->validate([
+            'body' => 'required|string|max:150',
+        ]);
+   
+        // コメントを作成して保存
+        Comment::create([
+            'body' => $validated['body'],
+            'user_id' => auth()->id(),
+            'post_id' => $postId,
+        ]);
+   
+        // ユーザーのアイコンを取得
+        $userId = Shelter::where('id', $postId)->pluck('user_id');
+        $icon = Pet::where('user_id', $userId)->value('image_at');
+        // 投稿者名を取得
+        $userName = User::where('id', $userId)->value('name');
+   
+        return redirect()->route('posts.show_post', $postId)->with('success', 'コメントを投稿しました！');
+    }
 }

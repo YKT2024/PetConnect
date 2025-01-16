@@ -134,92 +134,93 @@
     @endforeach
 </div>
 
-{{-- - コメントのためのモーダル --}}
-{{-- - コメントされた際の表示 --}}
+<!-- {{-- コメントのためのモーダル --}} -->
+<!-- {{-- コメントされた際の表示 --}} -->
 <script>
-let comments = [];
-// コメント投稿ボタン
-    document.getElementById('commentBtn').addEventListener('click', function() {
-    document.getElementById('commentModal').style.display = 'flex';
-});
-
-// コメント投稿キャンセルボタン
-    document.getElementById('cancelBtn').addEventListener('click', function() {
-    document.getElementById('commentModal').style.display = 'none';
-});
-
-// コメントフォームの送信処理
-    document.getElementById('commentForm').addEventListener('submit', function(event) {
-
-    event.preventDefault(); // ページリロードを防ぐ
-
-    const commentText = this.querySelector('textarea[name="comment"]').value;
-
-    if (commentText.trim() === '') {
-        alert('コメントを入力してください！');
-        return;
-    }
-
-// コメントオブジェクトを追加
-    const newComment = {
-        text: commentText,
-        // 投稿者名やIDなども追加できます（例: userId: 12345）
-        userId: 'user123',  // 仮のユーザーID（後で実際のユーザーIDに置き換える）
-    };
-    comments.push(newComment);
-
-    updateComments();
-
-    document.getElementById('commentModal').style.display = 'none';
-    this.reset();
-});
-
-function updateComments() {
-    const commentList = document.getElementById('commentList');
-    commentList.innerHTML = ''; // リストをクリア
-
-    comments.forEach((comment, index) => {
-        const commentItem = document.createElement('div');
-        commentItem.classList.add('caption-comment');
-
-        const iconArea = document.createElement('div');
-        iconArea.classList.add('icon-area');
-        const icon = document.createElement('div');
-        icon.classList.add('icon');
-        const img = document.createElement('img');
-        img.src = 'postedimg3.png'; // アイコン画像
-        img.alt = 'アイコン';
-        icon.appendChild(img);
-        iconArea.appendChild(icon);
-
-        const caption = document.createElement('div');
-        caption.classList.add('caption');
-        const p = document.createElement('p');
-        p.textContent = comment.text;
-        caption.appendChild(p);
-
-    // 削除ボタン
-        const deleteBtn = document.createElement('button');
-        deleteBtn.textContent = '削除';
-        deleteBtn.classList.add('delete-btn');
-        deleteBtn.addEventListener('click', function() {
-            if (confirm('コメントを削除しますか？')) { // 確認アラート
-                deleteComment(index); // 削除確定
-            }
+    document.addEventListener('DOMContentLoaded', function() {
+        // コメントリスト用の配列を宣言
+        let comments = []; // 修正ポイント: 配列を適切に定義
+    
+        // コメント投稿ボタン
+        document.getElementById('commentBtn').addEventListener('click', function() {
+            document.getElementById('commentModal').style.display = 'flex';
         });
-
-        commentItem.appendChild(iconArea);
-        commentItem.appendChild(caption);
-        commentItem.appendChild(deleteBtn);
-
-        commentList.appendChild(commentItem);
+    
+        // コメント投稿キャンセルボタン
+        document.getElementById('cancelBtn').addEventListener('click', function() {
+            document.getElementById('commentModal').style.display = 'none';
+        });
+    
+        // コメントフォームの送信処理
+        document.getElementById('commentForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // ページリロードを防ぐ
+    
+            const commentText = this.querySelector('textarea[name="comment"]').value;
+    
+            if (commentText.trim() === '') {
+                alert('コメントを入力してください！');
+                return;
+            }
+    
+            // 新しいコメントを配列に追加
+            const newComment = {
+                text: commentText,
+                userId: 'user123', // 仮のユーザーID
+            };
+            comments.push(newComment);
+    
+            updateComments(); // コメント一覧を更新
+    
+            document.getElementById('commentModal').style.display = 'none';
+            this.reset();
+        });
+    
+        // コメント一覧を更新する関数
+        function updateComments() {
+            const commentList = document.getElementById('commentList');
+            commentList.innerHTML = ''; // リストをクリア
+    
+            comments.forEach((comment, index) => {
+                const commentItem = document.createElement('div');
+                commentItem.classList.add('caption-comment');
+    
+                const iconArea = document.createElement('div');
+                iconArea.classList.add('icon-area');
+                const icon = document.createElement('div');
+                icon.classList.add('icon');
+                const img = document.createElement('img');
+                img.src = '{{ asset("images/postedimg3.png") }}';
+                img.alt = 'アイコン';
+                icon.appendChild(img);
+                iconArea.appendChild(icon);
+    
+                const caption = document.createElement('div');
+                caption.classList.add('caption');
+                const p = document.createElement('p');
+                p.textContent = comment.text;
+                caption.appendChild(p);
+    
+                const deleteButton = document.createElement('button');
+                deleteButton.classList.add('btn-4', 'delete-btn');
+                deleteButton.textContent = '削除';
+                deleteButton.dataset.index = index;
+    
+                // 削除ボタンのクリックイベント
+                deleteButton.addEventListener('click', function() {
+                    const confirmDelete = window.confirm('このコメントを削除しますか？');
+                    if (confirmDelete) {
+                        comments.splice(index, 1); // 配列から削除
+                        updateComments(); // リストを更新
+                    }
+                });
+    
+                commentItem.appendChild(iconArea);
+                commentItem.appendChild(caption);
+                commentItem.appendChild(deleteButton);
+                commentList.appendChild(commentItem);
+            });
+        }
     });
-}
-
-function deleteComment(index) {
-    comments.splice(index, 1); // コメントを配列から削除
-    updateComments(); // コメントリストを再更新
-}
 
 // 文字数の制限に関するjs
 
