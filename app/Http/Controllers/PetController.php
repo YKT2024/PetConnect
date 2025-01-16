@@ -140,14 +140,30 @@ class PetController extends Controller
         return response()->json($subcategories);
     }
 
+    // public function showMypage()
+    // {
+    //     $user = Auth::user();
+    //     $pet = Pet::where('user_id', $user->id)->first();
+        
+    //     $posts = Post::where('user_id', $user->id)->get();
+
+    //     return view('pets.mypage_pet', compact('user', 'pet', 'posts'));
+    // }
+
     public function showMypage()
     {
-        $user = Auth::user();
-        $pet = Pet::where('user_id', $user->id)->first();
-        
-        $posts = Post::where('user_id', $user->id)->get();
+        if (Auth::check()) {
+            // ユーザーがログインしている場合のみ処理
+            $user = Auth::user();
+            $pet = Pet::where('user_id', $user->id)->first();
+            $posts = Post::where('user_id', $user->id)->get();
+        } else {
+            // ログインしていない場合は空のデータまたはnullを渡す
+            $pet = null;
+            $posts = collect(); // 空のコレクション
+        }
 
-        return view('pets.mypage_pet', compact('user', 'pet', 'posts'));
+        return view('pets.mypage_pet', compact('pet', 'posts'));
     }
 
     public function show_hidden_pet()

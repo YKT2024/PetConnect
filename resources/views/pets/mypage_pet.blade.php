@@ -18,7 +18,7 @@
     </header>
 
     <div class="container">
-    @if ($pet)
+     @if ($pet)
         <div class="pet_img">
         <img src="{{ asset('storage/' . $pet->image_at)}}" alt="ペット">
         </div>
@@ -35,9 +35,9 @@
         <p>{{ $pet->body }}</p>
     </div>
 
-    @else
+     @else
         <p>ペット情報が登録されていません</p>
-    @endif
+     @endif
 
     <div  id="all-container" class="all_container">    
 
@@ -85,7 +85,7 @@
         <img src="{{ asset('img/logo_yoko.png')}}" alt="ロゴ">
     </div>
     <p>マイページは登録者のみご利用いただけます。</p>
-    <a href="#">新規登録はこちら</a>
+    <a href="{{ route('register') }}">新規登録はこちら</a>
 </div>
 
 @endauth
