@@ -219,18 +219,28 @@
     justify-content: right;
 }
 
+/* コメント削除ボタン */
 .btn-4 {
-    font-size: 15px;
+    font-size: 3.5vw;
     color: white;
     border: none;
-    width: 50%;
+    width: 35%;
     height: 30px;
     border-radius: 50px;
     margin-bottom: 30px;
-    background-color: rgba(124, 224, 221, 1);
+    background-color:#f44336;
+}
+
+.caption{
+    width: 100%;
 }
 
 .caption-comment {
-    width: 100%;
     display: flex;
-y}
+    flex-direction: row;
+}
+
+.caption-comment form {
+    padding-left: 5px;
+    width: 150%;
+}

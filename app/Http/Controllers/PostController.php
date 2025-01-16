@@ -117,10 +117,13 @@ class PostController extends Controller
             abort(404, 'Post not found.');
         }
 
+        // コメントを取得
+        $comments = $post->comments()->with('user')->get();
+
         // ユーザーのアイコンを取得
         $userId = Post::where('id', $id)->pluck('user_id');
         $icon = Pet::where('user_id', $userId)->value('image_at');    
 
-        return view('posts.show_post', ['post' => $post, 'icon' => $icon]);
+        return view('posts.show_post', ['post' => $post, 'icon' => $icon, 'comments' => $comments]);
     }
 }

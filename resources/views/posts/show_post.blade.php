@@ -102,8 +102,8 @@
             <div id="commentModal">
                 <div class="modal-content">
                     <!--コメント機能 ここの下もあってるかわからん -->
-                    <form id="commentForm" action="#kokoni-route-ireru" method="POST">
-                        <!-- @csrf -->
+                    <form id="commentForm" action="{{ route('posts.comments.store', $post->id) }}" method="POST">
+                    @csrf
                         <textarea name="comment" maxlength="150" placeholder="コメントを入力"></textarea>
                         <div class="modalbtn">
                             <button type="submit">コメント投稿</button>
@@ -113,32 +113,37 @@
                 </div>
             </div>
 
-            <!-- コメントリストを表示 -->
-            <div id="commentList">
-                {{-- <!-- @foreach($comments as $comment) --> --}}
-                    <div class="caption-comment">
-                        <div class="icon-area">
-                            <div class="icon">
-                                <img src="{{ asset('images/postedimg3.png') }}" alt="アイコン">
-                                <!-- 上の1行消してここ変える　コメント投稿者のアイコン取得 -->
-                                <!-- <img src="    " alt=""> -->
-                            </div>
-                        </div>
-                        <div class="caption">
-                            <p>コメントはここやで</p>
-                            <!-- 上の1行消してここ変える 投稿されたコメント取得-->
-                            <!-- <p>    $comment->text     </p> -->
-                        </div>
-                        <!-- コメント削除ボタン -->
-                        <!-- 削除機能 ここの下もあってるかわからん -->
-                        <!-- <form action="     route('comments.destroy', $comment->id)     " method="POST" onsubmit="return confirm('コメントを削除しますか？')"> -->
-                            {{-- <!-- @csrf --> --}}
-                            {{-- <!-- @method('DELETE') --> --}}
-                            <button class="btn-4" type="submit">削除</button>
-                        </form>
-                    </div>
-                {{-- <!-- @endforeach --> --}}
+{{-- コメントリストを表示 --}}
+<div id="commentList">
+    {{-- コメントをループで表示 --}}
+    @foreach($comments as $comment)
+        <div class="caption-comment">
+            {{-- アイコンエリア --}}
+            <div class="icon-area">
+                <div class="icon">
+                    {{-- 投稿者のアイコン画像を取得 --}}
+                    <img src="{{ $icon ? asset('storage/' . $icon) : asset('img/logo_defaultimg.png') }}" alt="アイコン">
+                </div>
             </div>
+            
+            {{-- コメント内容 --}}
+            <div class="caption">
+                <p><strong>{{ $comment->user->name ?? '匿名' }}:</strong> {{ $comment->body }}</p>
+            </div>
+
+            {{-- コメント削除ボタン --}}
+            @if(auth()->id() === $comment->user_id) {{-- 自分のコメントのみ削除可能 --}}
+                <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" onsubmit="return confirm('コメントを削除しますか？')">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn-4" type="submit">削除</button>
+                </form>
+            @endif
+        </div>
+    @endforeach
+</div>
+
+
         </div>
     </section>
 </main>

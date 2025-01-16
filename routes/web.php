@@ -56,6 +56,7 @@ Route::get('/posts/{id}/edit', [App\Http\Controllers\PostController::class, 'edi
 Route::put('/posts/{id}', [App\Http\Controllers\PostController::class, 'update'])->name('posts.update'); // 投稿編集
 Route::delete('/posts/{id}', [App\Http\Controllers\PostController::class, 'destroy'])->name('posts.destroy'); // 投稿削除
 Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show'); //投稿詳細
+Route::post('/posts/{id}/comments', [CommentController::class, 'storeForPost'])->name('posts.comments.store'); //コメント用
 
     // プロフィール
     // Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
