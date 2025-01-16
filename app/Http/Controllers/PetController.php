@@ -163,7 +163,12 @@ class PetController extends Controller
             $posts = collect(); // 空のコレクション
         }
 
-        return view('pets.mypage_pet', compact('pet', 'posts'));
+    // 各投稿で得られたいいねの数を合計
+    $totalLikes = $posts->sum(function ($post) {
+        return $post->likedBy()->count();  // 各投稿の「いいね」の数を取得
+    });
+    
+         return view('pets.mypage_pet', compact('user', 'pet', 'posts', 'totalLikes'));
     }
 
     public function show_hidden_pet()

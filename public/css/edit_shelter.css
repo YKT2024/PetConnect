@@ -96,10 +96,10 @@
         border-width: 1px;
     }
 
-    
     .btn {
         display: flex;
         justify-content: center;
+        flex-direction: column;
     }
     
     .btn-1 , .btn-2{
