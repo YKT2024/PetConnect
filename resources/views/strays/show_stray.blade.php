@@ -30,6 +30,10 @@
     <div class="container">
         <div class="day_picture">
             <p>投稿日: {{ $stray->created_at->format('Y-m-d') }}</p>
+            <div class="user_icon">
+            <img src="{{ $icon ? asset('storage/' . $icon) : asset('img/logo_defaultimg.png') }}" alt="アイコン">
+            </div>
+            <span class="value">{{ $userName }}</span>
             <img src="{{ $stray->image_at ? asset($stray->image_at) : asset('img/logo_defaultimg.png') }}" alt="迷子">
         </div>
         <div class="imformation">                    
@@ -71,7 +75,7 @@
             <div class="icon-area">
                 <div class="icon">
 
-            <!-- 投稿者のアイコン画像を取得 -->
+            <!-- コメント投稿者のアイコン画像を取得 -->
                     <img src="{{ $comment->user->photo_url ?? asset('images/default-avatar.png') }}" alt="アイコン">
                 </div>
             </div>
