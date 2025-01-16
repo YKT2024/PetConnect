@@ -59,32 +59,29 @@
         <a href="#" id="commentBtn">コメントする</a>
     </div>
     
-                <div id="commentModal">
-                <div class="modal-content">
-                    <!-- コメント投稿フォーム -->
-                    <form id="commentForm" action="{{ route('strays.comments.store', $stray->id) }}" method="POST">
-                        @csrf
-                        <textarea name="body" maxlength="150" placeholder="コメントを入力" required></textarea>
-                        <div class="modalbtn">
-                            <button type="submit">コメント投稿</button>
-                            <button type="button" id="cancelBtn" class="cancel-btn">キャンセル</button>
-                        </div>
-                    </form>
+    <div id="commentModal">
+        <div class="modal-content">
+            <!-- コメント投稿フォーム -->
+            <form id="commentForm" action="{{ route('strays.comments.store', $stray->id) }}" method="POST">
+                @csrf
+                <textarea name="body" maxlength="150" placeholder="コメントを入力" required></textarea>
+                <div class="modalbtn">
+                    <button type="submit">コメント投稿</button>
+                    <button type="button" id="cancelBtn" class="cancel-btn">キャンセル</button>
                 </div>
-                
-            </div>
+            </form>
+        </div>
+    </div>
             <!-- コメントリストを表示 -->
-            <div id="commentList">
-            @foreach($comments as $comment)
-            <div class="caption-comment">
-            <!-- アイコンエリア -->
-            <div class="icon-area">
-                <div class="icon">
-
-            <!-- コメント投稿者のアイコン画像を取得 -->
-                    <img src="{{ $comment->user->photo_url ?? asset('images/default-avatar.png') }}" alt="アイコン">
-                </div>
+    <div id="commentList">
+        @foreach($comments as $comment)
+        <div class="caption-comment">
+        <!-- アイコンエリア -->
+        <div class="icon-area">
+            <div class="icon">
+                <img src="{{ $icon ? asset('storage/' . $icon) : asset('img/logo_defaultimg.png') }}" alt="アイコン">
             </div>
+        </div>
 
             <!-- コメント内容 -->
             <div class="caption">
@@ -100,8 +97,8 @@
                 </form>
             @endif
         </div>
-    @endforeach
-</div>
+      @endforeach
+    </div>
 
 
 <!-- {{-- コメントのためのモーダル --}} -->
