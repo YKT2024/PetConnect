@@ -43,17 +43,17 @@
             </div>
 
 
-        <div class="details">
-            <div class="title">
-                    <span class="label">投稿日：</span>
+            <div class="details">
+                <div class="title">
+                        <span class="label">投 稿 日：</span>
                 </div>
                 <div class="info">
                     <span class="value">{{ $shelter->created_at->format('Y-m-d') }}</span> <!-- 作成日時を表示 -->
                 </div>
-        </div>
+            </div>
             <div class="details">
                 <div class="title">
-                    <span class="label">住所：</span>
+                    <span class="label">住　　所：</span>
                 </div>
                 <div class="info">
                     <span class="value">{{ $shelter->address }}</span> <!-- 住所を表示 -->
@@ -71,7 +71,7 @@
             </div>
             <div class="details">
                 <div class="title">
-                    <span class="label">備考：</span>
+                    <span class="label">備　　考：</span>
                 </div>
                 <div class="info">
                     <span class="value">{{ $shelter->body }}</span> <!-- 備考を表示 -->
