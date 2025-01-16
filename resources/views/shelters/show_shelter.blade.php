@@ -17,9 +17,11 @@
 
     <main class="maincontent">
         <section class="section1">
-            @if ($isOwner) <!-- 自分の投稿なら「編集」リンクを表示 -->
-                <a href="{{ route('shelters.edit', $shelter->id) }}" class="my-edit-link">編集</a>
-            @endif
+            <div class="edit-btn">
+                @if ($isOwner) <!-- 自分の投稿なら「編集」リンクを表示 -->
+                    <a href="{{ route('shelters.edit', $shelter->id) }}" class="my-edit-link">編集</a>
+                @endif
+            </div>
             <div class="area-name">
                 <p>{{ $shelter->area->area }}</p> <!-- エリア名を表示 -->
             </div>
