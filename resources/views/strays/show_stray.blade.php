@@ -30,11 +30,17 @@
     <div class="container">
         <div class="day_picture">
             <p>投稿日: {{ $stray->created_at->format('Y-m-d') }}</p>
-            <div class="user_icon">
-            <img src="{{ $icon ? asset('storage/' . $icon) : asset('img/logo_defaultimg.png') }}" alt="アイコン">
+            <div class="icon-area">
+                <div class="icon">
+                    <img src="{{ $icon ? asset('storage/' . $icon) : asset('img/logo_defaultimg.png') }}" alt="アイコン">
+                </div>
+                <div class="user_name">
+                    <span class="value">{{ $userName }}</span>
+                </div>
             </div>
-            <span class="value">{{ $userName }}</span>
-            <img src="{{ $stray->image_at ? asset($stray->image_at) : asset('img/logo_defaultimg.png') }}" alt="迷子">
+
+                {{-- <span class="value">{{ $userName }}</span> --}}
+                <img src="{{ $stray->image_at ? asset($stray->image_at) : asset('img/logo_defaultimg.png') }}" alt="迷子">
         </div>
         <div class="imformation">                    
             <p>ペットのなまえ: {{ $stray->name }}</p>
