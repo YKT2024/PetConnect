@@ -140,13 +140,28 @@ class PetController extends Controller
         return response()->json($subcategories);
     }
 
+    // public function showMypage()
+    // {
+    //     $user = Auth::user();
+    //     $pet = Pet::where('user_id', $user->id)->first();
+        
+    //     $posts = Post::where('user_id', $user->id)->get();
+
+    //     return view('pets.mypage_pet', compact('user', 'pet', 'posts'));
+    // }
+
     public function showMypage()
     {
-        $user = Auth::user();
-        $pet = Pet::where('user_id', $user->id)->first();
-        
-        $posts = Post::where('user_id', $user->id)->get();
-
+        if (Auth::check()) {
+            // ユーザーがログインしている場合のみ処理
+            $user = Auth::user();
+            $pet = Pet::where('user_id', $user->id)->first();
+            $posts = Post::where('user_id', $user->id)->get();
+        } else {
+            // ログインしていない場合は空のデータまたはnullを渡す
+            $pet = null;
+            $posts = collect(); // 空のコレクション
+        }
 
     // 各投稿で得られたいいねの数を合計
     $totalLikes = $posts->sum(function ($post) {
@@ -154,7 +169,6 @@ class PetController extends Controller
     });
     
          return view('pets.mypage_pet', compact('user', 'pet', 'posts', 'totalLikes'));
-        // return view('pets.mypage_pet', compact('user', 'pet', 'posts'));
     }
 
     public function show_hidden_pet()
