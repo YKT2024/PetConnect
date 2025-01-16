@@ -65,6 +65,24 @@
     font-size: 6vw;
 }
 
+/* アイコンと編集 */
+.poster {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-btn {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+
+.my-edit-link {
+    font-size: 3vw;
+    color: blue;
+}
+
+
 /* 詳細エリア */
 
 .section2 {
