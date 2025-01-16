@@ -2,6 +2,7 @@
 
   @section('css')
   {{-- css --}}
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('css/index_post.css') }}">
   <link rel="stylesheet" href="{{ asset('css/mypage_pet.css') }}">
   
