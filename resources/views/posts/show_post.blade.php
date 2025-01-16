@@ -80,7 +80,7 @@
         <div class="caption-comment">
             <div class="icon-area">
                 <div class="icon">
-                    <img src="{{ asset('storage/' . $icon) }}" alt="アイコン">
+                    <img src="{{ $icon ? asset('storage/' . $icon) : asset('img/logo_defaultimg.png') }}" alt="アイコン">
                 </div>
             </div>
             <div class="caption">
