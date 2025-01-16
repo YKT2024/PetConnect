@@ -7,6 +7,8 @@ use App\Models\Area;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Shelter;
+use App\Models\Pet;
+use App\Models\User;
 
 class ShelterController extends Controller
 {
@@ -54,10 +56,6 @@ class ShelterController extends Controller
     
         return view('shelters.index_shelter', compact('shelters'));
     }
-    
-
-
-
 
     public function create_shelter()
     {
@@ -107,8 +105,14 @@ public function show($id)
     // 自分の投稿かどうかを判定
     $isOwner = $shelter->user_id === auth()->id();
 
+    // ユーザーのアイコンを取得
+    $userId = Shelter::where('id', $id)->pluck('user_id');
+    $icon = Pet::where('user_id', $userId)->value('image_at');
+    // 投稿者名を取得
+    $userName = User::where('id', $userId)->value('name');
+
     // 詳細ページを返す
-    return view('shelters.show_shelter', compact('shelter', 'comments','isOwner'));
+    return view('shelters.show_shelter', compact('shelter', 'comments','isOwner', 'icon', 'userName'));
 }
 
 // == 編集ページ表示 ==

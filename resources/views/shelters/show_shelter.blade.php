@@ -35,7 +35,10 @@
         <div class="sectionarea">
             <div class="icon-area">
                 <div class="icon">
-                    <img src="{{ $shelter->image_at ? asset($shelter->image_at) : asset('images/defaultimg.png') }}" alt="アイコン">
+                    <img src="{{ $icon ? asset('storage/' . $icon) : asset('img/logo_defaultimg.png') }}" alt="アイコン">
+                </div>
+                <div class="user_name">
+                    <span class="value">{{ $userName }}</span>
                 </div>
             </div>
 
@@ -47,7 +50,7 @@
                 <div class="info">
                     <span class="value">{{ $shelter->created_at->format('Y-m-d') }}</span> <!-- 作成日時を表示 -->
                 </div>
-            </div>
+        </div>
             <div class="details">
                 <div class="title">
                     <span class="label">住所：</span>

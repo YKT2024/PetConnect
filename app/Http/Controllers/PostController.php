@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
+use App\Models\Pet;
 use App\Models\Favorite;
 
 class PostController extends Controller
@@ -117,7 +118,8 @@ class PostController extends Controller
         }
 
         // ユーザーのアイコンを取得
-        $icon = $post->user->pet ? 'pets/img/' . $post->user->pet->image_at : null;
+        $userId = Post::where('id', $id)->pluck('user_id');
+        $icon = Pet::where('user_id', $userId)->value('image_at');    
 
         return view('posts.show_post', ['post' => $post, 'icon' => $icon]);
     }
