@@ -168,7 +168,7 @@ class PetController extends Controller
         return $post->likedBy()->count();  // 各投稿の「いいね」の数を取得
     });
     
-         return view('pets.mypage_pet', compact('user', 'pet', 'posts', 'totalLikes'));
+         return view('pets.mypage_pet', compact('pet', 'posts', 'totalLikes'));
     }
 
     public function show_hidden_pet()
