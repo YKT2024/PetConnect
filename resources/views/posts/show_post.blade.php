@@ -12,6 +12,7 @@
 
 <header class="header-dayo">
     <button onclick="window.history.back()"><img src="{{ asset('img/return.png')}}" alt=""></button>
+    <div class="header-desu">投稿詳細</div>
 </header>
 
 <main class="maincontent">
