@@ -32,8 +32,7 @@
                 <p>投稿日: {{ $stray->created_at->format('Y-m-d') }}</p>
                 <div class="icon-area">                
                     <div class="icon">
-                        <img src="{{ asset('/strage/pets/sashimi.jpg') }}" alt="">
-                        {{-- <img src="{{ $icon ? asset('storage/' . $icon) : asset('img/logo_defaultimg.png') }}" alt="アイコン"> --}}
+                        <img src="{{ $icon ? asset('storage/' . $icon) : asset('img/logo_defaultimg.png') }}" alt="アイコン">
                     </div>
                     <div class="user_name">
                         <span class="value">{{ $userName }}</span>
