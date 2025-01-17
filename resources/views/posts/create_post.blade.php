@@ -8,7 +8,7 @@
     @extends('layouts.footer')
 
     @section('css')
-    <link rel="stylesheet" href="{{ asset('css/index_post.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/create_post.css') }}">
     @endsection
 {{-- </head>
