@@ -82,7 +82,7 @@ body {
     }*/
 
 .containers {
-    margin: 0 45px;
+    margin: 0 20px;
 }
 
 .containers a {
@@ -123,21 +123,33 @@ body {
 
 /* 投稿者アイコン用 */
 .icon-area {
-    height: 100%;
-    width: 100%px;
-    border-radius: 50%;
-    /* margin-right: px; */
-}
-.icon img{
-    height:6vw;
-    width:6vw;
-    border-radius: 50%;
-    
+    display: flex;
+    align-items: center;
+    gap: 5px; /* アイコンと他要素の間隔 */
+    /* margin-left: 5px; */
+    padding: 5px;
 }
 
+.icon {
+    width: 30px; /* アイコンの幅を小さく */
+    height: 30px; /* アイコンの高さも小さく */
+    overflow: hidden; /* 円形外に出ないように */
+    border-radius: 50%; /* 丸型 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; /* 背景色調整可能 */
+}
+
+.icon img {
+    max-width: 100%; /* 画像の幅をアイコン内にフィットさせる */
+    max-height: 100%; /* 画像の高さもフィットさせる */
+    border-radius: 0; /* 画像自体の丸型指定を削除 */
+}
 
 .user_name{
     padding-left: 5px;
+    font-size: 8px;
 }
 
 

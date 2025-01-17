@@ -27,30 +27,31 @@
 </div>
 
     <div class="containers">
-    <div class="container">
-        <div class="day_picture">
-            <p>投稿日: {{ $stray->created_at->format('Y-m-d') }}</p>
-            <div class="icon-area">
-                <div class="icon">
-                    <img src="{{ $icon ? asset('storage/' . $icon) : asset('img/logo_defaultimg.png') }}" alt="アイコン">
+        <div class="container">
+            <div class="day_picture">
+                <p>投稿日: {{ $stray->created_at->format('Y-m-d') }}</p>
+                <div class="icon-area">                
+                    <div class="icon">
+                        <img src="{{ asset('/strage/pets/sashimi.jpg') }}" alt="">
+                        {{-- <img src="{{ $icon ? asset('storage/' . $icon) : asset('img/logo_defaultimg.png') }}" alt="アイコン"> --}}
+                    </div>
+                    <div class="user_name">
+                        <span class="value">{{ $userName }}</span>
+                    </div>
                 </div>
-                <div class="user_name">
-                    <span class="value">{{ $userName }}</span>
-                </div>
-            </div>
 
-                {{-- <span class="value">{{ $userName }}</span> --}}
-                <img src="{{ $stray->image_at ? asset($stray->image_at) : asset('img/logo_defaultimg.png') }}" alt="迷子">
+                    {{-- <span class="value">{{ $userName }}</span> --}}
+                    <img src="{{ $stray->image_at ? asset($stray->image_at) : asset('img/logo_defaultimg.png') }}" alt="迷子">
+            </div>
+            <div class="imformation">                    
+                <p>ペットのなまえ: {{ $stray->name }}</p>
+                <p>エリア: {{ $stray->area->area }}</p>
+                <p>いなくなった日: {{ $stray->date }}</p>
+                <p>カテゴリー: {{ $stray->pet_subcategory->subcategory ?? '不明' }}</p>
+                <p>性別: {{ $stray->sex ?? '不明' }}</p>
+                <p>備考: {{ $stray->body }}</p>
+            </div>
         </div>
-        <div class="imformation">                    
-            <p>ペットのなまえ: {{ $stray->name }}</p>
-            <p>エリア: {{ $stray->area->area }}</p>
-            <p>いなくなった日: {{ $stray->date }}</p>
-            <p>カテゴリー: {{ $stray->pet_subcategory->subcategory ?? '不明' }}</p>
-            <p>性別: {{ $stray->sex ?? '不明' }}</p>
-            <p>備考: {{ $stray->body }}</p>
-        </div>
-    </div>
     </div>
 
     <hr>
